@@ -3,6 +3,18 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
@@ -20,16 +32,83 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     // Making `.salt` act like a function hides it when serializing to JSON.
     // This is a hack to get around Sequelize's lack of a "private" option.
-    get () {
+    get() {
       return () => this.getDataValue('salt')
     }
   },
   googleId: {
     type: Sequelize.STRING
   }
-})
+});
 
-module.exports = User
+const Billing = db.define('billing', {
+  creditCard: {
+    type: Sequelize.FLOAT,
+    allowNull: false,
+    validate: {
+      isCreditCard: true
+    }
+  },
+  address: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  city: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  state: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      max: 2,
+      min: 2,
+      isAlpha: true
+    }
+  },
+  zip: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    validate: {
+      max: 5,
+      min: 5
+    }
+  }
+});
+
+const Shipping = db.define('shipping', {
+  address: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  city: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  state: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      max: 2,
+      min: 2,
+      isAlpha: true
+    }
+  },
+  zip: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    validate: {
+      max: 5,
+      min: 5
+    }
+  }
+});
+
+Billing.belongsTo(User);
+Shipping.belongsTo(User);
+
+
+module.exports = { User, Billing, Shipping };
 
 /**
  * instanceMethods

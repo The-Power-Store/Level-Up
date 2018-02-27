@@ -7,10 +7,6 @@ const Order = db.define('order', {
        type: Sequelize.ENUM('created', 'processing', 'cancelled', 'completed'),
        defaultValue: 'created'
     },
-    timeCreated: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
-    },
     firstName: {
         type: Sequelize.STRING,
         allowNull: false
@@ -48,17 +44,17 @@ const Order = db.define('order', {
 })
 
 // probs need to re work on this
-Order.total() = function() {
-    let total = 0;
+// Order.total() = function() {
+//     let total = 0;
 
-    const orderItems = await this.findAll({where:{id:userId}})
+//     const orderItems = await Order.findAll({where:{id:userId}})
 
-    for(items in orderItems){
-        let itemPrice = await Product.findById(items.id)
-        total = total + items.price * Product.quantity
-    }
+//     for(items in orderItems){
+//         let itemPrice = await Product.findById(items.id)
+//         total = total + items.price * Product.quantity
+//     }
 
-    return total 
-}
+//     return total 
+// }
 
-module.exports = { Order }
+module.exports = Order 

@@ -1,4 +1,5 @@
-const User = require('./user');
+const Sequelize = require ('sequelize');
+const {User} = require('./user');
 const Product = require('./product');
 const Category = require('./category');
 const Review = require('./review');
@@ -12,12 +13,12 @@ const Order = require('./order');
  *    BlogPost.belongsTo(User)
  */
 
-Product.belongsTo(Category) //CategoryId on product
+// Product.belongsTo(Category) //CategoryId on product
 
 Order.belongsTo(User) //UserId on order
 
 Order.belongsToMany(Product, {through: 'ProductsInOrder'}) //ProductsInOrder join table
-Product.belongsToMany(Order, {through: 'ProductsInOrder'})
+// Product.belongsToMany(Order, {through: 'ProductsInOrder'})
 
 // Cart.belongsTo(User) //cart has UserId
 // Cart.hasMany(Product) //cartId on Product
@@ -25,7 +26,7 @@ Product.belongsToMany(Order, {through: 'ProductsInOrder'})
 Product.hasMany(Review) //ProductId on review
 Review.belongsTo(User) //UserId on review
 
-Product.hasMany(Category) //ProductId on Category
+// Product.hasMany(Category) //ProductId on Category
 Category.hasMany(Product) //CategoryId on product
 
 
@@ -41,5 +42,9 @@ Category.hasMany(Product) //CategoryId on product
 
 
 module.exports = {
-  User
+  User,
+  Product,
+  Category,
+  Review,
+  Order
 }

@@ -5,5 +5,6 @@ const Order = db.define('order', {
     status: {
        type: Sequelize.ENUM('created', 'processing', 'cancelled', 'completed'),
        defaultValue: 'created'
-    }
+    },
+    
 })

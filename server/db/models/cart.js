@@ -20,6 +20,9 @@ const Cart = db.define('Cart',{
     }
 })
 
+//this will need tweaking. I'm not sure it will work as of right now.
+//however I think the idea is sound.  
+
 Cart.cartTotal = function(userId){
     let total = 0
 

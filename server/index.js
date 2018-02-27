@@ -24,8 +24,8 @@ module.exports = app
 if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 // passport registration
-passport.serializeUser((user, done) => done(null, user.id))
-passport.deserializeUser((id, done) =>
+passport.serializeUser((user, done) => done(null, user.id))   //object to string . Done - stores info on session
+passport.deserializeUser((id, done) =>        //string to object (through database)
   db.models.user.findById(id)
     .then(user => done(null, user))
     .catch(done))
@@ -49,7 +49,7 @@ const createApp = () => {
     saveUninitialized: false
   }))
   app.use(passport.initialize())
-  app.use(passport.session())
+  app.use(passport.session()) //wraps over session --> this calls deserialize, makes string an object, puts what we found on req.user
 
   // auth and api routes
   app.use('/auth', require('./auth'))

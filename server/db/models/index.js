@@ -2,7 +2,6 @@ const User = require('./user');
 const Product = require('./product');
 const Category = require('./category');
 const Review = require('./review');
-const Cart = require('./cart');
 const Order = require('./order');
 
 
@@ -20,8 +19,8 @@ Order.belongsTo(User) //UserId on order
 Order.belongsToMany(Product, {through: 'ProductsInOrder'}) //ProductsInOrder join table
 Product.belongsToMany(Order, {through: 'ProductsInOrder'})
 
-Cart.belongsTo(User) //cart has UserId
-Cart.hasMany(Product) //cartId on Product
+// Cart.belongsTo(User) //cart has UserId
+// Cart.hasMany(Product) //cartId on Product
 
 Product.hasMany(Review) //ProductId on review
 Review.belongsTo(User) //UserId on review

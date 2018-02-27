@@ -108,7 +108,7 @@ Billing.belongsTo(User);
 Shipping.belongsTo(User);
 
 
-module.exports = User;
+module.exports = { User, Billing, Shipping };
 
 /**
  * instanceMethods

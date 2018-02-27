@@ -42,6 +42,14 @@ const User = db.define('user', {
 });
 
 const Billing = db.define('billing', {
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   creditCard: {
     type: Sequelize.FLOAT,
     allowNull: false,
@@ -77,6 +85,14 @@ const Billing = db.define('billing', {
 });
 
 const Shipping = db.define('shipping', {
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   address: {
     type: Sequelize.STRING,
     allowNull: false
@@ -106,6 +122,8 @@ const Shipping = db.define('shipping', {
 
 Billing.belongsTo(User);
 Shipping.belongsTo(User);
+User.hasMany(Shipping);
+User.hasMany(Billing);
 
 
 module.exports = { User, Billing, Shipping };

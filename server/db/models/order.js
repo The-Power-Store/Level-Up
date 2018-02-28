@@ -57,6 +57,7 @@ Order.hook('beforeUpdate', function(Order) {
     .catch(console.error);
 });
 
+
 // probs need to re work on this
 // Order.total() = function() {
 //     let total = 0;

@@ -2,7 +2,7 @@ const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const User = db.define('user', {
+const User = db.define('User', {
   firstName: {
     type: Sequelize.STRING,
     allowNull: false
@@ -41,7 +41,7 @@ const User = db.define('user', {
   }
 });
 
-const Address = db.define('address', {
+const Address = db.define('Address', {
   firstName: {
     type: Sequelize.STRING,
     allowNull: false
@@ -70,18 +70,16 @@ const Address = db.define('address', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      max: 2,
-      min: 2,
       isAlpha: true
     }
   },
   zip: {
     type: Sequelize.INTEGER,
-    allowNull: false,
-    validate: {
-      max: 5,
-      min: 5
-    }
+    allowNull: false
+    // validate: {
+    //   max: 6,
+    //   min: 5
+    // }
   }
 });
 
@@ -125,4 +123,4 @@ const setSaltAndPassword = user => {
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
 
-module.exports = { User, Billing, Shipping };
+module.exports = { User, Address };

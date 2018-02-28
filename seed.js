@@ -1,6 +1,13 @@
 const promise  = require('bluebird')
 const db = require('./server/db/db.js')
-const {Product,User} = require('./server/db/models/index.js')
+const {
+    User,
+    Product,
+    Category,
+    Review,
+    Order,
+    Address
+  } = require('./server/db/models/index.js')
 
 const data = {
     Product:[{
@@ -16,13 +23,71 @@ const data = {
         price:1000,
         stock:5
     }],
-    // User:[{
-    //     firstName:'Michaela',
-    //     lastName:'Adams',
-    //     isAdmin:false,
-    //     email:'jfkdsl@gmail.com',
-    //     password: "hehehe"
-    // }]
+    User:[{
+        firstName:'Michaela',
+        lastName:'Adams',
+        isAdmin:false,
+        email:'jfkdsl@gmail.com',
+        password: "hehehe"
+    },{
+        firstName:'Linzay',
+        lastName:'IsCool',
+        isAdmin:true,
+        email:'ususus@gmail.com',
+        password: "hohoho"
+    },{
+        firstName:'DEEE',
+        lastName:'Rocks',
+        isAdmin:true,
+        email:'kdkdkd@gmail.com',
+        password: "teeteetee"
+    }],
+    Address:[{
+        firstName:'Michaela',
+        lastName:'Adams',
+        isShipping:false,
+        isBilling:false,
+        address: "hehehe",
+        city: "Princeton",
+        state: "Tx",
+        zip: 97304
+    }],
+    Catagory:[{
+        title:"fire",
+        description: "ourch, thats hot"
+    },{
+        title:"ice",
+        description: "girl, you cold"
+    }],
+    ProductsInOrder:[{
+        OrderId:1,
+        ProductId:2
+    }],
+    Review:[{
+        review: "honestly, kinda pricy, even for a dragon",
+        numOfStars:2,
+        UserId:1,
+        ProductId:1
+    }],
+    Order:[{
+        status:"created",
+        firstName: "Michaela",
+        lastName: "McCool",
+        address:"5958 Tindall Circle",
+        city:"Austin",
+        state:"Tx",
+        zip:05432,
+        UserId:1,
+    },{
+        status:"created",
+        firstName: "AnotherName",
+        lastName: "IsHere",
+        address:"500 Backwoods Drive",
+        city:"Lost",
+        state:"Iw",
+        zip:11111,
+        UserId:2,
+    }]
 }
 //the actuall database cleaning and updating 
 //there is some crazy nonsense going on with these seeding functions

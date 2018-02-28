@@ -41,7 +41,7 @@ const User = db.define('user', {
   }
 });
 
-const Billing = db.define('billing', {
+const Address = db.define('address', {
   firstName: {
     type: Sequelize.STRING,
     allowNull: false
@@ -50,12 +50,13 @@ const Billing = db.define('billing', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  creditCard: {
-    type: Sequelize.FLOAT,
-    allowNull: false,
-    validate: {
-      isCreditCard: true
-    }
+  isShipping: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true
+  },
+  isBilling: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
   address: {
     type: Sequelize.STRING,
@@ -84,48 +85,10 @@ const Billing = db.define('billing', {
   }
 });
 
-const Shipping = db.define('shipping', {
-  firstName: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  lastName: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  address: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  city: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  state: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      max: 2,
-      min: 2,
-      isAlpha: true
-    }
-  },
-  zip: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    validate: {
-      max: 5,
-      min: 5
-    }
-  }
-});
+Address.belongsTo(User);
+User.hasMany(Address);
 
-Billing.belongsTo(User);
-Shipping.belongsTo(User);
-User.hasMany(Shipping);
-User.hasMany(Billing);
-
-
+module.exports = { User, Address };
 
 /**
  * instanceMethods
@@ -143,10 +106,10 @@ User.generateSalt = function () {
 
 User.encryptPassword = function (plainText, salt) {
   return crypto
-  .createHash('RSA-SHA256')
-  .update(plainText)
-  .update(salt)
-  .digest('hex')
+    .createHash('RSA-SHA256')
+    .update(plainText)
+    .update(salt)
+    .digest('hex')
 }
 
 /**

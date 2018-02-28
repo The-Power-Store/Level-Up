@@ -18,9 +18,9 @@ const Product = db.define('Product', {
   },
   stock: {
     type: Sequelize.INTEGER,
-    defaultValue: null
+    defaultValue: 30
   }
 })
 
 
-module.exports = Product; 
+module.exports = Product;

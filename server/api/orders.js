@@ -17,11 +17,17 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:orderId', (req, res, next) => {
-  return Order.findOne({
-    where: {
-      id: req.params.orderId
-    }
-  })
+  return Order.findOne(req.params.orderId)
     .then(order => res.json(order))
     .catch(next)
 })
+
+
+//needs to pull in cart info from database or session and make that req.body
+router.post('/', (req, res, next) => {
+  Order.create(req.body)
+    .then(order => res.status(201).send(order))
+    .catch(next)
+})
+
+

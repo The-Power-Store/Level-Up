@@ -7,6 +7,7 @@ const Order = db.define('order', {
        type: Sequelize.ENUM('created', 'processing', 'cancelled', 'completed'),
        defaultValue: 'created'
     },
+    // look into isEmpty -- KHEA
     firstName: {
         type: Sequelize.STRING,
         allowNull: false
@@ -27,7 +28,7 @@ const Order = db.define('order', {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
-          max: 2,
+          max: 2, // same as below -- KHEA
           min: 2,
           isAlpha: true
         }
@@ -36,7 +37,7 @@ const Order = db.define('order', {
         type: Sequelize.INTEGER,
         allowNull: false,
         validate: {
-          max: 5,
+          max: 5, // look into `len` -- KHEA
           min: 5
         }
     }
@@ -51,7 +52,7 @@ Order.hook('beforeUpdate', function(Order) {
   })
     .then(products => {
       products.forEach(product => {
-       product.decrement('stock');
+       product.decrement('stock'); // should be saving but double check (test it with an actual test) -- KHEA
       });
     })
     .catch(console.error);
@@ -65,7 +66,7 @@ Order.hook('beforeUpdate', function(Order) {
 //     const orderItems = await Order.findAll({where:{id:userId}})
 
 //     for(items in orderItems){
-//         let itemPrice = await Product.findById(items.id)
+//         let itemPrice = await Product.findById(items.id) --> look into that new table you made (productsInOrder) -- KHEA
 //         total = total + items.price * Product.quantity
 //     }
 

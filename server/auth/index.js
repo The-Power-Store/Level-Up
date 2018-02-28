@@ -3,6 +3,7 @@ const User = require('../db/models/user')
 module.exports = router
 
 router.post('/login', (req, res, next) => {
+  // make sure that if there is anything in a session cart it is now on their persisted cart -- KHEA
   User.findOne({where: {email: req.body.email}})
     .then(user => {
       if (!user) {
@@ -17,7 +18,9 @@ router.post('/login', (req, res, next) => {
 })
 
 router.post('/signup', (req, res, next) => {
-  User.create(req.body)
+  // make sure that if there is anything in a session cart it is now on their persisted cart -- KHEA
+  
+  User.create(req.body) // consider someone sneakily trying to signup and make themselves admin -- KHEA
     .then(user => {
       req.login(user, err => (err ? next(err) : res.json(user)))
     })

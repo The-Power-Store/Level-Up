@@ -1,10 +1,12 @@
 const Sequelize = require ('sequelize');
-const {User} = require('./user');
+const {User} = require('./user'); // just have user in there -- KHEA
 const Product = require('./product');
 const Category = require('./category');
 const Review = require('./review');
 const Order = require('./order');
 
+// MAKE ME -- KHEA
+const ProductsInOrder = require('./productsInOrder') // make sure i have quantity and price -- KHEA
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -17,7 +19,9 @@ const Order = require('./order');
 
 Order.belongsTo(User) //UserId on order
 
-Order.belongsToMany(Product, {through: 'ProductsInOrder'}) //ProductsInOrder join table
+Order.belongsToMany(Product, {through: ProductsInOrder}) //ProductsInOrder join table
+// might be beneficial to have productsInOrder belongs to order and product -- KHEA
+
 // Product.belongsToMany(Order, {through: 'ProductsInOrder'})
 
 // Cart.belongsTo(User) //cart has UserId
@@ -25,6 +29,9 @@ Order.belongsToMany(Product, {through: 'ProductsInOrder'}) //ProductsInOrder joi
 
 Product.hasMany(Review) //ProductId on review
 Review.belongsTo(User) //UserId on review
+// not necessary, but helpful for different eager loadings -- KHEA
+// I'd like to see review -> product
+// I'd like to see user -> review
 
 // Product.hasMany(Category) //ProductId on Category
 Category.hasMany(Product) //CategoryId on product

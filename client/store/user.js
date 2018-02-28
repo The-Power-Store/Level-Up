@@ -21,7 +21,7 @@ const removeUser = () => ({type: REMOVE_USER})
 /**
  * THUNK CREATORS
  */
-export const me = () =>
+export const me = () => // change me to look like your other code -- KHEA
   dispatch =>
     axios.get('/auth/me')
       .then(res =>

@@ -48,9 +48,15 @@ const createApp = () => {
     resave: false,
     saveUninitialized: false
   }))
+
   app.use(passport.initialize())
   app.use(passport.session())
 
+  app.use((req, res, next) => {
+    if (!req.user && !req.session.cart) req.session.cart = {}
+    next();
+  })
+  
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))

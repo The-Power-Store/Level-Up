@@ -2,6 +2,8 @@ const promise  = require('bluebird')
 const db = require('./server/db/db.js')
 const {Product,User} = require('./server/db/models/index.js')
 
+// your package.json refers to the default seed, so update that -- KHEA
+
 const data = {
     Product:[{
         title:"dragon",
@@ -24,6 +26,15 @@ const data = {
     //     password: "hehehe"
     // }]
 }
+
+// flow; tip - check out auther seed -- KHEA
+// create fake users
+// create fake products
+// THEN 
+// create fake order that uses above ids
+// THEN
+// create fake productsInOrder that uses product and order id
+
 //the actuall database cleaning and updating 
 //there is some crazy nonsense going on with these seeding functions
 db.sync({force:true})

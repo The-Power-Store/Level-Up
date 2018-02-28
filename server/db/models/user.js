@@ -17,7 +17,7 @@ const User = db.define('user', {
   },
   email: {
     type: Sequelize.STRING,
-    unique: true,
+    unique: true, // just fyi - based on how we do the google OAuth, you might run in to unexpected errors -- KHEA
     allowNull: false
   },
   password: {
@@ -41,7 +41,7 @@ const User = db.define('user', {
   }
 });
 
-const Address = db.define('address', {
+const Address = db.define('address', { // NOOOO, new file! -- KHEA
   firstName: {
     type: Sequelize.STRING,
     allowNull: false
@@ -71,7 +71,7 @@ const Address = db.define('address', {
     allowNull: false,
     validate: {
       max: 2,
-      min: 2,
+      min: 2, // len before -- KHEA
       isAlpha: true
     }
   },
@@ -80,11 +80,12 @@ const Address = db.define('address', {
     allowNull: false,
     validate: {
       max: 5,
-      min: 5
+      min: 5 // same -- KHEA
     }
   }
 });
 
+// move me to index.js -- KHEA
 Address.belongsTo(User);
 User.hasMany(Address);
 
@@ -125,4 +126,4 @@ const setSaltAndPassword = user => {
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
 
-module.exports = { User, Billing, Shipping };
+module.exports = { User, Billing, Shipping }; // this seems old (already updated) -- KHEA

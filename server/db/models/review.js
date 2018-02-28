@@ -5,11 +5,11 @@ const db = require('../db')
 
 
 const Review = db.define('Review',{
-    review:{
+    review:{ // fine, but consider `content` or `text` -- KHEA
         type: Sequelize.TEXT,
-        allowNull:false
+        allowNull:false // consider empty? -- KHEA
     },
-    numOfStars:{
+    numOfStars:{ // stars. Range validation (1-5) -- KHEA
         type:Sequelize.INTEGER
     }
 }) 

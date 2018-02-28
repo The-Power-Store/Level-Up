@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-//action types
+//action types -- make look consistent -- KHEA
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 const ADD_NEW_PRODUCT = 'ADD_NEW_PRODUCT'
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
@@ -31,8 +31,8 @@ export function updateProduct(product) {
 
 export function fetchAllProducts() {
   return function(dispatch) {
-    return axios
-      .get("/api/products")
+    return axios // don't need return -- KHEA
+      .get("/api/products") // single / double quotes -- KHEA
       .then(res => res.data)
       .then(products => {
         const action = getAllProducts(products);

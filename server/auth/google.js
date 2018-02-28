@@ -1,7 +1,7 @@
 const passport = require('passport')
 const router = require('express').Router()
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-const {User} = require('../db/models')
+const { User } = require('../db/models') // you seem to be doing spacing, keep it consistent -- KHEA
 module.exports = router
 
 /**
@@ -34,6 +34,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
     const googleId = profile.id
     const name = profile.displayName
     const email = profile.emails[0].value
+  // make sure that if there is anything in a session cart it is now on their persisted cart -- KHEA
 
     User.find({where: {googleId}})
       .then(foundUser => (foundUser

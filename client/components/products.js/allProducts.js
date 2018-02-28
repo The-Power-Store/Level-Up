@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import store from '../store';
+import store from '../../store';
 
 
 class Products extends Component {
@@ -20,7 +20,7 @@ class Products extends Component {
     }
 
   render() {
-    // const products = this.props.products.filter(product => product.name.match(this.state.input));
+    const products = this.props.products.filter(product => product.name.include(this.state.input));
     const products = this.props.products
     return (
       <div>

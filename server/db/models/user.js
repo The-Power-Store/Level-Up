@@ -88,7 +88,10 @@ const Address = db.define('address', {
 Address.belongsTo(User);
 User.hasMany(Address);
 
+<<<<<<< HEAD
 module.exports = { User, Address };
+=======
+>>>>>>> master
 
 /**
  * instanceMethods
@@ -106,10 +109,10 @@ User.generateSalt = function () {
 
 User.encryptPassword = function (plainText, salt) {
   return crypto
-    .createHash('RSA-SHA256')
-    .update(plainText)
-    .update(salt)
-    .digest('hex')
+  .createHash('RSA-SHA256')
+  .update(plainText)
+  .update(salt)
+  .digest('hex')
 }
 
 /**
@@ -124,3 +127,5 @@ const setSaltAndPassword = user => {
 
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
+
+module.exports = { User, Billing, Shipping };

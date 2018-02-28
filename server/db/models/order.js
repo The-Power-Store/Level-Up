@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-const Product = require("./product")
+const Product = require("./product");
 
 const Order = db.define('order', {
     status: {
@@ -43,6 +43,20 @@ const Order = db.define('order', {
 
 })
 
+Order.hook('beforeUpdate', function(Order) {
+  return Product.findAll({
+    where: {
+      orderId: Order.id
+    }
+  })
+    .then(products => {
+      products.forEach(product => {
+       product.decrement('stock');
+      });
+    })
+    .catch(console.error);
+});
+
 // probs need to re work on this
 // Order.total() = function() {
 //     let total = 0;
@@ -54,7 +68,7 @@ const Order = db.define('order', {
 //         total = total + items.price * Product.quantity
 //     }
 
-//     return total 
+//     return total
 // }
 
-module.exports = Order 
+module.exports = Order

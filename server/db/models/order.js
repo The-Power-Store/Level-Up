@@ -39,16 +39,7 @@ const Order = db.define('Order', {
     //   max: 5,
     //   min: 5
     // }
-  }
-},
-  zip: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    validate: {
-      max: 5,
-      min: 5
-    }
-  }
+  },
 
 })
 

@@ -33,16 +33,6 @@ router.put('/:id', (req, res, next) => {
 })
 
 
-<<<<<<< HEAD
-router.put('/:id', (req, res, next) => {    ///this should be used to decrement the stock after an order submits,i found this online but dont know if this works??
-  Product.findById(req.params.id)
-    .then(product => {
-      return product.decrement(['stock'], { by: 1 });
-    })
-    .catch(next);
-})
-=======
->>>>>>> master
 
 
 

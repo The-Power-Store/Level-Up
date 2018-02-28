@@ -9,3 +9,23 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+// user wants to view their own history
+router.get('/orderhistory', (req, res, next) => {
+  return Order.findAll({
+    where: {
+      userId: req.user.userId
+    }
+  })
+    .then(orders => res.json(orders))
+    .catch(next)
+})
+
+router.get('/orderhistory/:orderId', (req, res, next) => {
+  return Order.findOne({
+    where: {
+      id: req.params.orderId
+    }
+  })
+    .then(order => res.json(order))
+    .catch(next)
+})

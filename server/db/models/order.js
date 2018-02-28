@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 const Product = require("./product");
 
-const Order = db.define('order', {
+const Order = db.define('Order', {
   status: {
     type: Sequelize.ENUM('created', 'processing', 'cancelled', 'completed'),
     defaultValue: 'created'
@@ -32,6 +32,15 @@ const Order = db.define('order', {
       isAlpha: true
     }
   },
+  zip: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    // validate: {
+    //   max: 5,
+    //   min: 5
+    // }
+  }
+},
   zip: {
     type: Sequelize.INTEGER,
     allowNull: false,

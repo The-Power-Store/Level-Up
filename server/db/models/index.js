@@ -1,5 +1,5 @@
 const Sequelize = require ('sequelize');
-const {User} = require('./user');
+const {User,Address} = require('./user');
 const Product = require('./product');
 const Category = require('./category');
 const Review = require('./review');
@@ -46,5 +46,6 @@ module.exports = {
   Product,
   Category,
   Review,
-  Order
+  Order,
+  Address
 }

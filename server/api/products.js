@@ -14,22 +14,22 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   Product.create(req.body)
-  .then(created => res.status(201).json(created))
-  .catch(next);
+    .then(created => res.status(201).json(created))
+    .catch(next);
 })
 
 router.put('/:id', (req, res, next) => {
   Product.update(req.body, {
-    where : {
+    where: {
       id: req.params.id
     },
     returning: true,
   })
-  .then(updates => {
-    const updated = updates[1][0];
-    res.json(updated);
-  })
-  .catch(next);
+    .then(updates => {
+      const updated = updates[1][0];
+      res.json(updated);
+    })
+    .catch(next);
 })
 
 

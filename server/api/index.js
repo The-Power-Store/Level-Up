@@ -5,6 +5,7 @@ module.exports = router
 router.use('/users', require('./users'))
 rouer.use('/products', require('./products'));
 router.use('/reviews', require('./reviews'));
+router.use('/orders', require('./orders'))
 
 
 

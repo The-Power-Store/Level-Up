@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-const Product = require('./product');
+const Product = require('./product')
+const Cart = require('./cart')
 
 const Order = db.define('order', {
   status: {
@@ -53,12 +54,15 @@ const Order = db.define('order', {
       min: 10000,
       max: 99999
     }
+  },
+  email: {
+    type: Sequelize.STRING
   }
 },
 
 )
 
-Order.hook('beforeUpdate', function (Order) {
+Order.hook('beforeUpdate', function (Product) {
   return Product.findAll({
     where: {
       orderId: Order.id
@@ -71,5 +75,18 @@ Order.hook('beforeUpdate', function (Order) {
     })
     .catch(console.error);
 });
+
+Order.hook('afterCreate', function (Order) {
+  return Cart.destroy({
+    where: {
+      userId: Order.userId
+    }
+  })
+    .then(rowsDeleted => {
+      console.log('da rows were deleted ', rowsDeleted)
+      res.sendStatus(202)
+    })
+    .catch(console.error)
+})
 
 module.exports = Order

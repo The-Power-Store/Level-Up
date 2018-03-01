@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Order } = require("../db/models");
+const { Order, Cart, Product, ProductsInOrder } = require("../db/models");
 module.exports = router;
 
 function createError(status, message) {
@@ -17,6 +17,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:orderId', (req, res, next) => {
+  //add a logged in 
   Order.findById(req.params.orderId)
     .then(order => res.json(order))
     .catch(next)
@@ -28,9 +29,45 @@ router.get('/:orderId', (req, res, next) => {
 // order has cart id 
 
 //needs to pull in cart info from database or session and make that req.body
+// Order.create()
+// .then(createdOrder => Promise.all(cartArr.map(item => productsInOrder.create(Object.assign(item, {orderId: createdOrder.id}))))
+// .then(allGood)
 router.post('/', (req, res, next) => {
   Order.create(req.body)
-    .then(order => res.status(201).send(order))
+    .then(order => {
+      const currentOrder = order
+      return currentOrder
+    })
+    .then(currentOrder => {
+      console.log('new current order is ' + currentOrder)
+      Cart.findAll({
+        where: {
+          userId: req.body.userId
+        }
+      })
+        .then(cartItems => {
+          console.log('dis is the cart items ' + cartItems)
+          Promise.all(cartItems.map(item => {
+            return Product.findById(item.dataValues.productId)
+              .then(product => {
+                return ProductsInOrder.create({ quantity: item.dataValues.quantity, price: product.price, orderId: currentOrder.id, productId: product.id })
+              })
+          })
+          )
+            .then((data) => {
+              console.log('we did a thing! ', data)
+              res.sendStatus(201)
+            })
+
+        })
+
+    }
+    )
+
+    // console.log(req.body)
+    // Order.create(req.body)
+    //   .then(order => res.status(201).send(order))
+
     //ProductInOrder.create
     // req.user.cart
     //loop through each item in users cart to add it to productinorder with correct

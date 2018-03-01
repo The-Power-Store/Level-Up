@@ -45,6 +45,7 @@ router.delete('/', (req, res, next) => {
     })
         .then((rowsDeleted) => {
             console.log('Yer cart has been deleted, yo' + rowsDeleted)
+            res.sendStatus(202)
         })
         .catch(next)
 })

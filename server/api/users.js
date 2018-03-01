@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../db/models');
+const { isLoggedIn, makeError, isAdmin } = require('./utils');
+
 module.exports = router;
 
 router.param('id', (req, res, next, id) => {
@@ -12,7 +14,7 @@ router.param('id', (req, res, next, id) => {
     .catch(next);
 });
 
-router.get('/', (req, res, next) => {
+router.get('/', isAdmin, (req, res, next) => {
   User.findAll({
     // explicitly select only the id and email fields - even though
     // users' passwords are encrypted, it won't help if we just
@@ -29,19 +31,20 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/:id', (req, res, next) => {
-  User.findAll({
-    where: { id: req.params.userId }
-  })
-    .then(user => res.json(user))
-    .catch(next);
+router.get('/:id', isLoggedIn, (req, res, next) => {
+  if (req.requestedUser) {
+    User.findById(req.params.id)
+      .then(user => res.json(user))
+      .catch(next);
+  } else next(makeError(403, 'Forbidden'));
 });
 
-
-router.delete('/:id', (req, res, next) => {
-  req.requestedUser.destroy()
-    .then(() => res.sendStatus(204))
-    .catch(next);
+router.delete('/:id', isLoggedIn, (req, res, next) => {
+  if (req.requestedUser) {
+    req.requestedUser.destroy()
+      .then(() => res.sendStatus(204))
+      .catch(next);
+  } else next(makeError(403, 'Forbidden'));
 });
 
 router.put('/:id', (req, res, next) => {
@@ -49,9 +52,3 @@ router.put('/:id', (req, res, next) => {
     .then(user => res.json(user))
     .catch(next);
 });
-
-
-
-
-
-

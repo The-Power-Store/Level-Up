@@ -2,8 +2,7 @@ import React, {Component} from 'react'
 import {
   HashRouter as Router,
   Route,
-  Switch,
-  Redirect
+  Switch
 } from 'react-router-dom'
 import {connect} from 'react-redux'
 

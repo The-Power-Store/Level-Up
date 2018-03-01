@@ -18,8 +18,8 @@ describe('thunk creators', () => {
   const initialState = {user: {}}
 
   beforeEach(() => {
-    mockAxios = new MockAdapter(axios)
-    store = mockStore(initialState)
+    mockAxios = new MockAdapter(axios)    //make a fake axios
+    store = mockStore(initialState)       //make a fake store
   })
 
   afterEach(() => {
@@ -28,7 +28,7 @@ describe('thunk creators', () => {
   })
 
   describe('me', () => {
-    it('eventually dispatches the GET USER action', () => {
+    it('EVENTUALLY... dispatches the GET_USER action', () => {
       const fakeUser = {email: 'Cody'}
       mockAxios.onGet('/auth/me').replyOnce(200, fakeUser)
       return store.dispatch(me())

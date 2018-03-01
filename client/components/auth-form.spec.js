@@ -1,14 +1,14 @@
-import{ UserHome, mapState } from './user-home'
-import { expect } from 'chai'
-import { shallow } from 'enzyme'
-import React from 'react'
+import { AuthForm, mapLogin } from "./auth-form";
+import { expect } from "chai";
+import { shallow } from "enzyme";
+import React from "react";
 
+describe('AuthForm', () => {
+  describe('the mapLogin function', () => {
+    let fakeState = { user: {error: 'Error!!' }}
 
-describe('authForm',()=>{
-  describe('The login form function', ()=>{
-    let fakeState = {name:'heygirl',displayName:'login',user:'kdjsfla'}
+    it('mapLogin should return the correct object', () => {
+      expect(mapLogin(fakeState).error).to.be.equal('Error!!')
+    })
   })
-  it('should return a login form object', ()=>{
-    expect(mapState(fakeState).name).to.be.equal('heygirl')
-  })
-})
+});

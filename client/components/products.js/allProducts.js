@@ -5,31 +5,27 @@ import store from '../../store';
 
 
 class Products extends Component {
-  constructor(props) {
-    super(props)
+
     state = {
       input: '',
     }
-    this.handleChange = this.handleChange.bind(this);
-  }
 
-    handleChange(event) {
+
+    handleChange = (event) => {
       this.setState({
         input: event.target.value
       })
     }
 
   render() {
-    const products = this.props.products.filter(product => product.name.include(this.state.input));
-    const products = this.props.products
+    const products = this.props.products.filter(product => product.name.includes(this.state.input));
+    
     return (
       <div>
-      <form>
         <input
         placeholder="Search for a product"
         onChange={this.handleChange}
         />
-      </form>
       <h1>Products</h1>
       {
 
@@ -55,4 +51,4 @@ const mapStateToProps = function(state) {
   }
 }
 
-export default connect(mapStateToProps)(Products);
+export const Products = connect(mapStateToProps)(Products);

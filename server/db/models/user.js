@@ -2,7 +2,7 @@ const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const User = db.define('User', {
+const User = db.define('user', {
   firstName: {
     type: Sequelize.STRING,
     allowNull: false
@@ -40,54 +40,6 @@ const User = db.define('User', {
     type: Sequelize.STRING
   }
 });
-
-const Address = db.define('Address', {
-  firstName: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  lastName: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  isShipping: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: true
-  },
-  isBilling: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false
-  },
-  address: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  city: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  state: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      isAlpha: true
-    }
-  },
-  zip: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-    // validate: {
-    //   max: 6,
-    //   min: 5
-    // }
-  }
-});
-
-Address.belongsTo(User);
-User.hasMany(Address);
-
-module.exports = { User, Address };
-
 /**
  * instanceMethods
  */
@@ -123,4 +75,4 @@ const setSaltAndPassword = user => {
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
 
-module.exports = { User, Address };
+module.exports = User

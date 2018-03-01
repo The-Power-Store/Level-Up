@@ -10,7 +10,7 @@ const {
   } = require('./server/db/models/index.js')
 
 const data = {
-    Product:[{
+    product:[{
         title:"dragon",
         description:'a fierce creature',
         imageUrl: "https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fimages2.fanpop.com%2Fimage%2Fphotos%2F13900000%2FDragon-Wallpaper-dragons-13975578-1280-800.jpg&f=1",
@@ -23,7 +23,7 @@ const data = {
         price:1000,
         stock:5
     }],
-    User:[{
+    user:[{
         firstName:'Michaela',
         lastName:'Adams',
         isAdmin:false,
@@ -42,34 +42,7 @@ const data = {
         email:'kdkdkd@gmail.com',
         password: "teeteetee"
     }],
-    Address:[{
-        firstName:'Michaela',
-        lastName:'Adams',
-        isShipping:false,
-        isBilling:false,
-        address: "hehehe",
-        city: "Princeton",
-        state: "Tx",
-        zip: 97304
-    }],
-    Catagory:[{
-        title:"fire",
-        description: "ourch, thats hot"
-    },{
-        title:"ice",
-        description: "girl, you cold"
-    }],
-    ProductsInOrder:[{
-        OrderId:1,
-        ProductId:2
-    }],
-    Review:[{
-        review: "honestly, kinda pricy, even for a dragon",
-        numOfStars:2,
-        UserId:1,
-        ProductId:1
-    }],
-    Order:[{
+    order:[{
         status:"created",
         firstName: "Michaela",
         lastName: "McCool",
@@ -87,6 +60,34 @@ const data = {
         state:"Iw",
         zip:11111,
         UserId:2,
+    }],
+    address:[{
+        firstName:'Michaela',
+        lastName:'Adams',
+        isShipping:false,
+        isBilling:false,
+        address: "hehehe",
+        city: "Princeton",
+        state: "Tx",
+        zip: 97304,
+        UserId: 1
+    }],
+    category:[{
+        title:"fire",
+        description: "ourch, thats hot"
+    },{
+        title:"ice",
+        description: "girl, you cold"
+    }],
+    productsInOrder:[{
+        OrderId:1,
+        ProductId:2
+    }],
+    review:[{
+        review: "honestly, kinda pricy, even for a dragon",
+        numOfStars:2,
+        UserId:1,
+        ProductId:1
     }]
 }
 //the actuall database cleaning and updating 

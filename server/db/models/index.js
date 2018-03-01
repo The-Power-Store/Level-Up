@@ -1,45 +1,32 @@
-const Sequelize = require ('sequelize');
-const {User,Address} = require('./user');
-const Product = require('./product');
-const Category = require('./category');
-const Review = require('./review');
-const Order = require('./order');
+const Sequelize = require ('sequelize')
+const Address = require('./address')
+const Cart = require('./cart')
+const Category = require('./category')
+const User = require('./user')
+const Order = require('./order')
+const Product = require('./product')
+const ProductsInOrder = require('./productsInOrder')
+const Review = require('./review')
 
+Address.belongsTo(User) // Product.belongsTo(Category) //CategoryId on product
 
-/**
- * If we had any associations to make, this would be a great place to put them!
- * ex. if we had another model called BlogPost, we might say:
- *
- *    BlogPost.belongsTo(User)
- */
+Cart.belongsTo(User)
 
-// Product.belongsTo(Category) //CategoryId on product
-
-Order.belongsTo(User) //UserId on order
-
-Order.belongsToMany(Product, {through: 'ProductsInOrder'}) //ProductsInOrder join table
-// Product.belongsToMany(Order, {through: 'ProductsInOrder'})
-
-// Cart.belongsTo(User) //cart has UserId
-// Cart.hasMany(Product) //cartId on Product
-
-Product.hasMany(Review) //ProductId on review
-Review.belongsTo(User) //UserId on review
-
-// Product.hasMany(Category) //ProductId on Category
 Category.hasMany(Product) //CategoryId on product
 
+Order.belongsTo(User) //UserId on order
+Order.belongsToMany(Product, {through: ProductsInOrder}) //ProductsInOrder join table
 
+Product.hasMany(Review) //ProductId on review
 
+ProductsInOrder.belongsTo(Order)
+ProductsInOrder.belongsTo(Product)
 
+User.hasOne(Cart) 
+User.hasMany(Address)
+User.hasMany(Review)
 
-/**
- * We'll export all of our models here, so that any time a module needs a model,
- * we can just require it from 'db/models'
- * for example, we can say: const {User} = require('../db/models')
- * instead of: const User = require('../db/models/user')
- */
-
+Review.belongsTo(Product)  //UserId on review
 
 module.exports = {
   User,
@@ -47,5 +34,6 @@ module.exports = {
   Category,
   Review,
   Order,
-  Address
+  Address,
+  ProductsInOrder
 }

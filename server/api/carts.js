@@ -37,10 +37,27 @@ router.put('/:cartItemId', (req, res, next) => {
 
 // delete all items from cart aka delete cart
 router.delete('/', (req, res, next) => {
-
+    const userId = req.user.id
+    Cart.destroy({
+        where: {
+            userId: userId
+        }
+    })
+        .then((rowsDeleted) => {
+            console.log('Yer cart has been deleted, yo' + rowsDeleted)
+        })
+        .catch(next)
 })
 
 // delete item from cart
 router.delete('/:cartItemId', (req, res, next) => {
-
+    Cart.destroy({
+        where: {
+            id: req.params.cartItemId
+        }
+    })
+        .then((rowsDeleted) => {
+            console.log('These cart items have been deleted, yo' + rowsDeleted)
+        })
+        .catch(next)
 })

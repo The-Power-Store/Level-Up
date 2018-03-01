@@ -11,6 +11,7 @@ const Review = require('./review')
 Address.belongsTo(User) // Product.belongsTo(Category) //CategoryId on product
 
 Cart.belongsTo(User)
+Cart.hasMany(Product)
 
 Category.hasMany(Product) //CategoryId on product
 
@@ -22,7 +23,7 @@ Product.hasMany(Review) //ProductId on review
 ProductsInOrder.belongsTo(Order)
 ProductsInOrder.belongsTo(Product)
 
-User.hasOne(Cart)
+User.hasMany(Cart)
 User.hasMany(Address)
 User.hasMany(Review)
 

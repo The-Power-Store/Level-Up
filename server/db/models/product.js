@@ -12,18 +12,14 @@ const Product = db.define('product', {
   imageUrl: {
     type: Sequelize.STRING
   },
-  value: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
   stock: {
     type: Sequelize.INTEGER,
     defaultValue: null
   },
   price: {
-    type: Sequelize.VIRTUAL,
+    type: Sequelize.INTEGER,
     get() {
-      return (this.getDataValue('value') / 100)
+      return (this.getDataValue('price') / 100)
     }
   }
 })

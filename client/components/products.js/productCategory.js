@@ -5,7 +5,7 @@ import store from '../../store'
 
 class productCategory extends Component {
   state = {
-    input: ""
+    input: ''
   };
 
   handleChange = event => {
@@ -24,7 +24,7 @@ class productCategory extends Component {
     return (
       <div>
           <input
-            placeholder="Search for a product"
+            placeholder='Search for a product'
             onChange={this.handleChange}
           />
         <h1>{category.title}</h1>

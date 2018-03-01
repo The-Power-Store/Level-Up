@@ -32,7 +32,7 @@ export function updateProduct(product) {
 export function fetchAllProducts() {
   return function(dispatch) {
     axios
-      .get("/api/products")
+      .get('/api/products')
       .then(res => res.data)
       .then(products => {
         const action = getAllProducts(products);

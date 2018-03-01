@@ -1,9 +1,9 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import store from '../../store'
 
-class productCategory extends Component {
+class ProductCategory extends Component {
   state = {
     input: ''
   };
@@ -23,10 +23,10 @@ class productCategory extends Component {
     )
     return (
       <div>
-          <input
-            placeholder='Search for a product'
-            onChange={this.handleChange}
-          />
+        <input
+          placeholder='Search for a product'
+          onChange={this.handleChange}
+        />
         <h1>{category.title}</h1>
         <p>{category.description}</p>
 
@@ -45,11 +45,11 @@ class productCategory extends Component {
   }
 }
 
-const mapStateToProps = function(state) {
+const mapStateToProps = function (state) {
   return {
     products: state.products,
     categories: state.categories
   };
 };
 
-export const ProductCategory = connect(mapStateToProps)(ProductCategory);
+export default connect(mapStateToProps)(ProductCategory);

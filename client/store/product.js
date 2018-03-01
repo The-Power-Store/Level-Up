@@ -30,7 +30,8 @@ export function updateProduct(product) {
 //thunks
 
 export function fetchAllProducts() {
-  return function(dispatch) {
+  console.log(`We are fetching all products`);
+  return function (dispatch) {
     axios
       .get('/api/products')
       .then(res => res.data)
@@ -43,32 +44,32 @@ export function fetchAllProducts() {
 }
 
 export function createProduct(product) {
-  return function(dispatch) {
+  return function (dispatch) {
     axios.post('/api/products', product)
-    .then(res => res.data)
-    .then(product => {
-      const action = addNewProduct(product)
-      dispatch(action);
-    })
-    .catch(err => console.error('error creating product', err));
+      .then(res => res.data)
+      .then(product => {
+        const action = addNewProduct(product)
+        dispatch(action);
+      })
+      .catch(err => console.error('error creating product', err));
   }
 }
 
 export function update(id, product) {
-  return function(dispatch) {
+  return function (dispatch) {
     axios.put(`api/products/${id}`, product)
-    .then(res => res.data)
-    .then(product => {
-      const action = updateProduct(product)
-      dispatch(action);
-    })
-    .catch(err => console.error('error updating product', err));
+      .then(res => res.data)
+      .then(product => {
+        const action = updateProduct(product)
+        dispatch(action);
+      })
+      .catch(err => console.error('error updating product', err));
   }
 }
 
 
 //reducer
-export default function productsReducer (state = [], action) {
+export default function productsReducer(state = [], action) {
   switch (action.type) {
     case GET_ALL_PRODUCTS:
       return action.products;

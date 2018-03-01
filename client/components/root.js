@@ -1,14 +1,13 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Route,
   Switch
 } from 'react-router-dom'
-import {connect} from 'react-redux'
-
-import {Homepage, ProductCategory, SingleProduct, AllProducts} from './index.js'
-
-import store, {fetchAllProducts, fetchCategories} from "../store";
+import { connect } from 'react-redux'
+import { Homepage, ProductCategory, SingleProduct, AllProducts, Navbar } from './index.js'
+import store, { fetchAllProducts, fetchCategories } from "../store";
+import Routes from '../routes';
 
 class Root extends Component {
 
@@ -17,27 +16,30 @@ class Root extends Component {
   }
 
   render() {
+    console.log(`ROOT THIS PROPS `, this.props)
     return (
       <div>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Homepage} />
-            <Route path="/products" component={AllProducts} />
-            <Route path="/categories/:id" component={ProductCategory} />
-            <Route path="/product/:id" component={SingleProduct} />
-          </Switch>
-        </Router>
+        <Navbar />
+        <Routes />
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+          <Route exact path="/products" component={AllProducts} />
+          <Route path="/categories/:id" component={ProductCategory} />
+          <Route path="/products/:id" component={SingleProduct} />
+        </Switch>
       </div>
     );
   }
 }
 
-const mapStateToProps = null;
+const mapStateToProps = (state) => {
+  return { products: state.products }
+};
 
 const mapDispatchToProps = dispatch => ({
   fetchInitialData: () => {
-    dispatch(fetchAllProducts);
-    dispatch(fetchCategories);
+    dispatch(fetchAllProducts());
+    dispatch(fetchCategories());
   }
 });
 

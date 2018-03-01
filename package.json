@@ -16,7 +16,7 @@
     "start": "node server",
     "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
-    "test": "NODE_ENV='test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --compilers js:babel-register"
+    "test": "NODE_ENV='test' nyc mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --compilers js:babel-register"
   },
   "author": "",
   "license": "ISC",
@@ -63,6 +63,7 @@
     "husky": "^0.14.3",
     "mocha": "^3.5.3",
     "nodemon": "^1.12.1",
+    "nyc": "^11.4.1",
     "react-test-renderer": "^16.2.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-mock-store": "^1.5.1",

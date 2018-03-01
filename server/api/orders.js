@@ -50,12 +50,13 @@ router.post('/', (req, res, next) => {
           Promise.all(cartItems.map(item => {
             return Product.findById(item.dataValues.productId)
               .then(product => {
-                return ProductsInOrder.create({ quantity: item.dataValues.quantity, price: Product.price, orderId: currentOrder.id, productId: product.id })
+                return ProductsInOrder.create({ quantity: item.dataValues.quantity, price: product.price, orderId: currentOrder.id, productId: product.id })
               })
           })
           )
             .then((data) => {
               console.log('we did a thing! ', data)
+              res.sendStatus(201)
             })
 
         })

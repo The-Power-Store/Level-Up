@@ -57,7 +57,8 @@ router.delete('/:cartItemId', (req, res, next) => {
         }
     })
         .then((rowsDeleted) => {
-            console.log('These cart items have been deleted, yo' + rowsDeleted)
+            console.log('These cart items have been deleted, yo ' + rowsDeleted)
+            res.sendStatus(202)
         })
         .catch(next)
 })

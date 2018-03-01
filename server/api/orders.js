@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:orderId', (req, res, next) => {
-  Order.findOne(req.params.orderId)
+  Order.findById(req.params.orderId)
     .then(order => res.json(order))
     .catch(next)
 })

@@ -1,4 +1,4 @@
-import axios from 'axios;
+import axios from 'axios';
 
 //action types
 const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES'

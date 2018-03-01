@@ -12,6 +12,7 @@ const Product = db.define('product', {
   imageUrl: {
     type: Sequelize.STRING
   },
+
   stock: {
     type: Sequelize.INTEGER,
     defaultValue: null
@@ -24,4 +25,5 @@ const Product = db.define('product', {
   }
 })
 
-module.exports = Product
+
+module.exports = Product;

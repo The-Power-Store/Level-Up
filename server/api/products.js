@@ -1,11 +1,11 @@
-const router = require("express").Router();
-const { Product } = require('../db/models');
+const router = require('express').Router()
+const { Product } = require('../db/models')
 const { isAdmin } = require('./utils')
 
 module.exports = router;
 
 router.get('/', (req, res, next) => {
-  return Product.findAll()
+  Product.findAll()
     .then(products => res.json(products))
     .catch(next);
 });
@@ -19,6 +19,8 @@ router.post('/', isAdmin, (req, res, next) => {
     .catch(next);
   }
 })
+
+
 
 router.put('/:id', (req, res, next) => {
   Product.update(req.body, {

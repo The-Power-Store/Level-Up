@@ -31,7 +31,7 @@ export function updateProduct(product) {
 
 export function fetchAllProducts() {
   return function(dispatch) {
-    return axios
+    axios
       .get("/api/products")
       .then(res => res.data)
       .then(products => {
@@ -44,7 +44,7 @@ export function fetchAllProducts() {
 
 export function createProduct(product) {
   return function(dispatch) {
-    return axios.post('/api/products', product)
+    axios.post('/api/products', product)
     .then(res => res.data)
     .then(product => {
       const action = addNewProduct(product)
@@ -56,7 +56,7 @@ export function createProduct(product) {
 
 export function update(id, product) {
   return function(dispatch) {
-    return axios.put(`api/products/${id}`, product)
+    axios.put(`api/products/${id}`, product)
     .then(res => res.data)
     .then(product => {
       const action = updateProduct(product)

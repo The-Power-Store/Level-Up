@@ -5,7 +5,7 @@ const ProductsInOrder = db.define('productsInOrder',{
     quantity: {
         type: Sequelize.INTEGER,
         validate:{
-            isEmpty:false
+            notEmpty:false
         }
     },
     price: {

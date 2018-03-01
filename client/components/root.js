@@ -5,7 +5,7 @@ import {
   Switch
 } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Homepage, ProductCategory, SingleProduct, AllProducts, Navbar } from './index.js'
+import { Homepage, ProductCategory, SingleProduct, AllProducts, Navbar, Login, Signup } from './index.js'
 import store, { fetchAllProducts, fetchCategories } from "../store";
 import Routes from '../routes';
 

@@ -1,4 +1,4 @@
-const Sequelize = require ('sequelize')
+const Sequelize = require('sequelize')
 const Address = require('./address')
 const Cart = require('./cart')
 const Category = require('./category')
@@ -11,18 +11,20 @@ const Review = require('./review')
 Address.belongsTo(User) // Product.belongsTo(Category) //CategoryId on product
 
 Cart.belongsTo(User)
+//Cart.hasMany(Product) not sure why we dont want this? but it works without. 
 
 Category.hasMany(Product) //CategoryId on product
 
 Order.belongsTo(User) //UserId on order
-Order.belongsToMany(Product, {through: ProductsInOrder}) //ProductsInOrder join table
+Order.belongsToMany(Product, { through: ProductsInOrder }) //ProductsInOrder join table
 
 Product.hasMany(Review) //ProductId on review
+Product.hasMany(Cart)
 
 ProductsInOrder.belongsTo(Order)
 ProductsInOrder.belongsTo(Product)
 
-User.hasOne(Cart) 
+User.hasMany(Cart)
 User.hasMany(Address)
 User.hasMany(Review)
 
@@ -35,5 +37,6 @@ module.exports = {
   Review,
   Order,
   Address,
-  ProductsInOrder
+  ProductsInOrder,
+  Cart
 }

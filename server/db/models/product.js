@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const Product = db.define('Product', {
+const Product = db.define('product', {
   title: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -14,11 +14,17 @@ const Product = db.define('Product', {
   },
   price: {
     type: Sequelize.DECIMAL(8, 2),
-    allowNull: false
+    allowNull: false,
+    validate: {
+      min: 0 
+    }
   },
   stock: {
     type: Sequelize.INTEGER,
-    defaultValue: 30
+    defaultValue: 30,
+    validate: {
+      min: 0 
+    }
   }
 })
 

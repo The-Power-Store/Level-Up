@@ -1,38 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import store, { fetchAllProducts } from '../store';
+import React from 'react'
+import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import store from '../store'
+import Navbar from './navbar'
 
-class Products extends Component {
-
-  constructor(props) {
-    super(props)
-
-  }
-
-  componentDidMount() {
-    this.props.fetchInitialData();
-  }
+const Homepage = (props) => {
 
 
-  render() {
     return (
-            //jsx here
+      <div>
+        <h1>Mystique Boutique</h1>
+        <Navbar />
+      </div>
     )
-  }
+
 
 }
 
-const mapStateToProps = state => {
-  return {
-    products: state.products
-  }
-}
 
-const mapDispatchToProps = dispatch => ({
-  fetchInitialData : () => {
-    dispatch(fetchAllProducts());
-  }
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
+export default Homepage;

@@ -9,8 +9,9 @@ const {
     Address
   } = require('./server/db/models/index.js')
 
-const data = {
-    Product:[{
+
+const productData = {
+    product:[{
         title:"dragon",
         description:'a fierce creature',
         imageUrl: "https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fimages2.fanpop.com%2Fimage%2Fphotos%2F13900000%2FDragon-Wallpaper-dragons-13975578-1280-800.jpg&f=1",
@@ -22,8 +23,11 @@ const data = {
         imageUrl: "https://www.printingin3d.eu/pictures/2013/02-voldemort-wand/painted-voldemort-wand.JPG",
         price:1000,
         stock:5
-    }],
-    User:[{
+    }]
+}
+
+const userData = {
+    user:[{
         firstName:'Michaela',
         lastName:'Adams',
         isAdmin:false,
@@ -41,43 +45,19 @@ const data = {
         isAdmin:true,
         email:'kdkdkd@gmail.com',
         password: "teeteetee"
-    }],
-    Address:[{
-        firstName:'Michaela',
-        lastName:'Adams',
-        isShipping:false,
-        isBilling:false,
-        address: "hehehe",
-        city: "Princeton",
-        state: "Tx",
-        zip: 97304
-    }],
-    Catagory:[{
-        title:"fire",
-        description: "ourch, thats hot"
-    },{
-        title:"ice",
-        description: "girl, you cold"
-    }],
-    ProductsInOrder:[{
-        OrderId:1,
-        ProductId:2
-    }],
-    Review:[{
-        review: "honestly, kinda pricy, even for a dragon",
-        numOfStars:2,
-        UserId:1,
-        ProductId:1
-    }],
-    Order:[{
+    }]
+}
+
+const orderData = {
+    order:[{
         status:"created",
         firstName: "Michaela",
         lastName: "McCool",
         address:"5958 Tindall Circle",
         city:"Austin",
         state:"Tx",
-        zip:05432,
-        UserId:1,
+        zip:35432,
+        userId:1,
     },{
         status:"created",
         firstName: "AnotherName",
@@ -85,19 +65,56 @@ const data = {
         address:"500 Backwoods Drive",
         city:"Lost",
         state:"Iw",
-        zip:11111,
-        UserId:2,
+        zip:58494,
+        userId:2,
+    }]
+
+}
+
+const otherData ={
+    address:[{
+            firstName:'Michaela',
+            lastName:'Adams',
+            isShipping:false,
+            isBilling:false,
+            address: "hehehe",
+            city: "Princeton",
+            state: "Tx",
+            zip: 97304,
+            userId: 1
+        }],
+        category:[{
+            title:"fire",
+            description: "ourch, thats hot"
+        },{
+            title:"ice",
+            description: "girl, you cold"
+        }],
+        productsInOrder:[{
+            quantity:3,
+            price: 5.40,
+            orderId:1,
+            productId:2
+        }],
+        review:[{
+            content: "honestly, kinda pricy, even for a dragon",
+            stars:2,
+            userId:1,
+            productId:1
     }]
 }
+
+//     
 //the actuall database cleaning and updating 
 //there is some crazy nonsense going on with these seeding functions
+
 db.sync({force:true})
     .then(()=>{
         console.log('TIMBER!!! the database is being dropped')
 
-        return promise.map(Object.keys(data),(name)=>{
+        return promise.map(Object.keys(productData),(name)=>{
 
-            return promise.map((data[name]),(item)=>{
+            return promise.map((productData[name]),(item)=>{
 
                 return db.model(name)
                 .create(item)
@@ -105,7 +122,35 @@ db.sync({force:true})
         })
     })
     .then(()=>{
+        return promise.map(Object.keys(userData),(name)=>{
+
+            return promise.map((userData[name]),(item)=>{
+
+                return db.model(name)
+                .create(item)
+            })
+        })
         console.log("okay, I just worked really hard and filled your dumb database")
+    })
+    .then(()=>{
+        return promise.map(Object.keys(orderData),(name)=>{
+
+            return promise.map((orderData[name]),(item)=>{
+
+                return db.model(name)
+                .create(item)
+            })
+        })
+    })
+    .then(()=>{
+        return promise.map(Object.keys(otherData),(name)=>{
+
+            return promise.map((otherData[name]),(item)=>{
+
+                return db.model(name)
+                .create(item)
+            })
+        })
     })
     .catch((err)=>{
         console.error('you goofed, but keep trying',err,err.stack)

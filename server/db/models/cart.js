@@ -1,39 +1,25 @@
-// const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const Product = require("./product")
 const db = require('../db')
 
-
-const Cart = db.define('Cart',{
+const Cart = db.define('cart',{
     quantity:{
-        type: SEQUALIZE.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull:false,
         validate:{
-
         }
-    },
-    productId:{
-        type:SEQUALIZE.INTEGER
-    },
-    orderId:{
-        type:SEQUALIZE.INTEGER
     }
 })
 
-//this will need tweaking. I'm not sure it will work as of right now.
-//however I think the idea is sound.  
-
-Cart.cartTotal = function(userId){
+ Cart.cartTotal = async function(userId){
     let total = 0
+    const userCart = await this.findAll({where:{UserId:d}})
 
-    const userCart = await this.findAll({where:{id:userId}})
-
-    for(items in userCart){
-        let itemPrice = await Product.findById(items.id)
-        total = total + items.price * Product.quantity
+    for(let items in userCart){
+        let item = await Product.findById(items.id)
+        total = total + items.price * item.quantity
     }
     return total 
-
 }
 
-module.exports={cart}
+module.exports = Cart

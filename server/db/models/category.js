@@ -1,17 +1,15 @@
-
 const Sequelize = require('sequelize');
-
 const db = require('../db')
 
 
-const Category = db.define('Catagory',{
+const Category = db.define('category',{
     title:{
         type: Sequelize.STRING,
-        allowNull:true //*** */
+        allowNull:false
     },
     description:{
-        type:Sequelize.STRING
+        type: Sequelize.STRING
     }
 }) 
 
-module.exports=Category
+module.exports = Category

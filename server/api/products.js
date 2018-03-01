@@ -5,7 +5,7 @@ const { isAdmin } = require('./utils')
 module.exports = router;
 
 router.get('/', (req, res, next) => {
-  return Product.findAll()
+  Product.findAll()
     .then(products => res.json(products))
     .catch(next);
 });

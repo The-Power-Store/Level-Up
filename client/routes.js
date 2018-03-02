@@ -30,7 +30,12 @@ class Routes extends Component {
               <Route exact path="/products" component={AllProducts} />
               <Route path="/products/categories/:id" component={ProductCategory} />
               <Route path="/products/:id" component={SingleProduct} />
+<<<<<<< HEAD
             </Switch>}
+=======
+            </Switch>
+          }
+>>>>>>> master
           {/* Displays our Login component as a fallback */}
           <Route exact path="/products" component={AllProducts} />
           <Route path="/products/categories/:id" component={ProductCategory} />

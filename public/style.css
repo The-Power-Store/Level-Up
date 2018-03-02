@@ -1,5 +1,9 @@
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
 body {
-  font-family: sans-serif;
+  background-image: url("background.jpg");
 }
 
 a {
@@ -18,4 +22,22 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+h1 {
+  font-family: 'Berkshire Swash', cursive;
+  font-size: 2.5em;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  opacity: 0.75;
+  border-radius: 10%;
+}
+
+.logo-navbar {
+  align-self: center;
 }

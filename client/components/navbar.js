@@ -16,7 +16,7 @@ class Navbar extends Component {
     return (
       <div>
         <nav>
-          <div>
+          <div className="left-navbar">
             <Link to="/products">All Products</Link>
             {
               categories.length ? categories.map(category => {
@@ -24,12 +24,12 @@ class Navbar extends Component {
               }) : null
             }
           </div>
-          <div>
+          <div className="logo-navbar">
             <Link to="/">
-              <h1>MYSTIQUE BOUTIQUE</h1>
+              <h1>Mystique Boutique</h1>
             </Link>
           </div>
-          <div>
+          <div className="right-navbar">
             {isLoggedIn ? (
               <div>
                 {/* The navbar will show these links after you log in */}

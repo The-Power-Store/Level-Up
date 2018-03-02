@@ -34,7 +34,7 @@ class Routes extends Component {
           }
           {/* Displays our Login component as a fallback */}
           <Route exact path="/products" component={AllProducts} />
-          <Route path="/categories/:id" component={ProductCategory} />
+          <Route path="/products/categories/:id" component={ProductCategory} />
           <Route path="/products/:id" component={SingleProduct} />
         </Switch>
       </div>

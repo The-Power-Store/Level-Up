@@ -13,6 +13,7 @@ class Navbar extends Component {
   render() {
     let { handleClick, isLoggedIn, categories } = this.props;
 
+    console.log(`categories`, categories)
     return (
       <div>
         <nav>
@@ -20,7 +21,7 @@ class Navbar extends Component {
             <Link to="/products">All Products</Link>
             {
               categories.length ? categories.map(category => {
-                <Link to={`/categories/${category.id}`}>{category.title}</Link>
+                return <Link to={`/products/categories/${category.id}`} key={category.id}>{category.title}</Link>
               }) : null
             }
           </div>
@@ -29,7 +30,6 @@ class Navbar extends Component {
               <h1>MYSTIQUE BOUTIQUE</h1>
             </Link>
           </div>
-          <h4>its me</h4>
           <div>
             {isLoggedIn ? (
               <div>

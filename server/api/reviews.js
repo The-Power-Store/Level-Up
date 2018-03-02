@@ -1,11 +1,13 @@
 const router = require("express").Router();
 const { Review } = require("../db/models");
+const { makeError } = require('./utils');
+
 module.exports = router;
 
 router.param('id', (req, res, next, id) => {
   Review.findById(id)
     .then(review => {
-      if (!review) next(err);
+      if (!review) next(makeError(404, 'review not found'));
       req.requestedReview = review;
       next();
     })

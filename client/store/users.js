@@ -2,7 +2,7 @@ import axios from 'axios'
 
 //action types
 const GET_ALL_USERS = 'GET_ALL_USERS'
-const ADD_USER = 'ADD_NEW_USER'
+const ADD_USER = 'ADD_USER'
 const UPDATE_USER = 'UPDATE_USER'
 
 //action creators

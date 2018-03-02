@@ -4,6 +4,7 @@ import axios from 'axios';
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 const ADD_NEW_PRODUCT = 'ADD_NEW_PRODUCT'
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+// const GET_CATEGORY_PRODUCTS = 'GET_CATEGORY_PRODUCTS'
 
 //action creators
 export function getAllProducts(products) {
@@ -26,6 +27,26 @@ export function updateProduct(product) {
     product
   }
 }
+
+// export function getCategoryProducts(category) {
+//   return {
+//     type: GET_CATEGORY_PRODUCTS,
+//     products,
+//     category
+//   }
+// }
+
+// export function getProductsInCategory(category){
+//   return function(dispatch){
+//     axios
+//       .get('/api/categories/:id')
+//       .then(res => res.data)
+//       .then(products => {
+//         const action = 
+//       })
+//   }
+// }
+
 
 //thunks
 
@@ -79,6 +100,10 @@ export default function productsReducer(state = [], action) {
       return products.map(product => (
         action.product.id === product.id ? action.product : product
       ));
+    // case GET_CATEGORY_PRODUCTS:
+    //   return products.filter(product => {
+    //     action.product.categoryId === category
+    //   })
     default:
       return state;
   }

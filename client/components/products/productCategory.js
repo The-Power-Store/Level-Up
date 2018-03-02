@@ -15,31 +15,41 @@ class ProductCategory extends Component {
   };
 
   render() {
-    const products = this.props.products.filter(product =>
-      product.categoryId === this.props.match.params.id
-    );
-    const category = this.props.categories.filter(category =>
-      category.id === this.props.match.params.id
-    )
+
+    let category = this.props.categories ? this.props.categories.filter(category =>
+      category.id === +this.props.match.params.id
+    ) : [];
+
+    let products = this.props.products ? this.props.products.filter(product =>
+      product.categoryId === +this.props.match.params.id
+    ) : [];
+
+    console.log(` CATEGORIES`, category)
+    console.log(` PRODUCTS`, products)
+    console.log(`PARAMS ID`, this.props.match.params.id)
+
     return (
       <div>
         <input
           placeholder='Search for a product'
           onChange={this.handleChange}
         />
-        <h1>{category.title}</h1>
+
+        <h1>{category ? category.title : <div />}</h1>
         <p>{category.description}</p>
 
-        {products.map(product => {
-          return (
-            <div key={product.id}>
-              <Link to={`/products/${product.id}`}>{product.name}</Link>
-              <img src={product.imageUrl} />
-              <p>{product.description}</p>
-              <p>Price: {product.price}</p>
-            </div>
-          );
-        })}
+        {
+          products.map(product => {
+            return (
+              <div key={product.id}>
+                <Link to={`/products/${product.id}`}>{product.title}</Link>
+                <img src={product.imageUrl} />
+                <p>{product.description}</p>
+                <p>Price: {product.price}</p>
+              </div>
+            );
+          })
+        }
       </div>
     );
   }

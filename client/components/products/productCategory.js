@@ -35,8 +35,8 @@ class ProductCategory extends Component {
           onChange={this.handleChange}
         />
 
-        <h1>{category ? category.title : <div />}</h1>
-        <p>{category.description}</p>
+        <h1>{category.length ? <div>{category[0].title}</div> : <div />}</h1>
+        <p>{category.length ? <div>{category[0].description}</div> : <div />}</p>
 
         {
           products.map(product => {

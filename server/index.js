@@ -55,6 +55,12 @@ const createApp = () => {
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
+
+ app.use(function(req, res, next) {
+   console.log("SESSION USER: ", req.user);
+   next();
+ });
+
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
 

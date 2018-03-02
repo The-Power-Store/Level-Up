@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 
 //action types
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
@@ -57,7 +57,7 @@ export function createProduct(product) {
 
 export function update(id, product) {
   return function (dispatch) {
-    axios.put(`api/products/${id}`, product)
+    axios.put(`/api/products/${id}`, product)
       .then(res => res.data)
       .then(product => {
         const action = updateProduct(product)

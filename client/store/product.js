@@ -30,7 +30,6 @@ export function updateProduct(product) {
 
 //thunk creators
 export function fetchAllProducts() {
-  console.log(`We are fetching all products`);
   return function (dispatch) {
     axios
       .get('/api/products')

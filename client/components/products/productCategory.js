@@ -15,7 +15,6 @@ class ProductCategory extends Component {
   };
 
   render() {
-
     let category = this.props.categories ? this.props.categories.filter(category =>
       category.id === +this.props.match.params.id
     ) : [];

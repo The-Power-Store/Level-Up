@@ -79,7 +79,7 @@ export function removeReview(id) {
     axios
       .delete(`/api/reviews/${id}`)
       .then(deleted => {
-        dispatch(deleteReview(id));         //ask about this - does id get passed down?
+        dispatch(deleteReview(id));
       })
       .catch(err => console.error("error deleting review", err));
   }

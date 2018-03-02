@@ -27,8 +27,7 @@ export function updateProduct(product) {
   }
 }
 
-//thunks
-
+//thunk creators
 export function fetchAllProducts() {
   console.log(`We are fetching all products`);
   return function (dispatch) {

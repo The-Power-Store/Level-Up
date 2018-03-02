@@ -34,6 +34,6 @@ router.put('/:id', (req, res, next) => {
 
 router.delete('/:id', (req, res, next) => {
   Review.findById(req.params.id)
-    .then(found => found.destroy())
+    .then(found => found.destroy().sendStatus(204))
     .catch(next);
 });

@@ -51,7 +51,7 @@ export function fetchAllUsers() {
 export function createUser(user) {
   return dispatch => {
     axios
-      .get('/api/users', user)
+      .post('/api/users', user)
       .then(user => {
         dispatch(addUser(user));
       })

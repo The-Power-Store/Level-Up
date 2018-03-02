@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 
 //action types
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
@@ -27,8 +27,7 @@ export function updateProduct(product) {
   }
 }
 
-//thunks
-
+//thunk creators
 export function fetchAllProducts() {
   console.log(`We are fetching all products`);
   return function (dispatch) {
@@ -57,7 +56,7 @@ export function createProduct(product) {
 
 export function update(id, product) {
   return function (dispatch) {
-    axios.put(`api/products/${id}`, product)
+    axios.put(`/api/products/${id}`, product)
       .then(res => res.data)
       .then(product => {
         const action = updateProduct(product)

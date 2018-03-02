@@ -1,32 +1,66 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { logout } from '../store'
+import { NavLink, withRouter } from 'react-router-dom';
+import { logout, addNewCategory } from '../store'
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
-  <div>
-    <h1>MYSTIQUE BOUTIQUE</h1>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
+class Navbar extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    let { handleClick, isLoggedIn, categories } = this.props;
+
+    return (
+      <div>
+        <nav>
           <div>
-            {/* The navbar will show these links before you log in */}
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
+            <Link to="/products">All Products</Link>
+            {
+              categories.length ? categories.map(category => {
+                <Link to={`/categories/${category.id}`}>{category.title}</Link>
+              }) : null
+            }
           </div>
-        )}
-    </nav>
-    <hr />
-  </div>
-)
+          <div>
+            <Link to="/">
+              <h1>MYSTIQUE BOUTIQUE</h1>
+            </Link>
+          </div>
+          <h4>its me</h4>
+          <div>
+            {isLoggedIn ? (
+              <div>
+                {/* The navbar will show these links after you log in */}
+                <Link to="/home">Home</Link>
+                <a href="#" onClick={handleClick}>
+                  Logout
+          </a>
+              </div>
+            ) : (
+                <div>
+                  {/* The navbar will show these links before you log in */}
+                  <Link to="/login">Login</Link>
+                  <Link to="/signup">Sign Up</Link>
+                </div>
+              )}
+          </div>
+        </nav>
+        <hr />
+      </div>
+
+    )
+  }
+}
+
+// const Navbar = ({ handleClick, isLoggedIn, categories }) => {
+//   console.log(`categories, `, categories);
+
+//   return (
+//   )
+// }
 
 /**
  * CONTAINER
@@ -46,8 +80,7 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Navbar)
-
+export default withRouter(connect(mapState, mapDispatch)(Navbar));
 /**
  * PROP TYPES
  */

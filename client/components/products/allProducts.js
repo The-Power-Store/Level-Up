@@ -16,7 +16,8 @@ class AllProducts extends Component {
   }
 
   render() {
-    console.log(`ALL PRODUCTS PROPS:`, this.props)
+
+
     const products = this.props.products ? this.props.products.filter(product => product.title.includes(this.state.input)) : [];
 
     return (

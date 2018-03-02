@@ -78,7 +78,7 @@ export function removeReview(id) {
   return dispatch => {
     axios
       .delete(`/api/reviews/${id}`)
-      .then(deleted => {
+      .then(() => {
         dispatch(deleteReview(id));
       })
       .catch(err => console.error("error deleting review", err));

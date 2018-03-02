@@ -4,6 +4,7 @@ import axios from 'axios'
 const GET_ALL_USERS = 'GET_ALL_USERS'
 const ADD_USER = 'ADD_USER'
 const UPDATE_USER = 'UPDATE_USER'
+const DELETE_USER = 'DELETE_USER'
 
 //action creators
 export function getAllUsers(users) {
@@ -24,6 +25,13 @@ export function updateUser(user) {
   return {
     type: UPDATE_USER,
     user
+  }
+}
+
+export function deleteUser(id) {
+  return {
+    type: DELETE_USER,
+    id
   }
 }
 
@@ -62,6 +70,17 @@ export function editUser(id, user) {
   }
 }
 
+export function deleteAccount(id) {
+  return dispatch => {
+    axios
+      .delete(`/api/users/${id}`)
+      .then(() => {
+        dispatch(deleteUser(id));
+      })
+      .catch(err => console.error("error deleting user", err));
+  };
+}
+
 
 //reducer
 export default function usersReducer(state = [], action) {
@@ -73,6 +92,10 @@ export default function usersReducer(state = [], action) {
     case UPDATE_USER:
       return users.map(user => (
         action.user.id === user.id ? action.user : user
+      ));
+    case DELETE_USER:
+      return users.filter(user => (
+        action.id !== user.id
       ));
     default:
       return state;

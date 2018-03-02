@@ -4,6 +4,7 @@ import axios from 'axios'
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 const ADD_NEW_PRODUCT = 'ADD_NEW_PRODUCT'
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+// const GET_CATEGORY_PRODUCTS = 'GET_CATEGORY_PRODUCTS'
 
 //action creators
 export function getAllProducts(products) {

@@ -7,7 +7,7 @@ module.exports = router;
 router.param('id', (req, res, next, id) => {
   User.findById(id)
     .then(user => {
-      if (!user) res.sendStatus(404);
+      if (!user) next(makeError(404, "user not found"));
       req.requestedUser = user;
       next();
     })

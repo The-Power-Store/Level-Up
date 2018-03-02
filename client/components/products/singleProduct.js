@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from '../../store'
-import { postCartItem } from '../../store/cart';
+import { postCartItemThunk } from '../../store/cart';
 
 const SingleProduct = (props) => {
   let product;
@@ -32,9 +32,10 @@ const mapStateToProps = function (state, ownProps) {
 const mapDispatchToProps = function (dispatch, ownProps) {
   return {
     onClick: (event) => {
-      console.log(ownProps)
+      console.log('oh hEEEeeelllooooo', event, ' ', ownProps)
       const addToCart = { quantity: 1, userId: 1, productId: +ownProps.match.params.id }
-      dispatch(postCartItem(addToCart)) //change to a real variable once we have the log in stuff
+      console.log('dis be the thing added to the cart', addToCart)
+      dispatch(postCartItemThunk(addToCart)) //change to a real variable once we have the log in stuff
     }
   }
 }

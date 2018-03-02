@@ -32,12 +32,12 @@ const postCartItem = cartItem => ({ type: POST_CART_ITEM, cartItem })
 //             .
 //     }
 // }
-export const postCartItem = (cartItem) => {
-    dispatch => {
+export function postCartItemThunk(cartItem) {
+    return dispatch => {
         axios.post('/api/carts/', cartItem)
             .then(res => res.data)
             .then(cartItem => {
-                const action = postCart(cartItem)
+                const action = postCartItem(cartItem)
                 dispatch(action)
             })
             .catch(err => console.error('error creating cart item', err))

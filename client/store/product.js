@@ -79,10 +79,6 @@ export default function productsReducer(state = [], action) {
       return products.map(product => (
         action.product.id === product.id ? action.product : product
       ));
-    // case GET_CATEGORY_PRODUCTS:
-    //   return products.filter(product => {
-    //     action.product.categoryId === category
-    //   })
     default:
       return state;
   }

@@ -24,10 +24,6 @@ class ProductCategory extends Component {
       product.categoryId === +this.props.match.params.id
     ) : [];
 
-    console.log(` CATEGORIES`, category)
-    console.log(` PRODUCTS`, products)
-    console.log(`PARAMS ID`, this.props.match.params.id)
-
     return (
       <div>
         <input

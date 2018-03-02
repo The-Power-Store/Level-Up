@@ -13,7 +13,6 @@ class Navbar extends Component {
   render() {
     let { handleClick, isLoggedIn, categories } = this.props;
 
-    console.log(`categories`, categories)
     return (
       <div>
         <nav>
@@ -55,16 +54,6 @@ class Navbar extends Component {
   }
 }
 
-// const Navbar = ({ handleClick, isLoggedIn, categories }) => {
-//   console.log(`categories, `, categories);
-
-//   return (
-//   )
-// }
-
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,

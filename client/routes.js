@@ -17,28 +17,26 @@ class Routes extends Component {
   render() {
     const { isLoggedIn } = this.props;
 
-    return (
-      <div>
+    return <div>
         <Navbar />
         <Switch>
           {/* Routes placed here are available to all visitors */}
           <Route exact path="/" component={Homepage} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          {
-            isLoggedIn &&
-            <Switch>
+          {isLoggedIn && <Switch>
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
-            </Switch>
-          }
+              <Route exact path="/products" component={AllProducts} />
+              <Route path="/products/categories/:id" component={ProductCategory} />
+              <Route path="/products/:id" component={SingleProduct} />
+            </Switch>}
           {/* Displays our Login component as a fallback */}
           <Route exact path="/products" component={AllProducts} />
           <Route path="/products/categories/:id" component={ProductCategory} />
           <Route path="/products/:id" component={SingleProduct} />
         </Switch>
-      </div>
-    )
+      </div>;
   }
 }
 

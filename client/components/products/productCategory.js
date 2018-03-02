@@ -21,7 +21,7 @@ class ProductCategory extends Component {
     ) : [];
 
     let products = this.props.products ? this.props.products.filter(product =>
-      product.categoryId === +this.props.match.params.id
+      product.categoryId === +this.props.match.params.id && product.title.includes(this.state.input)
     ) : [];
 
     return (
@@ -30,9 +30,10 @@ class ProductCategory extends Component {
           placeholder='Search for a product'
           onChange={this.handleChange}
         />
-
-        <h1>{category.length ? <div>{category[0].title}</div> : <div />}</h1>
-        <p>{category.length ? <div>{category[0].description}</div> : <div />}</p>
+        <div>
+          <h1>{category.length ? <div>{category[0].title}</div> : <div />}</h1>
+          <div>{category.length ? <p>{category[0].description}</p> : <div />}</div>
+        </div>
 
         {
           products.map(product => {

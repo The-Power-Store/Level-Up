@@ -26,7 +26,7 @@ class Navbar extends Component {
           </div>
           <div>
             <Link to="/">
-              <h1>MYSTIQUE BOUTIQUE</h1>
+              <h1>Mystique Boutique</h1>
             </Link>
           </div>
           <div>

@@ -10,17 +10,14 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-
 router.post('/', isAdmin, (req, res, next) => {
-  if (!isAdmin) {}
+  if (!isAdmin) { }
   else {
-  Product.create(req.body)
-    .then(created => res.status(201).json(created))
-    .catch(next);
+    Product.create(req.body)
+      .then(created => res.status(201).json(created))
+      .catch(next);
   }
 })
-
-
 
 router.put('/:id', (req, res, next) => {
   Product.update(req.body, {

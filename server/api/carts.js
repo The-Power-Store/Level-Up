@@ -15,7 +15,6 @@ router.get('/:cartId', (req, res, next) => {
 
 // add new cart item
 router.post('/', (req, res, next) => {
-    console.log('U UP?', req.body)
     Cart.create(req.body) //this should be a product and it's information
         .then(createdItem => res.status(201).json(createdItem))
         .catch(next);

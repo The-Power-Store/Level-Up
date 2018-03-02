@@ -34,7 +34,7 @@ const mapDispatchToProps = function (dispatch, ownProps) {
     onClick: (event) => {
       console.log(ownProps)
       const addToCart = { quantity: 1, userId: 1, productId: +ownProps.match.params.id }
-      dispatch(postCartItem(1)) //change to a real variable once we have the log in stuff
+      dispatch(postCartItem(addToCart)) //change to a real variable once we have the log in stuff
     }
   }
 }

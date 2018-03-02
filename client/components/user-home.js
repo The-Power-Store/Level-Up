@@ -53,7 +53,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(UserHome);
+export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
 
 /**
  * PROP TYPES

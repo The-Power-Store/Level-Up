@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {editUser} from '../store'
+import OrderHistory from './index'
+import PersonalInfo from './index'
 /**
  * COMPONENT
  */
@@ -9,8 +11,15 @@ export const UserHome = props => {
   const { user } = props;
 
   return <div>
-      {user.firstName ? <h3>Welcome back {user.firstName}!</h3> :
+      {user.firstName ?
         <div>
+        <h3>Welcome back {user.firstName}!</h3>
+        <h5>Order History</h5>
+        <OrderHistory />
+        <h5>Personal Info</h5>
+        <PersonalInfo />
+      </div>
+      : <div>
           <h3>Welcome, {user.email}</h3>
           <h5>Please take a minute to complete your profile!</h5>
 

@@ -55,7 +55,6 @@ const createApp = () => {
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
-
   app.use(function (req, res, next) {
     console.log("SESSION USER: ", req.user);
     next();

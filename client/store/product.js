@@ -6,27 +6,12 @@ const ADD_NEW_PRODUCT = 'ADD_NEW_PRODUCT'
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 // const GET_CATEGORY_PRODUCTS = 'GET_CATEGORY_PRODUCTS'
 
+
 //action creators
-export function getAllProducts(products) {
-  return {
-    type: GET_ALL_PRODUCTS,
-    products
-  }
-}
+const getAllProducts = products => ({type: GET_ALL_PRODUCTS, products});
+const addNewProduct = product => ({type: ADD_NEW_PRODUCT, product});
+const updateProduct = product => ({type: UPDATE_PRODUCT, product});
 
-export function addNewProduct(product) {
-  return {
-    type: ADD_NEW_PRODUCT,
-    product
-  }
-}
-
-export function updateProduct(product) {
-  return {
-    type: UPDATE_PRODUCT,
-    product
-  }
-}
 
 //thunk creators
 export function fetchAllProducts() {

@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { BrowserRouter as Router, withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Login, Signup, UserHome } from './components'
-import { Homepage, ProductCategory, SingleProduct, AllProducts, Navbar } from './components';
-import store, { me, fetchAllProducts, fetchCategories } from './store'
+import { Homepage, ProductCategory, SingleProduct, AllProducts, Navbar, EditProfile, SingleOrder } from './components';
+import store, { me, fetchAllProducts, fetchCategories, fetchReviews } from './store'
 
 /**
  * COMPONENT
@@ -34,6 +34,8 @@ class Routes extends Component {
                 <Route exact path="/products" component={AllProducts} />
                 <Route path="/products/categories/:id" component={ProductCategory} />
                 <Route path="/products/:id" component={SingleProduct} />
+                <Route path="/user/editProfile/:id" component={EditProfile} />
+                <Route path="/orders/:id" component={SingleOrder} />
               </Switch>
             }
             {/* Displays our Login component as a fallback */}
@@ -65,6 +67,7 @@ const mapDispatch = (dispatch) => {
       dispatch(me());
       dispatch(fetchAllProducts());
       dispatch(fetchCategories());
+      dispatch(fetchReviews());
     }
   }
 }

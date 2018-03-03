@@ -8,11 +8,11 @@ import axios from 'axios'
 const ADD_ORDER = 'ADD_ORDER'
 
 /**
- * INITIAL STATE 
+ * INITIAL STATE
  */
 const defaultState = {
-    defaultOrders =[],
-    defaultOrder = {}
+    defaultOrders : [],
+    defaultOrder : {}
 }
 /**
 * ACTION CREATORS

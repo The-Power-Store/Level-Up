@@ -12,17 +12,17 @@ const EditProfile = props => {
           <label>Update Your Address</label>
           <br />
           First Name:
-          <input type="text" name="firstName" defaultValue={address.firstName} />
+          <input type="text" name="firstNameU" defaultValue={address.firstName} />
           Last Name:
-          <input type="text" name="lastName" defaultValue={address.lastName} />
+          <input type="text" name="lastNameU" defaultValue={address.lastName} />
           Address:
-          <input type="text" name="address" defaultValue={address.address} />
+          <input type="text" name="addressU" defaultValue={address.address} />
           City:
-          <input type="text" name="city" defaultValue={address.city} />
+          <input type="text" name="cityU" defaultValue={address.city} />
           State:
-          <input type="text" name="state" defaultValue={address.state} />
+          <input type="text" name="stateU" defaultValue={address.state} />
           Zip:
-          <input type="text" name="zip" defaultValue={address.zip} />
+          <input type="text" name="zipU" defaultValue={address.zip} />
           isShipping:
           <select>
             <option name="isShipping">TRUE</option>

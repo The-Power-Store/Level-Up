@@ -38,6 +38,8 @@ export function fetchUserAddress(id) {
 }
 
 export function changeAddress(id, address) {
+  console.log('id', id)
+  console.log('address', address)
   return dispatch => {
     axios
       .put(`/api/address/user/${id}`, address)
@@ -49,10 +51,10 @@ export function changeAddress(id, address) {
   }
 }
 
-export function createAddress(id) {
+export function createAddress(address) {
   return dispatch => {
     axios
-      .post(`/api/address/${id}`)
+      .post(`/api/address`, address)
       .then(res => res.data)
       .then(address => {
         dispatch(addNewAddress(address));

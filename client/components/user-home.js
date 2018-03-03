@@ -17,7 +17,7 @@ class UserHome extends Component {
 
     render() {
 
-    const {user, address, reviews} = this.props;
+    const {user, address, reviews, handleSubmit} = this.props;
 
       return (
         <div>
@@ -30,7 +30,7 @@ class UserHome extends Component {
               <h3>Welcome, {user.email}</h3>
               <h5>Please take a minute to complete your profile!</h5>
 
-              <form onSubmit={(event) => props.handleSubmit(event, props.user.id)}>
+              <form onSubmit={handleSubmit}>
                 First Name:
                 <input type="text" name="firstName" />
                 Last Name:
@@ -73,14 +73,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     getUserInfo: (userId) => {
       dispatch(fetchUserAddress(userId))
     },
-    handleSubmit: (event, id) => {
+    handleSubmit: (event) => {
 
       const firstName = event.target.firstName.value;
       const lastName = event.target.lastName.value;
 
       event.preventDefault();
 
-      dispatch(editUser(id, { firstName, lastName }))
+      dispatch(editUser(userId, { firstName, lastName }))
       window.location.reload();
     }
   };

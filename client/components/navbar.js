@@ -26,7 +26,7 @@ class Navbar extends Component {
           </div>
           <div className="logo-navbar">
             <Link to="/">
-              <h1>Mystique Boutique</h1>
+              <h1 className="logo-title">Mystique Boutique</h1>
             </Link>
           </div>
           <div className="right-navbar">

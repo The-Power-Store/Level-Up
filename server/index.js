@@ -62,24 +62,20 @@ const createApp = () => {
   app.use('/session',  (req, res, next)=> {
   
     if(req.session.cart == undefined){
-      req.session.cart = [req.body]
+      req.session.cart={}
+      req.session.cart[req.body.productId] = req.body.quantity
 
     }else{
-      req.session.cart.push(req.body)
+      if(req.session.cart[req.body.productId]){
+        req.session.cart[req.body.productId] += 1 
+      }else{
+        req.session.cart[req.body.productId] = req.body.quantity
+      }
     }
-    res.json(session.cart)
-    //console.log("SESSION USER after cart??: ", req.session.cart);
     next();
   });
   app.use('/session/cart',  (req, res, next)=> {
-
-    if(req.session.cart == undefined){
-      req.session.cart = [req.body.productId]
-
-    }else{
-       req.session.cart.push(req.body)
-    }
-    console.log("SESSION USER after cart??: ", req.session.cart);
+    console.log("an unloggin user wants to see their the cart, eh?")
     next();
   });
 

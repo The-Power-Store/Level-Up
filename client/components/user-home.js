@@ -7,10 +7,11 @@ import PersonalInfo from './index'
 /**
  * COMPONENT
  */
-export const UserHome = props => {
-  const { user } = props;
+const UserHome = props => {
+  const {user} = props;
 
-  return <div>
+  return (
+    <div>
       {user.firstName ?
         <div>
         <h3>Welcome back {user.firstName}!</h3>
@@ -19,7 +20,7 @@ export const UserHome = props => {
         <h5>Personal Info</h5>
         <PersonalInfo />
       </div>
-      : <div>
+      :<div>
           <h3>Welcome, {user.email}</h3>
           <h5>Please take a minute to complete your profile!</h5>
 
@@ -31,7 +32,8 @@ export const UserHome = props => {
             <button type="submit">Update Profile</button>
           </form>
         </div>}
-    </div>;
+    </div>
+  )
 };
 
 /**

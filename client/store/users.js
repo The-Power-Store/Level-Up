@@ -6,34 +6,13 @@ const ADD_USER = 'ADD_USER'
 const UPDATE_USER = 'UPDATE_USER'
 const DELETE_USER = 'DELETE_USER'
 
+
 //action creators
-export function getAllUsers(users) {
-  return {
-    type: GET_ALL_USERS,
-    users
-  }
-}
+const getAllUsers = users => ({type: GET_ALL_USERS, users});
+const addUser = user => ({type: ADD_USER, user});
+const updateUser = user => ({type:UPDATE_USER, user});
+const deleteUser = id => ({type:DELETE_USER, id});
 
-export function addUser(user) {
-  return {
-    type: ADD_USER,
-    user
-  }
-}
-
-export function updateUser(user) {
-  return {
-    type: UPDATE_USER,
-    user
-  }
-}
-
-export function deleteUser(id) {
-  return {
-    type: DELETE_USER,
-    id
-  }
-}
 
 //thunk creators
 export function fetchAllUsers() {

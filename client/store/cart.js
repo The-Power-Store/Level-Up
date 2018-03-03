@@ -6,7 +6,7 @@ import axios from 'axios';
 const GET_CART = 'GET_CART'
 const GET_CART_ITEM = 'GET_CART_ITEM'
 const POST_CART_ITEM = 'POST_CART_ITEM'
-
+const POST_SESSION_CART_ITEM = 'POST_SESSION_CART_ITEM'
 /**
  * INITIAL STATE 
  */
@@ -21,6 +21,7 @@ const defaultState = {
 const getCart = cart => ({ type: GET_CART, cart })
 const getCartItem = cartItem => ({ type: GET_CART_ITEM, cartItem })
 const postCartItem = cartItem => ({ type: POST_CART_ITEM, cartItem })
+const postCartItemToSession = cartItem =>({type:POST_SESSION_CART_ITEM, cartItem})
 /**
 * THUNK CREATORS
 */

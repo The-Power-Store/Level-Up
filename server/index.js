@@ -25,10 +25,17 @@ if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 // passport registration
 passport.serializeUser((user, done) => done(null, user.id))
+// passport.serializeCart((cart, done) => done(null, cart.id))
+
 passport.deserializeUser((id, done) =>
   db.models.user.findById(id)
     .then(user => done(null, user))
     .catch(done))
+
+// passport.deserializeCart((id, done) =>
+//   db.models.cart.findById(id)
+//     .then(cart => done(null, cart))
+//     .catch(done))
 
 const createApp = () => {
   // logging middleware
@@ -46,19 +53,25 @@ const createApp = () => {
     secret: process.env.SESSION_SECRET || 'my best friend is Cody',
     store: sessionStore,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true
   }))
   app.use(passport.initialize())
   app.use(passport.session())
+  
+  app.use(function (req, res, next) {
+    console.log("SESSION USER: ", req.user);
+    if(req.user == undefined){
+      console.log("NO USER, so send the request to the session")
+    }
+    req.session.cart = 0 
+    console.log("SESSION USER after cart??: ", req.session.cart);
+    next();
+  });
 
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
-  app.use(function (req, res, next) {
-    console.log("SESSION USER: ", req.user);
-    next();
-  });
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))

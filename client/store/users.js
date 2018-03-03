@@ -51,7 +51,7 @@ export function fetchAllUsers() {
 export function createUser(user) {
   return dispatch => {
     axios
-      .get('/api/users', user)
+      .post('/api/users', user)
       .then(user => {
         dispatch(addUser(user));
       })
@@ -90,11 +90,11 @@ export default function usersReducer(state = [], action) {
     case ADD_USER:
       return [...state, action.user];
     case UPDATE_USER:
-      return users.map(user => (
+      return state.map(user => (
         action.user.id === user.id ? action.user : user
       ));
     case DELETE_USER:
-      return users.filter(user => (
+      return state.filter(user => (
         action.id !== user.id
       ));
     default:

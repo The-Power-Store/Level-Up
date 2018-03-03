@@ -34,18 +34,22 @@ class ProductCategory extends Component {
           <div>{category.length ? <p>{category[0].description}</p> : <div />}</div>
         </div>
 
-        {
-          products.map(product => {
-            return (
-              <div key={product.id}>
-                <Link to={`/products/${product.id}`}>{product.title}</Link>
-                <img src={product.imageUrl} />
-                <p>{product.description}</p>
-                <p>Price: {product.price}</p>
-              </div>
-            );
-          })
-        }
+        <div className="product-list">
+          {
+            products.map(product => {
+              return (
+                <div className="product" key={product.id}>
+                  <Link to={`/products/${product.id}`}>{product.title}</Link>
+                  <div className="product-details">
+                    <img src={product.imageUrl} />
+                    <p>{product.description}</p>
+                    <p>Price: {product.price}</p>
+                  </div>
+                </div>
+              );
+            })
+          }
+        </div>
       </div>
     );
   }

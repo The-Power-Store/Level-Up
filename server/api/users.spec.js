@@ -30,13 +30,27 @@ describe('User routes', () => {
         })
     })
 
-    it('POST /api/users', () => {
+    // it('saves the article to the DB', function () {
+
+    it('POST /api/users and saves the user to the DB', () => {
       return request(app)
         .post('/api/users')
-        .expect(201)
-        .then(res => {
-
+        .send({
+          email: 'myemail@my.mail',
+          password: '1234'
         })
-    })
+        .expect(201)
+        .then(() => {
+          return User.findOne({
+            where: { email: 'myemail@my.mail' }
+          })
+        })
+        .then(user => {
+          expect(user).to.exist;
+          expect(user.email).to.equal('myemail@my.mail');
+        })
+    });
+
+
   }) // end describe('/api/users')
 }) // end describe('User routes')

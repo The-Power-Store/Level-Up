@@ -53,7 +53,7 @@ const mapSignup = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     handleSubmit (evt) {
       evt.preventDefault()
@@ -65,7 +65,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-const mapDispatch = (dispatch, ownProps) => {
+const mapDispatch = (dispatch) => {
   return {
     handleSubmit(evt) {
       evt.preventDefault();

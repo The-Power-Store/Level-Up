@@ -45,9 +45,7 @@ const mapDispatchToProps = (dispatch) => {
       event.preventDefault();
 
       dispatch(editUser(id, { firstName, lastName }))
-      // .then(() => {
-      //   ownProps.history.push(`/products`)
-      // })
+      window.location.reload();
     }
   };
 };

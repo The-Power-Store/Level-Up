@@ -94,11 +94,11 @@ export default function reviewsReducer(state = [], action) {
     case ADD_NEW_REVIEW:
       return [...state, action.review];
     case UPDATE_REVIEW:
-      return reviews.map(review => (
+      return state.map(review => (
         action.review.id === review.id ? action.review : review
       ));
     case DELETE_REVIEW:
-      return reviews.filter(review => (
+      return state.filter(review => (
         action.id !== review.id
       ));
     default:

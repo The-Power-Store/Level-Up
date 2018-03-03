@@ -8,14 +8,13 @@ import { editUser } from '../store';
 export const UserHome = props => {
   const { user } = props;
 
-  console.log('user', user)
   return <div>
       {user.firstName ? <h3>Welcome back {user.firstName}!</h3> :
         <div>
           <h3>Welcome, {user.email}</h3>
           <h5>Please take a minute to complete your profile!</h5>
 
-          <form onSubmit={event => this.handleSubmit(event, props)}>
+          <form onSubmit={(event) => props.handleSubmit(event, props.user.id)}>
             First Name:
             <input type="text" name="firstName" />
             Last Name:
@@ -35,17 +34,17 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-   console.log("props", props);
+const mapDispatchToProps = (dispatch) => {
+
   return {
-    handleSubmit(event, props) {
+    handleSubmit(event, id) {
 
       const firstName = event.target.firstName.value;
       const lastName = event.target.lastName.value;
 
       event.preventDefault();
 
-      dispatch(editUser(props.user.id, { firstName, lastName }))
+      dispatch(editUser(id, { firstName, lastName }))
       // .then(() => {
       //   ownProps.history.push(`/products`)
       // })
@@ -58,6 +57,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
 /**
  * PROP TYPES
  */
-UserHome.propTypes = {
-  email: PropTypes.string
-};
+// UserHome.propTypes = {
+//   user: PropTypes.object
+// };

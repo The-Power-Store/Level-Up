@@ -25,7 +25,14 @@ const postCartItem = cartItem => ({ type: POST_CART_ITEM, cartItem })
 * THUNK CREATORS
 */
 
-// export const getCart = (cart) => {
+// export const getCartThunk = (cart) => {
+//     dispatch => {
+//         axios.get('/api/carts/:userId')
+//             .then(res => res.data)
+//             .
+//     }
+// }
+// export const getCartItemThunk = (cart) => {
 //     dispatch => {
 //         axios.get('/api/carts/:userId')
 //             .then(res => res.data)
@@ -34,6 +41,7 @@ const postCartItem = cartItem => ({ type: POST_CART_ITEM, cartItem })
 // }
 export function postCartItemThunk(cartItem) {
     return dispatch => {
+        console.log("from the post thunk,", cartItem)
         axios.post('/api/carts/', cartItem)
             .then(res => res.data)
             .then(cartItem => {
@@ -49,6 +57,8 @@ export function postCartItemThunk(cartItem) {
 */
 export default function cartReducer(state = defaultState, action) {
     switch (action.type) {
+        case GET_CART:
+            return action.cart
         case GET_CART_ITEM:
             return action.cartItem
         case POST_CART_ITEM:

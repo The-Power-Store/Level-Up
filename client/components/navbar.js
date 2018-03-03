@@ -12,7 +12,7 @@ class Navbar extends Component {
 
   render() {
     let { handleClick, isLoggedIn, categories } = this.props;
-
+    console.log("is logged in from the nav bar:", isLoggedIn)
     return (
       <div>
         <nav>
@@ -43,6 +43,7 @@ class Navbar extends Component {
                   {/* The navbar will show these links before you log in */}
                   <Link to="/login">Login</Link>
                   <Link to="/signup">Sign Up</Link>
+                  <Link to="/cart">CART!</Link>
                 </div>
               )}
           </div>

@@ -34,10 +34,10 @@ router.post('/', (req, res, next) => {
     .catch(next);
 })
 
-router.put('/:id', (req, res, next) => {
+router.put('/user/:id', (req, res, next) => {
   Address.update(req.body, {
     where : {
-      id: req.params.id
+      userId: req.params.id
     },
     returning: true
   })

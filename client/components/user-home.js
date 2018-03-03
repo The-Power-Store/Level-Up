@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {editUser, fetchUserAddress} from '../store'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 // import OrderHistory from './index'
 import PersonalInfo from './index'
 /**
@@ -24,8 +24,8 @@ class UserHome extends Component {
           {user.firstName ?
           <div>
             <h3>Welcome back {user.firstName}!</h3>
-            <h5>Address: {address.address} {address.city} {address.state} {address.zip}</h5>
           </div>
+
           :<div>
               <h3>Welcome, {user.email}</h3>
               <h5>Please take a minute to complete your profile!</h5>
@@ -38,6 +38,17 @@ class UserHome extends Component {
                 <button type="submit">Update Profile</button>
               </form>
             </div>}
+            {
+              address ? <div>
+                        <h4>Personal Info</h4>
+                        <h5>Address: {address.address} {address.city} {address.state} {address.zip}</h5>
+                        <Link to={`/user/editProfile/${user.id}`}>Add/Update Your Info</Link>
+                        </div>
+              : <div>
+                <Link to={`/user/editProfile/${user.id}`}>Add/Update Your Info</Link>
+
+                </div>
+            }
         </div>
       )
     }
@@ -57,7 +68,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
 
   const userId = ownProps.location.pathname.slice(6);
-  console.log('IdInUser-home', userId)
+
   return {
     getUserInfo: (userId) => {
       dispatch(fetchUserAddress(userId))

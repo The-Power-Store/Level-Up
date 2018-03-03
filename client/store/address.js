@@ -40,7 +40,7 @@ export function fetchUserAddress(id) {
 export function changeAddress(id, address) {
   return dispatch => {
     axios
-      .put(`/api/address/${id}`, address)
+      .put(`/api/address/user/${id}`, address)
       .then(res => res.data)
       .then(address => {
         dispatch(updateAddress(address));

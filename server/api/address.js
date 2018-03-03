@@ -1,16 +1,30 @@
 const router = require('express').Router()
-const { Address } = require('../db/models/address')
+const { Address } = require('../db/models')
 
 module.exports = router
 
+router.get('/user/:id', (req, res, next) => {
+  Address.findOne({
+    where: {
+      userId: req.params.id
+    }
+  })
+    .then(address => {
+      res.json(address);
+    })
+    .catch(next);
+});
+
+
 router.get('/:id', (req, res, next) => {
-  Address.findById(req.params.id)
+  Address.findById()
     .then(address => {
       res.json(address)
     })
     .catch(next);
 
 })
+
 
 router.post('/', (req, res, next) => {
   Address.create(req.body)

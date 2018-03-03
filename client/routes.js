@@ -4,7 +4,7 @@ import { BrowserRouter as Router, withRouter, Route, Switch } from 'react-router
 import PropTypes from 'prop-types'
 import { Login, Signup, UserHome } from './components'
 import { Homepage, ProductCategory, SingleProduct, AllProducts, Navbar } from './components';
-import store, { me, fetchAllProducts, fetchCategories } from './store'
+import store, { me, fetchAllProducts, fetchCategories, fetchReviews } from './store'
 
 /**
  * COMPONENT
@@ -63,6 +63,7 @@ const mapDispatch = (dispatch) => {
       dispatch(me());
       dispatch(fetchAllProducts());
       dispatch(fetchCategories());
+      dispatch(fetchReviews());
     }
   }
 }

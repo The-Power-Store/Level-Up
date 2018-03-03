@@ -16,7 +16,7 @@ const addNewAddress = address => ({type: ADD_NEW_ADDRESS, address});
 export function fetchAddress(id) {
   return dispatch => {
     axios
-      .get('/api/addresses/:id')
+      .get(`/api/address/${id}`)
       .then(res => res.data)
       .then(address => {
         dispatch(getAddress(address))
@@ -25,10 +25,22 @@ export function fetchAddress(id) {
   }
 }
 
+export function fetchUserAddress(id) {
+  return dispatch => {
+    axios
+      .get(`/api/address/user/${id}`)
+      .then(res => res.data)
+      .then(address => {
+        dispatch(getAddress(address));
+      })
+      .catch(err => console.error("error fetching address", err));
+  }
+}
+
 export function changeAddress(id, address) {
   return dispatch => {
     axios
-      .put(`/api/addresses/${id}`, address)
+      .put(`/api/address/${id}`, address)
       .then(res => res.data)
       .then(address => {
         dispatch(updateAddress(address));
@@ -40,7 +52,7 @@ export function changeAddress(id, address) {
 export function createAddress(id) {
   return dispatch => {
     axios
-      .post(`/api/addresses/${id}`)
+      .post(`/api/address/${id}`)
       .then(res => res.data)
       .then(address => {
         dispatch(addNewAddress(address));

@@ -64,7 +64,7 @@ export function editUser(id, user) {
     axios
       .put(`/api/users/${id}`, user)
       .then(user => {
-        dispatch(updateUser(user))
+        dispatch(updateUser(user));
       })
       .catch(err => console.error("error updating user", err));
   }

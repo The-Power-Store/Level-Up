@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {editUser, fetchUserAddress} from '../store'
+import {editUser, fetchUserAddress, getOrdersThunk} from '../store'
 import {withRouter, Link} from 'react-router-dom'
 // import OrderHistory from './index'
 
@@ -18,6 +18,8 @@ class UserHome extends Component {
     render() {
 
     const {user, address, reviews, handleSubmit, orders} = this.props;
+
+    console.log('orders', orders)
 
       return <div>
           {
@@ -65,6 +67,14 @@ class UserHome extends Component {
                 </div>;
             }) : null
           }
+          {
+            orders.length ? orders.map(order => {
+              return (
+                <Link key={order.id} to={`/orders/${order.id}`}>{order.id}</Link>
+              )
+            })
+            : <h5>You have no previous orders</h5>
+          }
         </div>;
     }
 };
@@ -78,7 +88,7 @@ const mapStateToProps = (state, ownProps) => {
     user: state.user,
     address: state.address,
     reviews: state.reviews.filter(review => review.userId === +ownProps.location.pathname.slice(6)),
-    // orders: state.orders.filter(order => order.userId === +ownProps.location.pathname.slice(6))
+    orders: state.orders
   };
 };
 
@@ -89,6 +99,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getUserInfo: (userId) => {
       dispatch(fetchUserAddress(userId))
+      dispatch(getOrdersThunk())
     },
     handleSubmit: (event) => {
 

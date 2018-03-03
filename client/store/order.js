@@ -24,9 +24,9 @@ const getOrders = orders => ({ type: GET_ORDERS, orders })
 * THUNK CREATORS
 */
 
-export function getOrdersThunk(orders) {
+export function getOrdersThunk() {
   return dispatch => {
-    axios.get('/api/orders/', orders)
+    axios.get(`/api/orders`)
       .then(res => res.data)
       .then(orders => {
         const action = getOrders(orders)

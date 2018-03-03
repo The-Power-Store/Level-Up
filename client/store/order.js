@@ -39,7 +39,7 @@ export function addOrderThunk(order) {
 * REDUCER
 */
 
-export default function cartReducer(state = defaultState, action) {
+export default function ordersReducer(state = defaultState, action) {
     switch (action.type) {
         // case GET_ORDERS:
         //     return action.orders

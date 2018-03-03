@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from '../../store'
-import { postCartItemThunk, postCartItemToSession } from '../../store/cart';
+import { postCartItemThunk, postCartItemToSessionThunk } from '../../store/cart';
 import PropTypes from 'prop-types'
 
 
@@ -12,7 +12,6 @@ const SingleProduct = (props) => {
   if (props.product.length) {
     product = props.product[0];
   }
-console.log("logged in from the singleproduct", props.isLoggedIn)
 
   return product ? (
     <div>
@@ -51,7 +50,7 @@ const mapDispatchToProps = function (dispatch, ownProps) {
     },
     unAuthOnClick:(event)=>{
       const addToCart = {quantity:1, productId: +ownProps.match.params.id }
-      dispatch(postCartItemToSession(addToCart))
+      dispatch(postCartItemToSessionThunk(addToCart))
     }
   }
 }

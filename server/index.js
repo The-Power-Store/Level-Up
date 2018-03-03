@@ -53,17 +53,32 @@ const createApp = () => {
     secret: process.env.SESSION_SECRET || 'my best friend is Cody',
     store: sessionStore,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: false
   }))
+
   app.use(passport.initialize())
   app.use(passport.session())
   
-  app.use(function (req, res, next) {
-    console.log("SESSION USER: ", req.user);
-    if(req.user == undefined){
-      console.log("NO USER, so send the request to the session")
+  app.use('/session',  (req, res, next)=> {
+  
+    if(req.session.cart == undefined){
+      req.session.cart = [req.body]
+
+    }else{
+      req.session.cart.push(req.body)
     }
-    req.session.cart = 0 
+    res.json(session.cart)
+    //console.log("SESSION USER after cart??: ", req.session.cart);
+    next();
+  });
+  app.use('/session/cart',  (req, res, next)=> {
+
+    if(req.session.cart == undefined){
+      req.session.cart = [req.body.productId]
+
+    }else{
+       req.session.cart.push(req.body)
+    }
     console.log("SESSION USER after cart??: ", req.session.cart);
     next();
   });

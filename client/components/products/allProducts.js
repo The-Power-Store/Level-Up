@@ -21,19 +21,26 @@ class AllProducts extends Component {
     return (
       <div >
         <input
+          className="search"
           placeholder="Search for a product"
           onChange={this.handleChange}
         />
-        <h1>Products</h1>
+        <h1 className="products-title">Products</h1>
         <div className="product-list">
           {
             products.map(product => {
               return (
                 <div className="product" key={product.id}>
-                  <Link to={`/products/${product.id}`}>{product.title}</Link>
-                  <img src={product.imageUrl} />
-                  <p>{product.description}</p>
-                  <p>Price: {product.price}</p>
+                  <figure className="item">
+                    <Link to={`/products/${product.id}`}>
+                      <img src={product.imageUrl} />
+                    </Link>
+                    <figcaption className="caption product-details">
+                      <Link to={`/products/${product.id}`}>{product.title}</Link>
+                      <p>{product.description}</p>
+                      <p>Price: ${product.price}</p>
+                    </figcaption>
+                  </figure>
                 </div>
               )
             })

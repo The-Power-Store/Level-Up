@@ -69,27 +69,49 @@ const userData = {
 };
 
 const orderData = {
-    order: [{
-        status: "created",
-        firstName: "Michaela",
-        lastName: "McCool",
-        address: "5958 Tindall Circle",
-        city: "Austin",
-        state: "Tx",
-        zip: 35432,
-        userId: 1,
-    }, {
-        status: "created",
-        firstName: "AnotherName",
-        lastName: "IsHere",
-        address: "500 Backwoods Drive",
-        city: "Lost",
-        state: "Iw",
-        zip: 58494,
-        userId: 2,
-    }]
-
-}
+  order: [
+    {
+      status: "created",
+      firstName: "Michaela",
+      lastName: "McCool",
+      address: "5958 Tindall Circle",
+      city: "Austin",
+      state: "Tx",
+      zip: 35432,
+      userId: 1
+    },
+    {
+      status: "created",
+      firstName: "AnotherName",
+      lastName: "IsHere",
+      address: "500 Backwoods Drive",
+      city: "Lost",
+      state: "Iw",
+      zip: 58494,
+      userId: 2
+    },
+    {
+      status: "created",
+      firstName: "Garry",
+      lastName: "Grob",
+      address: "101 Old Station Road",
+      city: "Austin",
+      state: "TX",
+      zip: 35432,
+      userId: 5
+    },
+    {
+      status: "created",
+      firstName: "Garry",
+      lastName: "Grob",
+      address: "28 Myrtle Ave",
+      city: "Denver",
+      state: "CO",
+      zip: 38978,
+      userId: 5
+    }
+  ]
+};
 
 const otherData = {
   address: [

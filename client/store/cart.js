@@ -1,58 +1,27 @@
 import axios from 'axios';
 
-/**
- * ACTION TYPES
- */
 const GET_CART = 'GET_CART'
-const GET_CART_ITEM = 'GET_CART_ITEM'
-const POST_CART_ITEM = 'POST_CART_ITEM'
 
-/**
- * INITIAL STATE 
- */
-const defaultState = {
-    defaultCart: [],
-    defaultCartItem: {}
-}
-
-/**
- * ACTION CREATORS
- */
 const getCart = cart => ({ type: GET_CART, cart })
-const getCartItem = cartItem => ({ type: GET_CART_ITEM, cartItem })
-const postCartItem = cartItem => ({ type: POST_CART_ITEM, cartItem })
-/**
-* THUNK CREATORS
-*/
 
-// export const getCart = (cart) => {
-//     dispatch => {
-//         axios.get('/api/carts/:userId')
-//             .then(res => res.data)
-//             .
-//     }
-// }
-export function postCartItemThunk(cartItem) {
-    return dispatch => {
-        axios.post('/api/carts/', cartItem)
-            .then(res => res.data)
-            .then(cartItem => {
-                const action = postCartItem(cartItem)
-                dispatch(action)
-            })
-            .catch(err => console.error('error creating cart item', err))
+
+export function fetchCart(userId){
+    return dispatch=>{
+        console.log("shouting out from the thunk fetching the users cart data, user ID:",userId)
+        axios.get(`api/carts/${userId}`)
+        .then(res => res.data)
+        .then(cart =>{
+            const action = getCart(cart)
+            dispatch(action)
+        })
     }
 }
 
-/**
-* REDUCER
-*/
-export default function cartReducer(state = defaultState, action) {
+
+export default function wholeCartReducer(state = [], action) {
     switch (action.type) {
-        case GET_CART_ITEM:
-            return action.cartItem
-        case POST_CART_ITEM:
-            return [...state, action.cartItem]
+        case GET_CART:
+            return action.cart
         default:
             return state
 

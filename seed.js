@@ -16,13 +16,15 @@ const productData = {
         description: 'a fierce creature',
         imageUrl: "https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fimages2.fanpop.com%2Fimage%2Fphotos%2F13900000%2FDragon-Wallpaper-dragons-13975578-1280-800.jpg&f=1",
         price: 1000,
-        stock: 5
+        stock: 5,
+        category: 1, 
     }, {
         title: "wand",
         description: 'made from a piece of beef jerksey',
         imageUrl: "https://www.printingin3d.eu/pictures/2013/02-voldemort-wand/painted-voldemort-wand.JPG",
         price: 1000,
-        stock: 5
+        stock: 5,
+        category: 2, 
     }]
 }
 
@@ -104,6 +106,10 @@ const otherData = {
     }],
     cart: [{
         quantity: 7,
+        userId: 1,
+        productId: 1
+    },{
+        quantity: 3,
         userId: 1,
         productId: 1
     },

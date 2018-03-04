@@ -3,8 +3,10 @@ import { connect } from 'react-redux'
 import { BrowserRouter as Router, withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Login, Signup, UserHome } from './components'
-import { Homepage, ProductCategory, SingleProduct, AllProducts, Navbar, EditProfile, SingleOrder } from './components';
+
+import { Homepage, ProductCategory, SingleProduct, AllProducts, Navbar, Cart, guestCart, EditProfile, SingleOrder } from './components';
 import store, { me, fetchAllProducts, fetchCategories, fetchReviews } from './store'
+
 
 /**
  * COMPONENT
@@ -20,16 +22,19 @@ class Routes extends Component {
     return (
       <div>
         <Navbar />
+
         <div className="main">
           <Switch>
             {/* Routes placed here are available to all visitors */}
             <Route exact path="/" component={Homepage} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path= "/guestCart" component={guestCart}/>
             {
               isLoggedIn &&
               <Switch>
                 {/* Routes placed here are only available after logging in */}
+                <Route path="/cart" component={Cart} />
                 <Route path="/home" component={UserHome} />
                 <Route exact path="/products" component={AllProducts} />
                 <Route path="/products/categories/:id" component={ProductCategory} />
@@ -44,6 +49,7 @@ class Routes extends Component {
             <Route path="/products/:id" component={SingleProduct} />
           </Switch>
         </div>
+
       </div>
     )
   }

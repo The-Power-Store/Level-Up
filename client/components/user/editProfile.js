@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { changeAddress, editUser, createAddress, updateUser } from '../../store';
+import { changeAddress, editUser, createAddress } from '../../store';
 
 const EditProfile = props => {
 

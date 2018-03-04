@@ -46,7 +46,7 @@ export function postCartItemToSessionThunk(cartItem){
                 const action = postCartItemToSession(cartItem)
                 dispatch(action)
             })
-            .catch(err => console.err('error creating cart item', err))
+            .catch(err => console.error('error creating cart item', err))
     }
 }
 export function postCartItemThunk(cartItem) {

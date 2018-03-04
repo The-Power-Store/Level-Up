@@ -3,24 +3,44 @@ const { Cart } = require('../db/models')
 module.exports = router
 
 // find all items by specific cart
-router.get('/:cartId', (req, res, next) => {
+router.get('/:userId', (req, res, next) => {
+    console.log("oh, I get a request from the store for the cart items",req.params.userId )
+    const userID = +req.params.userId
     Cart.findAll({
         where: {
-            id: req.params.cartId
+            userId: userID
         }
     })
-        .then(cartItems => res.json(cartItems))
+        .then(cartItems=> {
+            const arrOfItems=[]
+            cartItems.map((item)=>{
+                arrOfItems.push(item.dataValues)
+            })
+            return res.json(arrOfItems)})
         .catch(next)
 })
 
 // add new cart item
 router.post('/', (req, res, next) => {
-    Cart.create(req.body) //this should be a product and it's information
-        .then(createdItem => res.status(201).json(createdItem))
-        .catch(next);
+    console.log("FROM THE BACKEND, the request looks like ", req.body)
+    Cart.findAll({where:{userId:req.body.userId}})
+    .then(foundArr=>{
+        if(foundArr){
+            const newquant = +req.body.quantity + foundArr[0].quantity
+            foundArr[0].update({quantity:newquant})
+            .then((createdItem => {
+                return res.status(201).json(createdItem)}))
+            .catch(next)
+        }else{
+            Cart.create(req.body) //this should be a product and it's information
+                .then(createdItem => res.status(201).json(createdItem))
+                .catch(next);
+        }
+    })
+
 })
 
-//update cart item
+//update cart item, might not need this 
 router.put('/:cartItemId', (req, res, next) => {
     Cart.update(req.body, {
         where: {

@@ -11,7 +11,8 @@ class Navbar extends Component {
   }
 
   render() {
-    let { handleClick, isLoggedIn, categories } = this.props;
+    let { handleClick, isLoggedIn, categories, user } = this.props;
+    console.log("is logged in from the nav bar:", isLoggedIn)
 
     return (
       <div>
@@ -33,7 +34,10 @@ class Navbar extends Component {
             {isLoggedIn ? (
               <div>
                 {/* The navbar will show these links after you log in */}
-                <Link to="/home">Home</Link>
+
+                <Link to={`/home/${user.id}`}>Home</Link>
+                <Link to="/cart">CART!!</Link>
+
                 <a href="#" onClick={handleClick}>
                   Logout
           </a>
@@ -43,6 +47,7 @@ class Navbar extends Component {
                   {/* The navbar will show these links before you log in */}
                   <Link to="/login">Login</Link>
                   <Link to="/signup">Sign Up</Link>
+                  <Link to="/guestCart">CART!</Link>
                 </div>
               )}
           </div>
@@ -57,7 +62,8 @@ class Navbar extends Component {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    categories: state.categories
+    categories: state.categories,
+    user: state.user
   }
 }
 

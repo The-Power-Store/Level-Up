@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from '../../store'
-import { postCartItemThunk } from '../../store/cart';
+import { postCartItemThunk, postCartItemToSessionThunk } from '../../store/cartItem';
+import PropTypes from 'prop-types'
+
 
 const SingleProduct = (props) => {
   let product;
-
+  //console.log("is logged in??", props.isLoggedIn)
+  //console.log("jfdksajfkldsjaklfjdksajkf" )
   if (props.product.length) {
     product = props.product[0];
   }
@@ -16,26 +19,38 @@ const SingleProduct = (props) => {
       <img src={product.imageUrl} />
       <p>{product.description}</p>
       <p>Price: {product.price}</p>
-      <button type="submit" onClick={props.onClick}>Add to Cart</button>
+      {
+        !!props.isLoggedIn?  <button type="submit"  value={props.isLoggedIn} onClick={props.onClick}>Add to Cart </button>
+        :<button type="submit" onClick={props.unAuthOnClick}>add to unauthorized user cart</button>
+      }
+   
     </div>
   ) : null
 }
 
+//<button type="submit" onClick={props.onClick}>Add to Cart</button>
+//<input type="button" value="mybutton1" onclick="dosomething(this)">
+
 const mapStateToProps = function (state, ownProps) {
+  // console.log("skjflksajd", state.user)
   return {
     product: state.products.filter(product =>
       product.id === +ownProps.match.params.id
-    )
+    ),
+    isLoggedIn: state.user.id,
   }
 }
 
 const mapDispatchToProps = function (dispatch, ownProps) {
+
   return {
-    onClick: (event) => {
-      console.log('oh hEEEeeelllooooo', event, ' ', ownProps)
-      const addToCart = { quantity: 1, userId: 1, productId: +ownProps.match.params.id }
-      console.log('dis be the thing added to the cart', addToCart)
+    onClick: (event) => { 
+      const addToCart = { quantity: 1, userId: +event.target.value, productId: +ownProps.match.params.id }
       dispatch(postCartItemThunk(addToCart)) //change to a real variable once we have the log in stuff
+    },
+    unAuthOnClick:(event)=>{
+      const addToCart = {quantity:1, productId: +ownProps.match.params.id }
+      dispatch(postCartItemToSessionThunk(addToCart))
     }
   }
 }

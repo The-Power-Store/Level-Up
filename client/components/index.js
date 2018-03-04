@@ -10,3 +10,8 @@ export { default as AllProducts } from './products/allProducts'
 export { default as SingleProduct } from './products/singleProduct'
 export { default as ProductCategory } from './products/productCategory'
 export { default as Homepage } from './homepage'
+export { default as Cart } from './cart'
+export { default as OrderHistory } from './user/orderHistory'
+export { default as EditProfile } from './user/editProfile'
+export { default as SingleOrder } from './singleOrder'
+

@@ -23,10 +23,14 @@ router.get('/:userId', (req, res, next) => {
 // add new cart item
 router.post('/', (req, res, next) => {
     console.log("FROM THE BACKEND, the request looks like ", req.body)
-    Cart.findAll({where:{userId:req.body.UserId}})
+    Cart.findAll({where:{userId:req.body.userId}})
     .then(foundArr=>{
         if(foundArr){
-            Cart.update()
+            const newquant = +req.body.quantity + foundArr[0].quantity
+            foundArr[0].update({quantity:newquant})
+            .then((createdItem => {
+                return res.status(201).json(createdItem)}))
+            .catch(next)
         }else{
             Cart.create(req.body) //this should be a product and it's information
                 .then(createdItem => res.status(201).json(createdItem))
@@ -36,7 +40,7 @@ router.post('/', (req, res, next) => {
 
 })
 
-//update cart item
+//update cart item, might not need this 
 router.put('/:cartItemId', (req, res, next) => {
     Cart.update(req.body, {
         where: {

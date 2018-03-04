@@ -3,7 +3,7 @@ const { Cart } = require('../db/models')
 
 
 
-app.post('/',  (req, res, next)=> {
+app.use('/',  (req, res, next)=> {
     console.log("fdjskajflkdsjalfkds", req.session)
     if(req.session.cart == undefined){
       req.session.cart = [req.body.productId]

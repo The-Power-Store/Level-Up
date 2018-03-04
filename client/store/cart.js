@@ -40,6 +40,17 @@ const postCartItemToSession = cartItem =>({type:POST_SESSION_CART_ITEM, cartItem
 //             .
 //     }
 // }
+export function fetchCart(userId){
+    return dispatch=>{
+        console.log("shouting out from the thunk fetching the users cart data, user ID:",userId)
+        axios.get(`api/carts/${userId}`)
+        .then(res => res.data)
+        .then(cart =>{
+            const action = getCart(cart)
+            dispatch(action)
+        })
+    }
+}
 export function postCartItemToSessionThunk(cartItem){
     return dispatch =>{
         console.log("shouting out from the postsessionthunk, the cart being posted i", cartItem)
@@ -71,7 +82,7 @@ export function postCartItemThunk(cartItem) {
 export default function cartReducer(state = defaultState, action) {
     switch (action.type) {
         case GET_CART:
-            return action.cart
+            return [...state,action.cart]
         case GET_CART_ITEM:
             return action.cartItem
         case POST_CART_ITEM:

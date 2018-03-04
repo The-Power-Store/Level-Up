@@ -58,7 +58,7 @@ const createApp = () => {
 
   app.use(passport.initialize())
   app.use(passport.session())
-  
+  //I know these should probably go in thier own file, but I will do that once I get it all working.
   app.use('/session',  (req, res, next)=> {
   
     if(req.session.cart == undefined){
@@ -74,6 +74,7 @@ const createApp = () => {
     }
     next();
   });
+  //this should also be moved to it's own /session api file 
   app.use('/session/cart',  (req, res, next)=> {
     console.log("an unloggin user wants to see their the cart, eh?")
     next();

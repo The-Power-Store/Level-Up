@@ -3,13 +3,17 @@ const { Cart } = require('../db/models')
 module.exports = router
 
 // find all items by specific cart
-router.get('/:cartId', (req, res, next) => {
+router.get('/:userId', (req, res, next) => {
+    console.log("oh, I get a request from the store for the cart items",req.params.userId )
+    const userID = +req.params.userId
     Cart.findAll({
         where: {
-            id: req.params.cartId
+            userId: userID
         }
     })
-        .then(cartItems => res.json(cartItems))
+        .then(cartItems => {
+            console.log("CART ITEMS", cartItems[0].dataValues)
+            return res.json(cartItems[0].dataValues)})
         .catch(next)
 })
 

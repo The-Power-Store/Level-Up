@@ -96,3 +96,21 @@ figure.item {
 .caption {
   display: block;
 }
+
+.profile-page {
+  background-color: white;
+  opacity: 0.75;
+  margin: 20px;
+}
+
+#title {
+  color: black;
+  font-family: 'Berkshire Swash', cursive;
+}
+
+#welcome-header {
+  color: blue;
+  font-family: 'Raleway',
+  sans-serif;
+}
+

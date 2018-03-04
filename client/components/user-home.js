@@ -19,6 +19,8 @@ class UserHome extends Component {
 
     const {user, address, reviews, handleSubmit, orders} = this.props;
 
+
+
       return (
         <div className="container" className="profile-page">
 
@@ -66,14 +68,15 @@ class UserHome extends Component {
                   }
                   {
                     reviews.length > 0 ?
-                      reviews.map(review => {
-                        return <div key={review.id}>
+                      reviews.map(review => (
+                          <div key={review.id}>
                             <h5>{review.product.title}</h5>
                             <p>---{review.stars} Stars</p>
                             <p>---{review.content}</p>
                             <br></br>
-                          </div>;
-                      })
+                          </div>
+                        )
+                      )
                     : null
                   }
                 </div>
@@ -86,8 +89,8 @@ class UserHome extends Component {
                   {
                     orders.length > 0 ?
                       orders.map(order => (
-                          <div>
-                            <Link key={order.id} to={`/orders/${order.id}`}>
+                          <div key={order.id}>
+                            <Link to={`/orders/${order.id}`}>
                                 OrderId: {order.id}
                             </Link>
                             <br></br>

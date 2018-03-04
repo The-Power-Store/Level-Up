@@ -11,9 +11,13 @@ router.get('/:userId', (req, res, next) => {
             userId: userID
         }
     })
-        .then(cartItems => {
-            console.log("CART ITEMS", cartItems[0].dataValues)
-            return res.json(cartItems[0].dataValues)})
+        .then(cartItems=> {
+            const arrOfItems=[]
+            cartItems.map((item)=>{
+                arrOfItems.push(item.dataValues)
+            })
+            console.log("CART ITEMS", arrOfItems)
+            return res.json(arrOfItems)})
         .catch(next)
 })
 

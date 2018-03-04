@@ -108,6 +108,10 @@ const otherData = {
         quantity: 7,
         userId: 1,
         productId: 1
+    },{
+        quantity: 3,
+        userId: 1,
+        productId: 1
     },
     {
         quantity: 12,

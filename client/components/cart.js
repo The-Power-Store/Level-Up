@@ -8,10 +8,12 @@ class Cart extends Component{
 
     componentWillMount(){
       this.props.loadCart(1)
+      console.log("items", this.props)
     }
     
     render(){
-      console.log("props now equal",this.props)
+      const { defaultCart } = this.props
+      console.log("props now equal",defaultCart)
       //    const { isLoggedIn } = this.props;
 
   return (
@@ -33,7 +35,7 @@ const mapStateToProps = function (state, ownProps) {
     //if logged in, get the user id from there, if not, get it from the session. 
     console.log("The props stat cart is ", state.cart.defaultCart)
     return {
-      cartItems: state.cart.defaultCart,
+      cartItems: state.cart,
       isLoggedIn: state.user.id,
     }
   }

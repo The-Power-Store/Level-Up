@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from '../../store'
-import { postCartItemThunk, postCartItemToSessionThunk } from '../../store/cart';
+import { postCartItemThunk, postCartItemToSessionThunk } from '../../store/cartItem';
 import PropTypes from 'prop-types'
 
 

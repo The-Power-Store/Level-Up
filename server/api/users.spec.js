@@ -30,8 +30,6 @@ describe('User routes', () => {
         })
     })
 
-    // it('saves the article to the DB', function () {
-
     it('POST /api/users and saves the user to the DB', () => {
       return request(app)
         .post('/api/users')
@@ -51,6 +49,7 @@ describe('User routes', () => {
         })
     });
 
+    it('')
 
   }) // end describe('/api/users')
 }) // end describe('User routes')

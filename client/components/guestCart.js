@@ -3,22 +3,16 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import store from '../store';
 
-class Cart extends Component{
+const GuestCart =props=>{
 
-    componentDidMount(){
-      this.props.loadCart()
-    }
 
-    render(){  return (
+
+    return (
     <div>
-      <h2>{cartItems.title}</h2>
-      <img src={cartItems.imageUrl} />
-      <p>{cartItems.description}</p>
-      <p>Price: {cartItems.price}</p>
+      <h2>Here we are inside the guest cart component</h2>
+      
       </div>
     )
-
-  }
 }
   
   // {
@@ -39,7 +33,7 @@ const mapStateToProps = function (state, ownProps) {
   const mapDispatchToProps = function (dispatch, ownProps) {
     return {
       loadCart: (event) => {
-        dispatch(fetchCart()) 
+        dispatch(fetchGuestCart()) 
       }
     }
   }

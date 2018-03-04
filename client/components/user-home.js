@@ -62,7 +62,7 @@ class UserHome extends Component {
                   {
                     reviews.length > 0 ?
                       <h3 id="title">Your reviewed products: </h3>
-                    : <h3 id="title">You haven't reviewed anything yet!</h3>
+                    : <h3 id="title">You have not reviewed anything yet!</h3>
                   }
                   {
                     reviews.length > 0 ?

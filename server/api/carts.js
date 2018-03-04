@@ -16,17 +16,24 @@ router.get('/:userId', (req, res, next) => {
             cartItems.map((item)=>{
                 arrOfItems.push(item.dataValues)
             })
-            console.log("CART ITEMS", arrOfItems)
             return res.json(arrOfItems)})
         .catch(next)
 })
 
 // add new cart item
 router.post('/', (req, res, next) => {
-    console.log("FROM THE BACKEND, th user has a ", req.userId)
-    Cart.create(req.body) //this should be a product and it's information
-        .then(createdItem => res.status(201).json(createdItem))
-        .catch(next);
+    console.log("FROM THE BACKEND, the request looks like ", req.body)
+    Cart.findAll({where:{userId:req.body.UserId}})
+    .then(foundArr=>{
+        if(foundArr){
+            Cart.update()
+        }else{
+            Cart.create(req.body) //this should be a product and it's information
+                .then(createdItem => res.status(201).json(createdItem))
+                .catch(next);
+        }
+    })
+
 })
 
 //update cart item

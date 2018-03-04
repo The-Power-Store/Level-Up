@@ -4,10 +4,12 @@ import { addOrder } from '../store'
 
 
 export const OrderForm = (props) => {
-  const { } = props
+  console.log('i actually made it to this route')
+  const { handleSubmit } = props
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
+      <h1>HELLO WORLD I'M HERE AND WORKING</h1>
+      <form onSubmit={handleSubmit} >
         <div>
           <label htmlFor="firstName"><small>First Name</small></label>
           <input name="firstName" type="text" />
@@ -64,3 +66,5 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderForm);

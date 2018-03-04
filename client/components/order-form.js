@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addOrder } from '../store'
 
 
-export const OrderForm = (props) => {
-  console.log('i actually made it to this route')
-  const { handleSubmit } = props
-  return (
-    <div>
-      <h1>HELLO WORLD I'M HERE AND WORKING</h1>
-      <form onSubmit={handleSubmit} >
+class OrderForm extends Component {
+
+  render() {
+    console.log('i actually made it to this route')
+    const { handleSubmit } = props
+    return (
+      <div>
+        <h1> HELLO WORLD I'M HERE AND WORKING </h1>
+      </div>
+      /* <form onSubmit={handleSubmit} >
         <div>
           <label htmlFor="firstName"><small>First Name</small></label>
           <input name="firstName" type="text" />
@@ -41,10 +44,10 @@ export const OrderForm = (props) => {
         <div>
           <button type="submit">Place your Order!</button>
         </div>
-        {/* error && error.response && <div> {error.response.data} </div> */}
-      </form>
-    </div>
-  )
+        
+  </form>  */
+    )
+  }
 }
 
 const mapStateToProps = (state) => {

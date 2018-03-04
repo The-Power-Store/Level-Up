@@ -20,18 +20,23 @@ router.get('/:userId', (req, res, next) => {
         .catch(next)
 })
 
-// add new cart item
+// add new cart item, or if the item already is in the cart, update its quantity 
 router.post('/', (req, res, next) => {
-    console.log("FROM THE BACKEND, the request looks like ", req.body)
-    Cart.findAll({where:{userId:req.body.userId}})
+    // console.log("FROM THE BACKEND, the request looks like ", req.body)
+    Cart.findOne({where:{userId:req.body.userId, productId: req.body.productId}})
     .then(foundArr=>{
-        if(foundArr){
-            const newquant = +req.body.quantity + foundArr[0].quantity
-            foundArr[0].update({quantity:newquant})
+        //console.log("Tne around array of objects is", foundArr)
+        // console.log("Tne around array of objects is", foundArr)
+
+        if(foundArr!=null){
+            // console.log("The item is already in the caret, so increase it quantity")
+            const newquant = +req.body.quantity + foundArr.dataValues.quantity
+            foundArr.update({quantity:newquant})
             .then((createdItem => {
                 return res.status(201).json(createdItem)}))
             .catch(next)
         }else{
+            // console.log("The item does not exist in the cart yet")
             Cart.create(req.body) //this should be a product and it's information
                 .then(createdItem => res.status(201).json(createdItem))
                 .catch(next);

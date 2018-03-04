@@ -11,7 +11,7 @@ class Navbar extends Component {
   }
 
   render() {
-    let { handleClick, isLoggedIn, categories } = this.props;
+    let { handleClick, isLoggedIn, categories, user } = this.props;
     console.log("is logged in from the nav bar:", isLoggedIn)
 
     return (

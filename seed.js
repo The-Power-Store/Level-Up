@@ -171,8 +171,13 @@ const otherData = {
     {
       content: "honestly, kinda pricy, even for a dragon",
       stars: 2,
-      userId: 1,
+      userId: 5,
       productId: 1
+    },{
+      content: "a wand that really works! wow!",
+      stars: 5,
+      userId: 5,
+      productId: 2
     }
   ],
   cart: [

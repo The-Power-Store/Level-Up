@@ -84,7 +84,6 @@ Order.hook('afterCreate', function (Order) {
   })
     .then(rowsDeleted => {
       console.log('da rows were deleted ', rowsDeleted)
-      res.sendStatus(202)
     })
     .catch(console.error)
 })

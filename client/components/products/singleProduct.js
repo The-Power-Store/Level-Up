@@ -14,7 +14,7 @@ const SingleProduct = (props) => {
   }
 
   return product ? (
-    <div>
+    <div className="single-product">
       <h2>{product.title}</h2>
       <img src={product.imageUrl} />
       <p>{product.description}</p>

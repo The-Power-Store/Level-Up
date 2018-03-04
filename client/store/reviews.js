@@ -7,37 +7,13 @@ const UPDATE_REVIEW = 'UPDATE_REVIEW'
 const DELETE_REVIEW = 'DELETE_REVIEW'
 
 //action creators
-export function getReviews(reviews) {
-  return {
-    type: GET_REVIEWS,
-    reviews
-  }
-}
-
-export function addNewReview(review) {
-  return {
-    type: ADD_NEW_REVIEW,
-    review
-  }
-}
-
-export function updateReview(review) {
-  return {
-    type: UPDATE_REVIEW,
-    review
-  }
-}
-
-export function deleteReview(id) {
-  return {
-    type: DELETE_REVIEW,
-    id
-  }
-}
+const getReviews = reviews => ({type: GET_REVIEWS, reviews});
+const addNewReview = review => ({type: ADD_NEW_REVIEW, review});
+const updateReview = review => ({type: UPDATE_REVIEW, review});
+const deleteReview = id => ({type: DELETE_REVIEW, id});
 
 
 //thunks
-
 export function fetchReviews() {
   return dispatch => {
     axios

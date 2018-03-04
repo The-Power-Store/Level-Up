@@ -1,23 +1,23 @@
 const router = require("express").Router();
 const { Order, Cart, Product, ProductsInOrder } = require("../db/models");
+const { isLoggedIn, makeError, isAdmin } = require('./utils')
 module.exports = router;
 
-function createError(status, message) {
-  const error = new Error(message)
-  error.status = status
-  return error
-}
+// function createError(status, message) {
+//   const error = new Error(message)
+//   error.status = status
+//   return error
+// }
 // all orders for admin to access and look at
-router.get('/', (req, res, next) => {
-  if (!req.user) next(createError(401, 'WAIT, you need to log in doofus'))
-  const query = req.user.isAdmin ? {} : { where: { userId: req.user.userId } }
+router.get('/', isLoggedIn, (req, res, next) => {
+  const query = req.user.isAdmin ? {} : { where: { userId: req.user.id } }
   return Order.findAll(query)
     .then(orders => res.json(orders))
     .catch(next)
 })
 
 router.get('/:orderId', (req, res, next) => {
-  //add a logged in 
+  //add a logged in
   Order.findById(req.params.orderId)
     .then(order => res.json(order))
     .catch(next)
@@ -25,8 +25,8 @@ router.get('/:orderId', (req, res, next) => {
 
 //create order
 //create products in order
-// move join table to cart and product 
-// order has cart id 
+// move join table to cart and product
+// order has cart id
 
 //needs to pull in cart info from database or session and make that req.body
 // Order.create()
@@ -75,14 +75,15 @@ router.post('/', (req, res, next) => {
     .catch(next)
 })
 
-router.put('/:orderId', (req, res, next) => {
+//can update order status if they are an admin user(using isAdmin util function here)
+router.put('/:orderId', isAdmin, (req, res, next) => {
   Order.update(req.body, {
     where: {
       id: req.params.orderId
     },
     returning: true
   })
-    //need to make more readable/meaningful 
+    //need to make more readable/meaningful
     .then(updates => {
       const updatedStatus = updates[1][0];
       res.json(updatedStatus);

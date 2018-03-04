@@ -4,23 +4,13 @@ import axios from 'axios';
 const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES'
 const ADD_NEW_CATEGORY = 'ADD_NEW_CATEGORY'
 
-//action creators
-export function getAllCategories(categories) {
-  return {
-    type: GET_ALL_CATEGORIES,
-    categories
-  };
-}
 
-export function addNewCategory(category) {
-  return {
-    type: ADD_NEW_CATEGORY,
-    category
-  };
-}
+//action creators
+const getAllCategories = categories => ({type: GET_ALL_CATEGORIES, categories});
+const addNewCategory = category => ({type: ADD_NEW_CATEGORY, category});
+
 
 //thunks
-
 export function fetchCategories() {
   return function(dispatch) {
     axios

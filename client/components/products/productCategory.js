@@ -25,27 +25,39 @@ class ProductCategory extends Component {
 
     return (
       <div>
-        <input
-          placeholder='Search for a product'
-          onChange={this.handleChange}
-        />
-        <div>
-          <h1>{category.length ? <div>{category[0].title}</div> : <div />}</h1>
-          <div>{category.length ? <p>{category[0].description}</p> : <div />}</div>
+        <div className="products-header">
+          <input
+            placeholder='Search for a product'
+            onChange={this.handleChange}
+          />
+          <div className="products-header">
+            <h1>{category.length ? <div>{category[0].title}</div> : <div />}</h1>
+            <div>{category.length ? <p>{category[0].description}</p> : <div />}</div>
+          </div>
         </div>
 
-        {
-          products.map(product => {
-            return (
-              <div key={product.id}>
-                <Link to={`/products/${product.id}`}>{product.title}</Link>
-                <img src={product.imageUrl} />
-                <p>{product.description}</p>
-                <p>Price: {product.price}</p>
-              </div>
-            );
-          })
-        }
+        <div className="product-list">
+          {
+            products.map(product => {
+              return (
+                <div className="product" key={product.id}>
+                  <figure className="item">
+                    <Link to={`/products/${product.id}`}>
+                      <img src={product.imageUrl} />
+                    </Link>
+                    <figcaption className="caption">
+                      <div className="product-details">
+                        <Link to={`/products/${product.id}`}>{product.title}</Link>
+                        <p>{product.description}</p>
+                        <p>Price: ${product.price}</p>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </div>
+              );
+            })
+          }
+        </div>
       </div>
     );
   }

@@ -23,4 +23,15 @@ Cart.cartTotal = async function (userId) {
   return total
 }
 
+Cart.destroyCart = function (userId) {
+  return this.destroy({
+    where: {
+      userId: userId
+    }
+  })
+    .then(rowsDeleted => {
+      console.log('da rows were deleted ', rowsDeleted)
+    })
+}
+
 module.exports = Cart

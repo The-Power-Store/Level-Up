@@ -19,51 +19,44 @@ router.get('/:orderId', (req, res, next) => {
 })
 
 //create order
-//create products in order
-// move join table to cart and product
-// order has cart id
+//add a user variable that is a ternary checking if they are admin. if so use req.body.userId
 
-//needs to pull in cart info from database or session and make that req.body
-// Order.create()
-// .then(createdOrder => Promise.all(cartArr.map(item => productsInOrder.create(Object.assign(item, {orderId: createdOrder.id}))))
-// .then(allGood)
 router.post('/', (req, res, next) => {
+  // console.log('!!!!!!!!!!!!!!!!!!!! USER ID', req.body.userId)
+
   Order.create(req.body)
     .then(order => {
       const currentOrder = order
       return currentOrder
     })
     .then(currentOrder => {
+      console.log('!!!!!!!!!!!!!!!!!!!! USER ID', req.body.userId)
       console.log('new current order is ' + currentOrder)
       Cart.findAll({
         where: {
-          userId: req.body.userId
+          userId: req.user.id
         }
       })
         .then(cartItems => {
           console.log('dis is the cart items ' + cartItems)
-          Promise.all(cartItems.map(item => {
+          return Promise.all(cartItems.map(item => {
             return Product.findById(item.dataValues.productId)
               .then(product => {
                 return ProductsInOrder.create({ quantity: item.dataValues.quantity, price: product.price, orderId: currentOrder.id, productId: product.id })
               })
           })
           )
-            .then((data) => {
+            .then(data => {
               console.log('we did a thing! ', data)
+              return Cart.destroyCart(req.user.id)
+
+            })
+            .then((data) => {
               res.sendStatus(201)
             })
         })
     }
     )
-    // console.log(req.body)
-    // Order.create(req.body)
-    //   .then(order => res.status(201).send(order))
-
-    //ProductInOrder.create
-    // req.user.cart
-    //loop through each item in users cart to add it to productinorder with correct
-    // products and persist the quantity and price at the time order was created
     .catch(next)
 })
 

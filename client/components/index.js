@@ -14,6 +14,6 @@ export { default as Cart } from './cart'
 export { default as OrderHistory } from './user/orderHistory'
 export { default as EditProfile } from './user/editProfile'
 export { default as SingleOrder } from './singleOrder'
-export { default as OrderFrom } from './order-form'
+export { default as OrderForm } from './order-form'
 export { default as guestCart } from './guestCart'
 

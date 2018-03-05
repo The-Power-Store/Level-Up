@@ -50,7 +50,7 @@ class Cart extends Component {
               </div>)
           })
         }
-
+        <Link to={'/newOrder'}> <button>Proceed to checkout, lovely</button></Link>
       </div>
     )
   }

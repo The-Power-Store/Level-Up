@@ -3,17 +3,13 @@ import { connect } from 'react-redux'
 import { addOrder } from '../store'
 
 
-class OrderForm extends Component {
-
-  render() {
-
-    console.log('i actually made it to this route')
-    const { handleSubmit } = props
-    return (
-      <div>
-        <h1> HELLO WORLD I'M HERE AND WORKING </h1>
-      </div>
-      /* <form onSubmit={handleSubmit} >
+const OrderForm = (props) => {
+  console.log('i actually made it to this route')
+  const { handleSubmit } = props
+  return (
+    <div>
+      <h1> HELLO WORLD I'M HERE AND WORKING </h1>
+      <form onSubmit={handleSubmit} >
         <div>
           <label htmlFor="firstName"><small>First Name</small></label>
           <input name="firstName" type="text" />
@@ -45,10 +41,10 @@ class OrderForm extends Component {
         <div>
           <button type="submit">Place your Order!</button>
         </div>
-        
-  </form>  */
-    )
-  }
+
+      </form>
+    </div>
+  )
 }
 
 const mapStateToProps = (state) => {
@@ -63,7 +59,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
-      const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
       dispatch(auth(email, password, formName))

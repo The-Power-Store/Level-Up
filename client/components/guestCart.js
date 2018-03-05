@@ -8,12 +8,12 @@ import { fetchGuestCart } from '../store/sessionCart'
 class GuestCart extends Component {
 
 
-  componentDidMount() {
-   
+  componentWillMount() {
 
     this.props.loadGuestCart() //change this later to be the actual session ID
   }
-  render(){
+  render() {
+
     const { guestCart } = this.props
     const { products } = this.props
     console.log("props on the guest cart now equal", guestCart)
@@ -31,7 +31,7 @@ class GuestCart extends Component {
       }
     })
 
-      console.log("The product left on the state of the cart is ", productsInCart)
+    console.log("The product left on the state of the cart is ", productsInCart)
 
     return (
       <div>
@@ -59,6 +59,7 @@ class GuestCart extends Component {
 const mapStateToProps = function (state, ownProps) {
 
 
+
     //if logged in, get the user id from there, if not, get it from the session. 
     console.log("jfdklsjafld",state)
 
@@ -74,9 +75,11 @@ const mapStateToProps = function (state, ownProps) {
       loadGuestCart: () => {
         dispatch(fetchGuestCart())
       }
+
     }
   }
 
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(GuestCart)
+

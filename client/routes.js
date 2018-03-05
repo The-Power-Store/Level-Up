@@ -52,8 +52,9 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/guestCart" component={guestCart} />
-            <Route path="/newOrder" component={OrderForm} />
-            {isLoggedIn && (
+            <Route path="/newOrder/:id" component={OrderForm} />
+            {
+              isLoggedIn &&
               <Switch>
                 {/* Routes placed here are only available after logging in */}
                 <Route path="/cart" component={Cart} />
@@ -67,7 +68,7 @@ class Routes extends Component {
                 <Route path="/user/editProfile/:id" component={EditProfile} />
                 <Route path="/orders/:id" component={PreviousOrderPage} />
               </Switch>
-            )}
+            }
             {isAdmin && <Route path="" />}
             {/* Displays our Login component as a fallback */}
             <Route exact path="/products" component={AllProducts} />

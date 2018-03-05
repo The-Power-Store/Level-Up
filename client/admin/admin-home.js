@@ -9,35 +9,55 @@ class AdminHome extends Component {
   }
 
   render() {
-   const { users, products } = this.props
+   const { users, products, handleSubmit } = this.props
 
     console.log("users", this.props.users)
-    return <div>
-        <h3>What would you like to do?</h3>
-        <h3>Users</h3>
+    return <div className="container">
+        <h2 id="tab-title">USERS</h2>
+
         <table className="table table-bordered">
           <thead>
             <tr>
               <th scope="col">USER NAME</th>
               <th scope="col">EMAIL</th>
-              <th scope="col">MAKE ADMIN?</th>
-              <th scope="col">DELETE</th>
+              <th scope="col">UPDATE</th>
             </tr>
           </thead>
           <tbody>
-          {
-            users.map(user =>
-             <tr id={user.id}>
-                <th scope="row">{user.firstName} {user.lastName}</th>
+            {users.map(user => <tr key={user.id}>
+                <th scope="row">
+                  {user.firstName} {user.lastName}
+                </th>
                 <td>{user.email}</td>
-                <td><input type="checkbox"/></td>
-                <td></td>
-              </tr>
-            )
-          }
+                <form onSubmit={handleSubmit}>
+                  <td>
+                    <input name="makeAdmin" type="checkbox" />
+                  </td>
+                  <td>
+                    <input name="delete" type="checkbox">Delete</input>
+                  </td>
+                  <td>
+                    <button type="submit">Submit!</button>
+                  </td>
+                </form>
+              </tr>)}
           </tbody>
         </table>
-        <Link to="/admin/products" />
+        <br />
+        <br />
+        <div className="admin-product-cont">
+          <h2 className="tab-title">PRODUCTS</h2>
+          <ul>
+            {products.map(product => <div key={product.id}>
+                <li id="product-list">
+                  <Link key={product.id} to={`/admin/product/${product.id}`}>
+                    {product.title}
+                  </Link>
+                </li>
+                <br />
+              </div>)}
+          </ul>
+        </div>
       </div>;
   }
 }
@@ -51,9 +71,17 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+
     fetchUserData: () => {
       dispatch(fetchAllUsers())
+    },
+    handleSubmit: (event) => {
+
+      event.preventDefault();
+      if(event.target.makeAdmin) dispatch(editUser(3, {isAdmin: true}))
+      if(event.target.delete) dispatch(deleteAccount(5))
     }
+
   }
 }
 

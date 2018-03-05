@@ -117,6 +117,14 @@ figure.item {
   margin: 0px auto;
 }
 
-#order-title {
+#tab-title {
   text-align: center;
+}
+
+.admin-product-cont {
+  text-align: center;
+}
+
+#product-list {
+  list-style: none;
 }

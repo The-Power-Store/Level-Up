@@ -5,12 +5,10 @@ const GET_ADDRESS = 'GET_ADDRESS'
 const UPDATE_ADDRESS = 'UPDATE_ADDRESS'
 const ADD_NEW_ADDRESS = 'ADD_NEW_ADDRESS'
 
-
 //action creators
-const getAddress = address => ({type: GET_ADDRESS, address});
-const updateAddress = address => ({type: UPDATE_ADDRESS, address});
-const addNewAddress = address => ({type: ADD_NEW_ADDRESS, address});
-
+const getAddress = address => ({ type: GET_ADDRESS, address })
+const updateAddress = address => ({ type: UPDATE_ADDRESS, address })
+const addNewAddress = address => ({ type: ADD_NEW_ADDRESS, address })
 
 //thunk creators
 export function fetchAddress(id) {
@@ -21,7 +19,7 @@ export function fetchAddress(id) {
       .then(address => {
         dispatch(getAddress(address))
       })
-      .catch(err => console.error("error fetching address", err));
+      .catch(err => console.error("error fetching address", err))
   }
 }
 
@@ -31,50 +29,48 @@ export function fetchUserAddress(id) {
       .get(`/api/address/user/${id}`)
       .then(res => res.data)
       .then(address => {
-        dispatch(getAddress(address));
+        dispatch(getAddress(address))
       })
-      .catch(err => console.error("error fetching address", err));
+      .catch(err => console.error("error fetching address", err))
   }
 }
 
-export function changeAddress(id, address) {
-  console.log('id', id)
-  console.log('address', address)
+export function changeAddress(id, address, ownProps) {
   return dispatch => {
     axios
       .put(`/api/address/user/${id}`, address)
       .then(res => res.data)
       .then(address => {
-        dispatch(updateAddress(address));
+        dispatch(updateAddress(address))
+        ownProps.history.push(`/home/${id}`)
       })
-      .catch(err => console.error("error updating address", err));
+      .catch(err => console.error("error updating address", err))
   }
 }
 
 export function createAddress(address) {
+  console.log("address", address);
   return dispatch => {
     axios
       .post(`/api/address`, address)
       .then(res => res.data)
       .then(address => {
         dispatch(addNewAddress(address))
-        history.push(`/home/${id}`);
       })
-      .catch(err => console.error("error creating address", err));
+      .catch(err => console.error("error creating address", err))
   }
 }
 
-
 //reducer
 export default function addressReducer(state = {}, action) {
-  switch(action.type) {
+  switch (action.type) {
     case GET_ADDRESS:
-      return action.address;
+      return action.address
     case UPDATE_ADDRESS:
-      return action.address;
+      return action.address
     case ADD_NEW_ADDRESS:
-      return action.address;
+      return action.address
     default:
-      return state;
+      return state
   }
 }

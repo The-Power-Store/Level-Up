@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import store from '../store'
+
 import { fetchGuestCart } from '../store/cart'
 
 class GuestCart extends Component {
@@ -48,13 +49,13 @@ class GuestCart extends Component {
     )
   }
 }
-  
-  // {
-  //   !!props.isLoggedIn?  <button type="submit"  value={props.isLoggedIn} onClick={props.onClick}>Add to Cart </button>
-  //   :<button type="submit" onClick={props.unAuthOnClick}>add to unauthorized user cart</button>
-  // }
 
+// {
+//   !!props.isLoggedIn?  <button type="submit"  value={props.isLoggedIn} onClick={props.onClick}>Add to Cart </button>
+//   :<button type="submit" onClick={props.unAuthOnClick}>add to unauthorized user cart</button>
+// }
 const mapStateToProps = function (state, ownProps) {
+
     //if logged in, get the user id from there, if not, get it from the session. 
     console.log("jfdklsjafld",state.cart)
     return {
@@ -71,5 +72,6 @@ const mapStateToProps = function (state, ownProps) {
       }
     }
   }
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(GuestCart);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GuestCart)

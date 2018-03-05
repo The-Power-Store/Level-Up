@@ -1,13 +1,13 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth, createUser, fetchAddress} from '../store'
+import { auth, createUser, fetchAddress } from '../store'
 
 /**
  * COMPONENT
  */
 const AuthForm = (props) => {
-  const {name, displayName, handleSubmit, error} = props
+  const { name, displayName, handleSubmit, error } = props
 
   return (
     <div>
@@ -55,7 +55,7 @@ const mapSignup = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleSubmit (evt) {
+    handleSubmit(evt) {
       evt.preventDefault()
       const formName = evt.target.name
       const email = evt.target.email.value
@@ -68,15 +68,15 @@ const mapDispatchToProps = (dispatch) => {
 const mapDispatch = (dispatch) => {
   return {
     handleSubmit(evt) {
-      evt.preventDefault();
-      const formName = evt.target.name;
-      const email = evt.target.email.value;
+      evt.preventDefault()
+      const formName = evt.target.name
+      const email = evt.target.email.value
       const password = evt.target.password.value
       dispatch(auth(email, password, formName))
       dispatch(createUser({ email, password }))
     }
-  };
-};
+  }
+}
 
 export const Login = connect(mapLogin, mapDispatchToProps)(AuthForm)
 export const Signup = connect(mapSignup, mapDispatch)(AuthForm)

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import store from '../store';
+import store from '../store'
 import { addOrderThunk } from '../store/order'
 
 
 const OrderForm = (props) => {
-  console.log('i actually made it to this route')
   const { user, handleSubmit, error } = props
+
   return (
     <div>
       <h1> HELLO WORLD I'M HERE AND WORKING </h1>
@@ -42,13 +42,13 @@ const OrderForm = (props) => {
         <div>
           <button type="submit">Place your Order!</button>
         </div>
-
       </form>
     </div>
   )
 }
 
 const mapStateToProps = (state) => {
+
   return {
     user: state.user,
     // displayName: 'Sign Up',
@@ -57,8 +57,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log('dis be the own props', ownProps)
-  console.log('this is the event target', event.target)
+
   return {
     handleSubmit(event) {
       event.preventDefault()
@@ -74,4 +73,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrderForm);
+export default connect(mapStateToProps, mapDispatchToProps)(OrderForm)

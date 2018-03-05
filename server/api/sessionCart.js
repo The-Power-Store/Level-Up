@@ -7,6 +7,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const sessionStore = new SequelizeStore({ db })
 module.exports = router;
 
+
 passport.serializeUser((user, done) => done(null, user.id))
 // passport.serializeCart((cart, done) => done(null, cart.id))
 
@@ -49,4 +50,3 @@ passport.deserializeUser((id, done) =>
   router.use('/',(req,res,next)=>{
     res.json(req.session.cart)
   })
-

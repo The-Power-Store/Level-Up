@@ -31,21 +31,11 @@ export function createUser(user) {
   return dispatch => {
     axios
       .post('/api/users', user)
+      .then(res => res.data)
       .then(user => {
         dispatch(addUser(user));
       })
       .catch(err => console.error("error creating user", err));
-  }
-}
-
-export function editUser(id, user) {
-  return dispatch => {
-    axios
-      .put(`/api/users/${id}`, user)
-      .then(user => {
-        dispatch(updateUser(user));
-      })
-      .catch(err => console.error("error updating user", err));
   }
 }
 

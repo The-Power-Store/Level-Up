@@ -11,7 +11,7 @@ const Review = require('./review')
 Address.belongsTo(User) // Product.belongsTo(Category) //CategoryId on product
 
 Cart.belongsTo(User)
-//Cart.hasMany(Product) not sure why we dont want this? but it works without. 
+Cart.hasMany(Product) //not sure why we dont want this? but it works without. 
 
 Category.hasMany(Product) //CategoryId on product
 
@@ -19,7 +19,7 @@ Order.belongsTo(User) //UserId on order
 Order.belongsToMany(Product, { through: ProductsInOrder }) //ProductsInOrder join table
 
 Product.hasMany(Review) //ProductId on review
-Product.hasMany(Cart)
+// Product.hasMany(Cart)
 
 ProductsInOrder.belongsTo(Order)
 ProductsInOrder.belongsTo(Product)

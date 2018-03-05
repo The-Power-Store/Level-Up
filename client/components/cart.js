@@ -7,7 +7,7 @@ import { fetchCart } from '../store/cart'
 class Cart extends Component{
 
     componentWillMount(){
-      this.props.loadCart(1)
+      this.props.loadCart(this.props.user.id)
       
     }
     
@@ -17,10 +17,14 @@ class Cart extends Component{
       console.log("props now equal",cart)
       const productIdNums = cart.map((item)=>
         item.productId
+        
       )
-      console.log("the array of product ids looks like this", productIdNums)
+      console.log("the user is ", this.props.user)
+      console.log("the products on the state are ", products)
       const productsInCart = products.filter(product=>{
+        console.log("LOOK here, shold be numbers",product.id)
         if(productIdNums.indexOf(product.id)>=0){
+          
           return product
         }
 
@@ -62,7 +66,8 @@ const mapStateToProps = function (state, ownProps) {
     console.log("The props stat cart is ", state.cart)
     return {
       cart: state.cart,
-      products: state.products
+      products: state.products,
+      user: state.user
     }
   }
   

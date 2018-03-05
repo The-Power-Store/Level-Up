@@ -26,18 +26,18 @@ router.post('/', (req, res, next) => {
     .then(foundArr => {
       if (foundArr != null) {
         console.log("The item is already in the caret, so increase it quantity")
-        const newquant = +req.body.quantity + foundArr.dataValues.quantity
+        const newquant = +req.body.quantity + foundArr.quantity
 
-        foundArr.update({ quantity: newquant })
-          .then(createdItem => res.status(201).json(createdItem))
-          .catch(next)
+        console.log("new amount", newquant)
+        return foundArr.update({ quantity: newquant })
+         
       } else {
         console.log("The item does not exist in the cart yet")
-        Cart.create(req.body) //this should be a product and it's information
-          .then(createdItem => res.status(201).json(createdItem))
-          .catch(next)
+        return Cart.create(req.body) //this should be a product and it's information
       }
     })
+    .then(createdItem => res.status(201).json(createdItem))
+    .catch(next)
 })
 
 //update cart item, might not need this 

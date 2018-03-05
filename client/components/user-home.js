@@ -57,7 +57,7 @@ class UserHome extends Component {
             )}
           </div>
 
-          {isAdmin ? (
+          { user.isAdmin ? (
             <AdminHome />
           ) : (
             <div>

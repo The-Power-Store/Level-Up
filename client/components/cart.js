@@ -7,6 +7,7 @@ import { fetchCart } from '../store/cart'
 class Cart extends Component{
 
     componentWillMount(){
+      console.log("fetching the cart for ", this.props.user.id)
       this.props.loadCart(this.props.user.id)
       
     }
@@ -15,14 +16,13 @@ class Cart extends Component{
       const { cart } = this.props
       const { products } = this.props
       console.log("props now equal",cart)
-      const productIdNums = cart.map((item)=>
-        item.productId
-        
-      )
+      const productIdNums = cart.map((item)=>{
+        return item.productId
+      })
       console.log("the user is ", this.props.user)
       console.log("the products on the state are ", products)
       const productsInCart = products.filter(product=>{
-        console.log("LOOK here, shold be numbers",product.id)
+        console.log("prudct arry is ", productIdNums, "LOOK here, shold be numbers",product.id)
         if(productIdNums.indexOf(product.id)>=0){
           
           return product

@@ -1,59 +1,59 @@
 const promise = require('bluebird')
 const db = require('./server/db/db.js')
 const {
-    User,
-    Product,
-    Category,
-    Review,
-    Order,
-    Address
+  User,
+  Product,
+  Category,
+  Review,
+  Order,
+  Address
 } = require('./server/db/models/index.js')
 
 
 const productData = {
-    product: [{
-        title: "Snow Dragon",
-        description: 'a fierce creature',
-        imageUrl: "https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fimages2.fanpop.com%2Fimage%2Fphotos%2F13900000%2FDragon-Wallpaper-dragons-13975578-1280-800.jpg&f=1",
-        price: 100000,
-        stock: 5,
-        category: 1,
-    }, {
-        title: "Jerskey Wand",
-        description: 'made from a piece of beef jerksey',
-        imageUrl: "https://www.printingin3d.eu/pictures/2013/02-voldemort-wand/painted-voldemort-wand.JPG",
-        price: 1000,
-        stock: 5,
-        category: 2,
-    },{
-        title: "Fhire Dragon",
-        description: 'spicy, like cheetos, but like will kill you',
-        imageUrl: "https://wallpapercave.com/wp/McdCS6c.jpg",
-        price: 1000,
-        stock: 5,
-        category: 2,
-    },{
-        title: "Healing Potion",
-        description: 'heals everything but paper cuts, stubbed toes and when you bite your tongue',
-        imageUrl: "https://wtbpotions.com/wp-content/uploads/square-green-1.jpg",
-        price: 4600,
-        stock: 34,
-        category: 3,
-    },{
-        title: "Invisibility Potion",
-        description: '...And they never saw him again',
-        imageUrl: "https://slm-assets2.secondlife.com/assets/6094239/lightbox/Hemlock_Potion_bottle_001.jpg?1345140442",
-        price: 234000,
-        stock: 5,
-        category: 3,
-    },{
-        title: "Mothers Cooking",
-        description: 'Yes. Youre mother specifically. It is delicious.',
-        imageUrl: "https://slm-assets2.secondlife.com/assets/6094239/lightbox/Hemlock_Potion_bottle_001.jpg?1345140442",
-        price: 234000,
-        stock: 5,
-        category: 3,
-    }]
+  product: [{
+    title: "Snow Dragon",
+    description: 'a fierce creature',
+    imageUrl: "https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fimages2.fanpop.com%2Fimage%2Fphotos%2F13900000%2FDragon-Wallpaper-dragons-13975578-1280-800.jpg&f=1",
+    price: 100000,
+    stock: 5,
+    category: 1,
+  }, {
+    title: "Jerskey Wand",
+    description: 'made from a piece of beef jerksey',
+    imageUrl: "https://www.printingin3d.eu/pictures/2013/02-voldemort-wand/painted-voldemort-wand.JPG",
+    price: 1000,
+    stock: 5,
+    category: 2,
+  }, {
+    title: "Fhire Dragon",
+    description: 'spicy, like cheetos, but like will kill you',
+    imageUrl: "https://wallpapercave.com/wp/McdCS6c.jpg",
+    price: 1000,
+    stock: 5,
+    category: 2,
+  }, {
+    title: "Healing Potion",
+    description: 'heals everything but paper cuts, stubbed toes and when you bite your tongue',
+    imageUrl: "https://wtbpotions.com/wp-content/uploads/square-green-1.jpg",
+    price: 4600,
+    stock: 34,
+    category: 3,
+  }, {
+    title: "Invisibility Potion",
+    description: '...And they never saw him again',
+    imageUrl: "https://slm-assets2.secondlife.com/assets/6094239/lightbox/Hemlock_Potion_bottle_001.jpg?1345140442",
+    price: 234000,
+    stock: 5,
+    category: 3,
+  }, {
+    title: "Mothers Cooking",
+    description: 'Yes. Youre mother specifically. It is delicious.',
+    imageUrl: "https://slm-assets2.secondlife.com/assets/6094239/lightbox/Hemlock_Potion_bottle_001.jpg?1345140442",
+    price: 234000,
+    stock: 5,
+    category: 3,
+  }]
 }
 
 
@@ -95,7 +95,7 @@ const userData = {
       password: "garry"
     }
   ]
-};
+}
 
 const orderData = {
   order: [
@@ -140,7 +140,7 @@ const orderData = {
       userId: 5
     }
   ]
-};
+}
 
 const otherData = {
   address: [
@@ -202,7 +202,7 @@ const otherData = {
       stars: 2,
       userId: 5,
       productId: 1
-    },{
+    }, {
       content: "a wand that really works! wow!",
       stars: 5,
       userId: 5,
@@ -226,56 +226,56 @@ const otherData = {
       productId: 2
     }
   ]
-};
+}
 
 //
 //the actual database cleaning and updating
 //there is some crazy nonsense going on with these seeding functions
 
 db.sync({ force: true })
-    .then(() => {
-        console.log('TIMBER!!! the database is being dropped')
+  .then(() => {
+    console.log('TIMBER!!! the database is being dropped')
 
-        return promise.map(Object.keys(productData), (name) => {
+    return promise.map(Object.keys(productData), (name) => {
 
-            return promise.map((productData[name]), (item) => {
+      return promise.map((productData[name]), (item) => {
 
-                return db.model(name)
-                    .create(item)
-            })
-        })
+        return db.model(name)
+          .create(item)
+      })
     })
-    .then(() => {
-        return promise.map(Object.keys(userData), (name) => {
+  })
+  .then(() => {
+    return promise.map(Object.keys(userData), (name) => {
 
-            return promise.map((userData[name]), (item) => {
+      return promise.map((userData[name]), (item) => {
 
-                return db.model(name)
-                    .create(item)
-            })
-        })
-        console.log("okay, I just worked really hard and filled your dumb database")
+        return db.model(name)
+          .create(item)
+      })
     })
-    .then(() => {
-        return promise.map(Object.keys(orderData), (name) => {
+    console.log("okay, I just worked really hard and filled your dumb database")
+  })
+  .then(() => {
+    return promise.map(Object.keys(orderData), (name) => {
 
-            return promise.map((orderData[name]), (item) => {
+      return promise.map((orderData[name]), (item) => {
 
-                return db.model(name)
-                    .create(item)
-            })
-        })
+        return db.model(name)
+          .create(item)
+      })
     })
-    .then(() => {
-        return promise.map(Object.keys(otherData), (name) => {
+  })
+  .then(() => {
+    return promise.map(Object.keys(otherData), (name) => {
 
-            return promise.map((otherData[name]), (item) => {
+      return promise.map((otherData[name]), (item) => {
 
-                return db.model(name)
-                    .create(item)
-            })
-        })
+        return db.model(name)
+          .create(item)
+      })
     })
-    .catch((err) => {
-        console.error('you goofed, but keep trying', err, err.stack)
-    })
+  })
+  .catch((err) => {
+    console.error('you goofed, but keep trying', err, err.stack)
+  })

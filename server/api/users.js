@@ -1,18 +1,18 @@
-const router = require('express').Router();
-const { User } = require('../db/models');
-const { isLoggedIn, makeError, isAdmin } = require('./utils');
+const router = require('express').Router()
+const { User } = require('../db/models')
+const { isLoggedIn, makeError, isAdmin } = require('./utils')
 
-module.exports = router;
+module.exports = router
 
 router.param('id', (req, res, next, id) => {
   User.findById(id)
     .then(user => {
-      if (!user) next(makeError(404, "user not found"));
-      req.requestedUser = user;
-      next();
+      if (!user) next(makeError(404, "user not found"))
+      req.requestedUser = user
+      next()
     })
-    .catch(next);
-});
+    .catch(next)
+})
 
 router.get('/', isAdmin, (req, res, next) => {
   User.findAll({
@@ -23,32 +23,32 @@ router.get('/', isAdmin, (req, res, next) => {
   })
     .then(users => res.json(users))
     .catch(next)
-});
+})
 
 router.post('/', (req, res, next) => {
   User.create(req.body)
     .then(user => res.status(201).json(user))
-    .catch(next);
-});
+    .catch(next)
+})
 
 router.get('/:id', isLoggedIn, (req, res, next) => {
   if (req.requestedUser) {
     User.findById(req.params.id)
       .then(user => res.json(user))
-      .catch(next);
-  } else next(makeError(403, 'Forbidden'));
-});
+      .catch(next)
+  } else next(makeError(403, 'Forbidden'))
+})
 
 router.delete('/:id', isLoggedIn, (req, res, next) => {
   if (req.requestedUser) {
     req.requestedUser.destroy()
       .then(() => res.sendStatus(204))
-      .catch(next);
-  } else next(makeError(403, 'Forbidden'));
-});
+      .catch(next)
+  } else next(makeError(403, 'Forbidden'))
+})
 
 router.put('/:id', (req, res, next) => {
   req.requestedUser.update(req.body)
     .then(user => res.json(user))
-    .catch(next);
-});
+    .catch(next)
+})

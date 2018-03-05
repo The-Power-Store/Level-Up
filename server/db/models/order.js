@@ -58,8 +58,7 @@ const Order = db.define('order', {
   email: {
     type: Sequelize.STRING
   }
-},
-
+}
 )
 
 Order.hook('beforeUpdate', function (Product) {
@@ -70,11 +69,11 @@ Order.hook('beforeUpdate', function (Product) {
   })
     .then(products => {
       products.forEach(product => {
-        product.decrement('stock');
-      });
+        product.decrement('stock')
+      })
     })
-    .catch(console.error);
-});
+    .catch(console.error)
+})
 
 // Order.hook('afterCreate', function (Order) {
 //   return Cart.destroy({

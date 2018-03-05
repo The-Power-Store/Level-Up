@@ -1,12 +1,11 @@
 import axios from 'axios'
 
-
 /**
  * ACTION TYPES
  */
-
 const ADD_ORDER = 'ADD_ORDER'
 const GET_ORDERS = 'GET_ORDERS'
+
 /**
  * INITIAL STATE
  */
@@ -14,6 +13,7 @@ const defaultState = {
   orders: [],
   order: {}
 }
+
 /**
 * ACTION CREATORS
 */
@@ -23,7 +23,6 @@ const getOrders = orders => ({ type: GET_ORDERS, orders })
 /**
 * THUNK CREATORS
 */
-
 export function getOrdersThunk() {
   return dispatch => {
     axios.get(`/api/orders`)
@@ -51,7 +50,6 @@ export function addOrderThunk(order) {
 /**
 * REDUCER
 */
-
 export default function ordersReducer(state = defaultState, action) {
   switch (action.type) {
     case GET_ORDERS:
@@ -60,6 +58,5 @@ export default function ordersReducer(state = defaultState, action) {
       return [...state, action.order]
     default:
       return state
-
   }
 }

@@ -4,6 +4,7 @@ const db = require('../db')
 const app = require('../index')
 const User = db.model('User')
 const Cart = db.model('Cart')
+
 let agent = request.agent(app)
 
 describe('Cart routes', () => {

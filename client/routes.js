@@ -2,30 +2,39 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome } from './components'
-
-
-import { Homepage, ProductCategory, SingleProduct, AllProducts, Navbar, Cart, guestCart, EditProfile, OrderForm, PreviousOrderPage } from './components';
-
+import {
+  Login,
+  Signup,
+  UserHome,
+  Homepage,
+  ProductCategory,
+  SingleProduct,
+  AllProducts,
+  Navbar,
+  Cart,
+  guestCart,
+  EditProfile,
+  OrderForm,
+  PreviousOrderPage
+} from './components'
 import store, { me, fetchAllProducts, fetchCategories, fetchReviews } from './store'
-// import { OrderForm } from './components/order-form';
-
+// import { OrderForm } from './components/order-form'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
+
   componentDidMount() {
     this.props.loadInitialData()
   }
 
   render() {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn } = this.props
 
     return (
       <div>
         <Navbar />
-
         <div className="main">
           <Switch>
             {/* Routes placed here are available to all visitors */}
@@ -44,9 +53,7 @@ class Routes extends Component {
                 <Route path="/products/categories/:id" component={ProductCategory} />
                 <Route path="/products/:id" component={SingleProduct} />
                 <Route path="/user/editProfile/:id" component={EditProfile} />
-
                 <Route path="/orders/:id" component={PreviousOrderPage} />
-
               </Switch>
             }
             {/* Displays our Login component as a fallback */}
@@ -55,7 +62,6 @@ class Routes extends Component {
             <Route path="/products/:id" component={SingleProduct} />
           </Switch>
         </div>
-
       </div>
     )
   }
@@ -76,10 +82,10 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
-      dispatch(me());
-      dispatch(fetchAllProducts());
-      dispatch(fetchCategories());
-      dispatch(fetchReviews());
+      dispatch(me())
+      dispatch(fetchAllProducts())
+      dispatch(fetchCategories())
+      dispatch(fetchReviews())
     }
   }
 }

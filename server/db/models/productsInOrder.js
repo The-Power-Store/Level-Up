@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
+const Order = require('./order')
+const Cart = require('./cart')
 
 const ProductsInOrder = db.define("productsInOrder", {
   quantity: {
@@ -20,7 +22,7 @@ const ProductsInOrder = db.define("productsInOrder", {
       return (this.getDataValue("price") * this.getDataValue("quantity")) / 100;
     }
   }
-});
+})
 
 ProductsInOrder.hook('afterCreate', function (Order) {
   return Cart.destroy({

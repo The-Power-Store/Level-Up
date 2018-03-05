@@ -4,7 +4,7 @@ import { BrowserRouter as Router, withRouter, Route, Switch } from 'react-router
 import PropTypes from 'prop-types'
 import { Login, Signup, UserHome } from './components'
 
-import { Homepage, ProductCategory, SingleProduct, AllProducts, Navbar, Cart, guestCart, EditProfile, SingleOrder } from './components';
+import { Homepage, ProductCategory, SingleProduct, AllProducts, Navbar, Cart, guestCart, EditProfile, PreviousOrderPage } from './components';
 import store, { me, fetchAllProducts, fetchCategories, fetchReviews } from './store'
 
 
@@ -40,7 +40,7 @@ class Routes extends Component {
                 <Route path="/products/categories/:id" component={ProductCategory} />
                 <Route path="/products/:id" component={SingleProduct} />
                 <Route path="/user/editProfile/:id" component={EditProfile} />
-                <Route path="/orders/:id" component={SingleOrder} />
+                <Route path="/orders/:id" component={PreviousOrderPage} />
               </Switch>
             }
             {/* Displays our Login component as a fallback */}

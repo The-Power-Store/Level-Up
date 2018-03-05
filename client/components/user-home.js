@@ -86,8 +86,8 @@ class UserHome extends Component {
                   {
                     orders.length > 0 ?
                       orders.map(order => (
-                          <div>
-                            <Link key={order.id} to={`/orders/${order.id}`}>
+                          <div key={order.id}>
+                            <Link to={`/orders/${order.id}`}>
                                 OrderId: {order.id}
                             </Link>
                             <br></br>

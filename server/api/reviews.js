@@ -29,7 +29,6 @@ router.get('/', (req, res, next) => {
     Review.findAll({
       include: [
         {model: Product, as: 'product'},
-        // {model: User, as: 'user'}
       ]
     })
       .then(reviews => res.json(reviews))

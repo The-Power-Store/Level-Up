@@ -1,50 +1,48 @@
-import axios from 'axios';
+import axios from 'axios'
 
 //action types
 const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES'
 const ADD_NEW_CATEGORY = 'ADD_NEW_CATEGORY'
 
-
 //action creators
-const getAllCategories = categories => ({type: GET_ALL_CATEGORIES, categories});
-const addNewCategory = category => ({type: ADD_NEW_CATEGORY, category});
-
+const getAllCategories = categories => ({ type: GET_ALL_CATEGORIES, categories })
+const addNewCategory = category => ({ type: ADD_NEW_CATEGORY, category })
 
 //thunks
 export function fetchCategories() {
-  return function(dispatch) {
+  return function (dispatch) {
     axios
       .get('/api/categories')
       .then(res => res.data)
       .then(categories => {
-        const action = getAllCategories(categories);
-        dispatch(action);
+        const action = getAllCategories(categories)
+        dispatch(action)
       })
-      .catch(err => console.error('error fetching categories', err));
-  };
+      .catch(err => console.error('error fetching categories', err))
+  }
 }
 
 export function createCategory(category) {
-  return function(dispatch) {
+  return function (dispatch) {
     axios
       .post('/api/categories', category)
       .then(res => res.data)
       .then(category => {
-        const action = addNewCategory(category);
-        dispatch(action);
+        const action = addNewCategory(category)
+        dispatch(action)
       })
-      .catch(err => console.error('error creating category', err));
-  };
+      .catch(err => console.error('error creating category', err))
+  }
 }
 
 //reducer
 export default function categoryReducer(state = [], action) {
   switch (action.type) {
     case GET_ALL_CATEGORIES:
-      return action.categories;
+      return action.categories
     case ADD_NEW_CATEGORY:
-      return [...state, action.category];
+      return [...state, action.category]
     default:
-      return state;
+      return state
   }
 }

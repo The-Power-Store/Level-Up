@@ -5,8 +5,8 @@ import store from '../store'
 import Navbar from './navbar'
 
 const Homepage = (props) => {
-  return (
 
+  return (
     <div>
       <h1>Mystique Boutique</h1>
     </div>

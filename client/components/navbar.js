@@ -2,17 +2,17 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom'
 import { logout, addNewCategory } from '../store'
 
 class Navbar extends Component {
+
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render() {
-    let { handleClick, isLoggedIn, categories, user } = this.props;
-    console.log("is logged in from the nav bar:", isLoggedIn)
+    let { handleClick, isLoggedIn, categories, user } = this.props
 
     return (
       <div>
@@ -34,7 +34,6 @@ class Navbar extends Component {
             {isLoggedIn ? (
               <div>
                 {/* The navbar will show these links after you log in */}
-
                 <Link to={`/home/${user.id}`}>Home</Link>
                 <Link to="/cart">CART!!</Link>
 
@@ -54,12 +53,12 @@ class Navbar extends Component {
         </nav>
         <hr />
       </div>
-
     )
   }
 }
 
 const mapState = state => {
+
   return {
     isLoggedIn: !!state.user.id,
     categories: state.categories,
@@ -68,6 +67,7 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
+
   return {
     handleClick() {
       dispatch(logout())
@@ -75,7 +75,7 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default withRouter(connect(mapState, mapDispatch)(Navbar));
+export default withRouter(connect(mapState, mapDispatch)(Navbar))
 /**
  * PROP TYPES
  */

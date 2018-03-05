@@ -10,21 +10,18 @@ router.get('/user/:id', (req, res, next) => {
     }
   })
     .then(address => {
-      res.json(address);
+      res.json(address)
     })
-    .catch(next);
-});
-
+    .catch(next)
+})
 
 router.get('/:id', (req, res, next) => {
   Address.findById()
     .then(address => {
       res.json(address)
     })
-    .catch(next);
-
+    .catch(next)
 })
-
 
 router.post('/', (req, res, next) => {
   console.log(req.body)
@@ -32,20 +29,19 @@ router.post('/', (req, res, next) => {
     .then(created => {
       res.status(201).json(created)
     })
-    .catch(next);
+    .catch(next)
 })
 
 router.put('/user/:id', (req, res, next) => {
   Address.update(req.body, {
-    where : {
+    where: {
       userId: req.params.id
     },
     returning: true
   })
-  .then(([numOfUpdates, updatedItems]) => {
-    const updated = updatedItems[0]
-    res.json(updated)
-  })
-  .catch(next);
+    .then(([numOfUpdates, updatedItems]) => {
+      const updated = updatedItems[0]
+      res.json(updated)
+    })
+    .catch(next)
 })
-

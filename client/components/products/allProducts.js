@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import store from '../../store';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import store from '../../store'
 
 class AllProducts extends Component {
 
@@ -16,7 +16,7 @@ class AllProducts extends Component {
   }
 
   render() {
-    const products = this.props.products ? this.props.products.filter(product => product.title.includes(this.state.input)) : [];
+    const products = this.props.products ? this.props.products.filter(product => product.title.includes(this.state.input)) : []
 
     return (
       <div >
@@ -58,4 +58,4 @@ const mapStateToProps = function (state) {
   }
 }
 
-export default connect(mapStateToProps)(AllProducts);
+export default connect(mapStateToProps)(AllProducts)

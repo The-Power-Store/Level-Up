@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { Login, Signup, UserHome } from './components'
 
 
-import { Homepage, ProductCategory, SingleProduct, AllProducts, Navbar, Cart, guestCart, EditProfile, SingleOrder, OrderForm } from './components';
+import { Homepage, ProductCategory, SingleProduct, AllProducts, Navbar, Cart, guestCart, EditProfile, OrderForm, PreviousOrderPage } from './components';
 
 import store, { me, fetchAllProducts, fetchCategories, fetchReviews } from './store'
 // import { OrderForm } from './components/order-form';

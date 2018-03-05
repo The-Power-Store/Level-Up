@@ -18,12 +18,12 @@ const SingleProduct = (props) => {
       <h2>{product.title}</h2>
       <img src={product.imageUrl} />
       <p>{product.description}</p>
-      <p>Price: {product.price}</p>
+      <p>Price: ${product.price}</p>
       {
         !!props.isLoggedIn?  <button type="submit"  value={props.isLoggedIn} onClick={props.onClick}>Add to Cart </button>
         :<button type="submit" onClick={props.unAuthOnClick}>add to unauthorized user cart</button>
       }
-   
+
     </div>
   ) : null
 }
@@ -38,13 +38,14 @@ const mapStateToProps = function (state, ownProps) {
       product.id === +ownProps.match.params.id
     ),
     isLoggedIn: state.user.id,
+
   }
 }
 
 const mapDispatchToProps = function (dispatch, ownProps) {
 
   return {
-    onClick: (event) => { 
+    onClick: (event) => {
       const addToCart = { quantity: 1, userId: +event.target.value, productId: +ownProps.match.params.id }
       dispatch(postCartItemThunk(addToCart)) //change to a real variable once we have the log in stuff
     },

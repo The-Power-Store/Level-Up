@@ -44,14 +44,9 @@ class Routes extends Component {
                 <Route path="/products/categories/:id" component={ProductCategory} />
                 <Route path="/products/:id" component={SingleProduct} />
                 <Route path="/user/editProfile/:id" component={EditProfile} />
-<<<<<<< HEAD
-{                // <Route path="/orders/:id" component={SingleOrder} />
-}
-=======
 
                 <Route path="/orders/:id" component={PreviousOrderPage} />
 
->>>>>>> master
               </Switch>
             }
             {/* Displays our Login component as a fallback */}

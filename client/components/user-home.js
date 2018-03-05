@@ -1,20 +1,21 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { editUser, fetchUserAddress, getOrdersThunk } from "../store";
-import { withRouter, Link } from "react-router-dom";
-import { isAdmin } from "../../server/api/utils";
+import React, { Component } from "react"
+import PropTypes from "prop-types"
+import { connect } from "react-redux"
+import { editUser, fetchUserAddress, getOrdersThunk } from "../store"
+import { withRouter, Link } from "react-router-dom"
+import { isAdmin } from "../../server/api/utils"
+import { AdminHome } from './index'
 
 /**
  * COMPONENT
  */
 class UserHome extends Component {
   componentDidMount() {
-    this.props.getUserInfo(this.props.location.pathname.slice(6));
+    this.props.getUserInfo(this.props.location.pathname.slice(6))
   }
 
   render() {
-    const { user, address, reviews, handleSubmit, orders } = this.props;
+    const { user, address, reviews, handleSubmit, orders } = this.props
 
     return (
       <div className="container" className="profile-page">
@@ -57,7 +58,7 @@ class UserHome extends Component {
           </div>
 
           {isAdmin ? (
-            <div />
+            <AdminHome />
           ) : (
             <div>
               <div className="col-md-4">
@@ -98,7 +99,7 @@ class UserHome extends Component {
           )}
         </div>
       </div>
-    );
+    )
   }
 }
 
@@ -113,29 +114,29 @@ const mapStateToProps = (state, ownProps) => {
       review => review.userId === +ownProps.location.pathname.slice(6)
     ),
     orders: state.orders
-  };
-};
+  }
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const userId = +ownProps.location.pathname.slice(6);
+  const userId = +ownProps.location.pathname.slice(6)
 
   return {
     getUserInfo: userId => {
-      dispatch(fetchUserAddress(userId));
-      dispatch(getOrdersThunk());
+      dispatch(fetchUserAddress(userId))
+      dispatch(getOrdersThunk())
     },
     handleSubmit: event => {
-      const firstName = event.target.firstName.value;
-      const lastName = event.target.lastName.value;
+      const firstName = event.target.firstName.value
+      const lastName = event.target.lastName.value
 
-      event.preventDefault();
+      event.preventDefault()
 
-      dispatch(editUser(userId, { firstName, lastName }));
-      window.location.reload();
+      dispatch(editUser(userId, { firstName, lastName }))
+      window.location.reload()
     }
-  };
-};
+  }
+}
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(UserHome)
-);
+)

@@ -9,6 +9,10 @@ router.use('/carts', require('./carts'))
 router.use('/categories', require('./categories'))
 router.use('/address', require('./address'))
 
+router.use('./sessionCart', require('./sessionCart'))
+
+
+
 router.use((req, res, next) => {
   const error = new Error('Not Found')
   error.status = 404

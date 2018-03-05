@@ -4,11 +4,9 @@ const db = require('../db')
 const Address = db.define('address', {
     firstName: {
       type: Sequelize.STRING,
-      allowNull: false
     },
     lastName: {
       type: Sequelize.STRING,
-      allowNull: false
     },
     isShipping: {
       type: Sequelize.BOOLEAN,

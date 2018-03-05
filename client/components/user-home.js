@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {editUser, fetchUserAddress, getOrdersThunk} from '../store'
 import {withRouter, Link} from 'react-router-dom'
-// import OrderHistory from './index'
+
 
 /**
  * COMPONENT

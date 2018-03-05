@@ -40,9 +40,10 @@ const postCartItemToSession = cartItem =>({type:POST_SESSION_CART_ITEM, cartItem
 export function postCartItemToSessionThunk(cartItem){
     return dispatch =>{
         console.log("shouting out from the postsessionthunk, the cart being posted i", cartItem)
-        axios.post('/session', cartItem)
+        axios.post(`/session/`, cartItem)
             .then(res => res.data)
             .then(cartItem=>{
+                console.log("Item return is", cartItem)
                 const action = postCartItemToSession(cartItem)
                 dispatch(action)
             })
@@ -53,7 +54,7 @@ export function postCartItemThunk(cartItem) {
     return dispatch => {
         // console.log("from the post thunk,", cartItem)
         //need to add a check to see if that userIS is already associated with that product id, in which case issue a put
-        axios.post('/api/carts/', cartItem)
+        axios.post('api/carts/', cartItem)
             .then(res => res.data)
             .then(cartItem => {
                 const action = postCartItem(cartItem)

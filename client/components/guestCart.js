@@ -1,18 +1,24 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import store from '../store';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import store from '../store'
+import { fetchGuestCart } from '../store/cart'
 
-const GuestCart = props =>{
+class GuestCart extends Component {
 
-
-
-    return (
-    <div>
-      <h2>Here we are inside the guest cart component</h2>
-      
-      </div>
-    )
+  componentWillMount() {
+   
+    this.props.loadGuestCart(1) //change this later to be the actual session ID
+    //console.log("Fetching the guest cart", this.state.guestCart)
+  }
+render(){
+  return (
+  <div>
+    <h2>Here we are inside the guest cart component</h2>
+    
+    </div>
+  )
+}
 }
   
   // {
@@ -23,17 +29,15 @@ const GuestCart = props =>{
 const mapStateToProps = function (state, ownProps) {
     //if logged in, get the user id from there, if not, get it from the session. 
     return {
-      cartItems: state.cart.filter(item =>
-        product.id === 1
-      ),
+      guestCart: state.guestCart,
       isLoggedIn: state.user.id,
     }
   }
   
   const mapDispatchToProps = function (dispatch, ownProps) {
     return {
-      loadCart: (event) => {
-        dispatch(fetchGuestCart()) 
+      loadGuestCart: (sid) => {
+        dispatch(fetchGuestCart(sid)) 
       }
     }
   }

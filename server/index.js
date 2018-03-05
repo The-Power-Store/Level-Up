@@ -58,32 +58,12 @@ const createApp = () => {
 
   app.use(passport.initialize())
   app.use(passport.session())
-  //I know these should probably go in thier own file, but I will do that once I get it all working.
-  app.use('/session',  (req, res, next)=> {
-  
-    if(req.session.cart == undefined){
-      req.session.cart={}
-      req.session.cart[req.body.productId] = req.body.quantity
 
-    }else{
-      if(req.session.cart[req.body.productId]){
-        req.session.cart[req.body.productId] += 1 
-      }else{
-        req.session.cart[req.body.productId] = req.body.quantity
-      }
-    }
-    next();
-  });
-  //this should also be moved to it's own /session api file 
-  app.use('/session/cart',  (req, res, next)=> {
-    console.log("an unloggin user wants to see their the cart, eh?")
-    next();
-  });
 
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
-
+  app.use('/session', require('./api/sessionCart'))
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))

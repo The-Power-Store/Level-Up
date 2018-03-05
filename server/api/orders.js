@@ -33,12 +33,15 @@ router.get('/:orderId', (req, res, next) => {
 // .then(createdOrder => Promise.all(cartArr.map(item => productsInOrder.create(Object.assign(item, {orderId: createdOrder.id}))))
 // .then(allGood)
 router.post('/', (req, res, next) => {
+  console.log('!!!!!!!!!!!!!!!!!!!! USER ID', req.body.userId)
+
   Order.create(req.body)
     .then(order => {
       const currentOrder = order
       return currentOrder
     })
     .then(currentOrder => {
+      console.log('!!!!!!!!!!!!!!!!!!!! USER ID', req.body.userId)
       console.log('new current order is ' + currentOrder)
       Cart.findAll({
         where: {
@@ -51,6 +54,9 @@ router.post('/', (req, res, next) => {
             return Product.findById(item.dataValues.productId)
               .then(product => {
                 return ProductsInOrder.create({ quantity: item.dataValues.quantity, price: product.price, orderId: currentOrder.id, productId: product.id })
+              })
+              .then(createdProduct => {
+                console.log(createdProduct)
               })
           })
           )

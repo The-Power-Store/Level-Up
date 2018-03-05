@@ -9,7 +9,7 @@ const OrderForm = (props) => {
   const { user, handleSubmit, error } = props
   return (
     <div>
-      <h1> HELLO WORLD I'M HERE AND WORKING </h1>
+      <h1> Your current order: </h1>
       <form onSubmit={handleSubmit} >
         <div>
           <label htmlFor="firstName"><small>First Name</small></label>
@@ -58,7 +58,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   console.log('dis be the own props', ownProps)
-  console.log('this is the event target', event.target)
+  // console.log('this is the event target', event.target)
+  const { id } = ownProps.match.params;
   return {
     handleSubmit(event) {
       event.preventDefault()
@@ -69,7 +70,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const city = event.target.address_city.value
       const state = event.target.address_state.value
       const zip = event.target.address_zip.value
-      dispatch(addOrderThunk({ firstName, lastName, email, address, city, state, zip }))
+      const userId = id
+      dispatch(addOrderThunk({ firstName, lastName, email, address, city, state, zip, userId }))
     }
   }
 }

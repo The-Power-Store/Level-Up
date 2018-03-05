@@ -76,16 +76,16 @@ Order.hook('beforeUpdate', function (Product) {
     .catch(console.error);
 });
 
-Order.hook('afterCreate', function (Order) {
-  return Cart.destroy({
-    where: {
-      userId: Order.userId
-    }
-  })
-    .then(rowsDeleted => {
-      console.log('da rows were deleted ', rowsDeleted)
-    })
-    .catch(console.error)
-})
+// Order.hook('afterCreate', function (Order) {
+//   return Cart.destroy({
+//     where: {
+//       userId: Order.userId
+//     }
+//   })
+//     .then(rowsDeleted => {
+//       console.log('da rows were deleted ', rowsDeleted)
+//     })
+//     .catch(console.error)
+// })
 
 module.exports = Order

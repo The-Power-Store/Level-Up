@@ -13,8 +13,8 @@ class Cart extends Component {
   }
 
   render() {
-    const { cart } = this.props
-    const { products } = this.props
+    const { cart, products, user } = this.props
+    // const { products } = this.props
     console.log("props now equal", cart)
     const productIdNums = cart.map((item) => {
       return item.productId
@@ -50,7 +50,7 @@ class Cart extends Component {
               </div>)
           })
         }
-        <Link to={'/newOrder'}> <button>Proceed to checkout, lovely</button></Link>
+        <Link to={`/newOrder/${user.id}`}> <button>Proceed to checkout, lovely</button></Link>
       </div>
     )
   }

@@ -8,7 +8,6 @@ const Homepage = (props) => {
 
   return (
     <div>
-      <h1>Mystique Boutique</h1>
     </div>
   )
 }

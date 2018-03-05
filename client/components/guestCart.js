@@ -3,18 +3,20 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import store from '../store'
 
-import { fetchGuestCart } from '../store/cart'
+import { fetchGuestCart } from '../store/sessionCart'
 
 class GuestCart extends Component {
 
-  componentWillMount() {
+
+  componentDidMount() {
+   
 
     this.props.loadGuestCart() //change this later to be the actual session ID
   }
   render(){
     const { guestCart } = this.props
     const { products } = this.props
-    console.log("props now equal", guestCart)
+    console.log("props on the guest cart now equal", guestCart)
 
     const productIdNums = Object.entries(guestCart).map((item) => {
       return +item[0]
@@ -56,10 +58,12 @@ class GuestCart extends Component {
 // }
 const mapStateToProps = function (state, ownProps) {
 
-    //if logged in, get the user id from there, if not, get it from the session.
-    console.log("jfdklsjafld",state.cart)
+
+    //if logged in, get the user id from there, if not, get it from the session. 
+    console.log("jfdklsjafld",state)
+
     return {
-      guestCart: state.cart,
+      guestCart: state.sessionCart,
       products: state.products,
       isLoggedIn: state.user.id,
     }
@@ -72,6 +76,7 @@ const mapStateToProps = function (state, ownProps) {
       }
     }
   }
+
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(GuestCart)

@@ -43,9 +43,10 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route path="/guestCart" component={guestCart} />
             <Route path="/newOrder/:id" component={OrderForm} />
+            {/* get rid of the id here, mutate how you're doing this in OrderForm --KHEA*/}
             {
               isLoggedIn &&
-              <Switch>
+              <Switch> // don't need two Switch statements --KHEA
                 {/* Routes placed here are only available after logging in */}
                 <Route path="/cart" component={Cart} />
                 <Route path="/home" component={UserHome} />
@@ -57,6 +58,7 @@ class Routes extends Component {
               </Switch>
             }
             {/* Displays our Login component as a fallback */}
+            {/* Move these three up and delete isLoggedIn three to test. --KHEA */}
             <Route exact path="/products" component={AllProducts} />
             <Route path="/products/categories/:id" component={ProductCategory} />
             <Route path="/products/:id" component={SingleProduct} />

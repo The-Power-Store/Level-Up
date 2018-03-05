@@ -10,6 +10,7 @@ import { withRouter, Link } from 'react-router-dom'
 class UserHome extends Component {
 
   componentDidMount() {
+    // help ticket for tomorrow on this vs. ...match.params... --KHEA
     this.props.getUserInfo(this.props.location.pathname.slice(6))
   }
 
@@ -19,27 +20,30 @@ class UserHome extends Component {
     return (
       <div className="container" className="profile-page">
         {
-          user.firstName ?
-            <div id="welcome-header">
-              <h1>Welcome back {user.firstName}!</h1>
-            </div>
+          user.firstName
+            ? <div id="welcome-header">
+                <h1>Welcome back {user.firstName}!</h1>
+              </div>
             : <div id="welcome-header">
-              <h3>Welcome, {user.email}</h3>
-              <h5 id="title">Please take a minute to complete your profile:</h5>
+                <h3>Welcome, {user.email}</h3>
+                <h5 id="title">
+                  Please take a minute to complete your profile:
+                </h5>
 
-              <form onSubmit={handleSubmit}>
-                First Name:
-                    <input type="text" name="firstName" />
-                Last Name:
-                    <input type="text" name="lastName" />
-                <button type="submit">Update Profile</button>
-              </form>
-            </div>
+                <form onSubmit={handleSubmit}>
+                  {/* consistency with labels on forms --KHEA */}
+                  First Name:
+                      <input type="text" name="firstName" />
+                  Last Name:
+                      <input type="text" name="lastName" />
+                  <button type="submit">Update Profile</button>
+                </form>
+              </div>
         }
         <div className="row">
           <div className="col-md-4">
             {
-              address ?
+              address ? // put these on new line --KHEA
                 <div>
                   <h3 id="title">Personal Info:</h3>
                   <h5>
@@ -47,11 +51,11 @@ class UserHome extends Component {
                   </h5>
                   <Link to={`/user/editProfile/${user.id}`}>
                     Add/Update Your Info
-                        </Link>
+                  </Link>
                 </div>
                 : <Link to={`/user/editProfile/${user.id}`}>
-                  Add/Update Your Info
-                      </Link>
+                    Add/Update Your Info
+                  </Link>
             }
           </div>
           <div className="col-md-4">
@@ -61,7 +65,7 @@ class UserHome extends Component {
                 : <h3 id="title">You have not reviewed anything yet!</h3>
             }
             {
-              reviews.length > 0 ?
+              reviews.length > 0 ? // just map it again --KHEA
                 reviews.map(review => (
                   <div key={review.id}>
                     <h5>{review.product.title}</h5>
@@ -87,7 +91,8 @@ class UserHome extends Component {
                     <Link to={`/orders/${order.id}`}>
                       OrderId: {order.id}
                     </Link>
-                    <br></br>
+                    <br/><br/>
+                    {/* padding with CSS --KHEA */}
                   </div>
                 ))
                 : null
@@ -128,6 +133,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
       dispatch(editUser(userId, { firstName, lastName }))
       window.location.reload()
+      // should be fine without this and without push in store/user --KHEA
     }
   }
 }

@@ -4,9 +4,11 @@ import store from '../store'
 import { addOrderThunk } from '../store/order'
 
 
-const OrderForm = (props) => {
-  const { user, handleSubmit, error } = props
+const OrderForm = ({ user, handleSubmit, error }) => {
+  // can destructure it here...Might as well do it this way everywhere. --KHEA
+  // const { user, handleSubmit, error } = props
 
+  // thing to think about: validating on frontend --KHEA
   return (
     <div>
       <h1> Your current order: </h1>
@@ -53,6 +55,7 @@ const mapStateToProps = (state) => {
     user: state.user,
     // displayName: 'Sign Up',
     error: state.user.error
+    // let's see where ^ this came from and *maybe* remove it --KHEA
   }
 }
 
@@ -70,7 +73,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const city = event.target.address_city.value
       const state = event.target.address_state.value
       const zip = event.target.address_zip.value
-      const userId = id
+      const userId = id // can kill this --KHEA
       dispatch(addOrderThunk({ firstName, lastName, email, address, city, state, zip, userId }))
     }
   }

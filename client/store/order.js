@@ -11,6 +11,8 @@ const GET_ORDERS = 'GET_ORDERS'
  */
 const defaultState = {
   orders: [],
+  // look into splitting this out or combining others --KHEA
+    // i.e.: order vs. orders .js => user vs. users .js
   order: {}
 }
 
@@ -25,7 +27,7 @@ const getOrders = orders => ({ type: GET_ORDERS, orders })
 */
 export function getOrdersThunk() {
   return dispatch => {
-    axios.get(`/api/orders`)
+    axios.get('/api/orders') // back-ticks not needed here --KHEA
       .then(res => res.data)
       .then(orders => {
         const action = getOrders(orders)

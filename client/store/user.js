@@ -28,7 +28,7 @@ export const me = () =>
       .catch(err => console.log(err))
 
 export const auth = (email, password, method) =>
-  dispatch =>
+  dispatch => // you're currying here vs elsewhere --KHEA
     axios.post(`/auth/${method}`, { email, password })
       .then(res => {
         dispatch(getUser(res.data))
@@ -47,7 +47,7 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
-export function editUser(id, user) {
+export function editUser(id, user) { // not ES6 && not currying here... --KHEA
   return dispatch => {
     axios
       .put(`/api/users/${id}`, user)

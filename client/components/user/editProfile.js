@@ -6,6 +6,8 @@ const EditProfile = props => {
 
   const { address, user, handleCreateSubmit, handleUpdateSubmit, handleNameSubmit } = props;
 
+  console.log('user', user)
+
   return (<div className="profile-page">
       <div>
         <form onSubmit={handleNameSubmit}>
@@ -71,6 +73,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
 
+  const {id} = ownProps.match.params;
+
   console.log('ownProps', ownProps)
 
   return {
@@ -84,7 +88,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
       event.preventDefault()
 
-      dispatch(changeAddress(ownProps.match.params.id, { address, city, state, zip }))
+      dispatch(changeAddress(id, { address, city, state, zip }))
     },
 
     handleCreateSubmit: (event) => {
@@ -98,7 +102,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
       event.preventDefault()
 
-      dispatch(createAddress({ address, city, state, zip, userId }));
+      dispatch(createAddress({ address, city, state, zip, userId}));
     },
 
     handleNameSubmit: (event) => {
@@ -108,7 +112,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
       event.preventDefault()
 
-      dispatch(editUser({firstName, lastName}));
+      dispatch(editUser(id, {firstName, lastName}));
     }
   }
 }

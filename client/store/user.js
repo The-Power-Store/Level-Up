@@ -48,6 +48,18 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
+export function editUser(id, user) {
+  return dispatch => {
+    axios
+      .put(`/api/users/${id}`, user)
+      .then(user => {
+        dispatch(getUser(user.data))
+        history.push(`/home/${id}`)
+      })
+      .catch(err => console.error("error updating user", err));
+  };
+}
+
 /**
  * REDUCER
  */

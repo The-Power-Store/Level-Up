@@ -15,6 +15,4 @@ describe('Review routes', () => {
   describe('/api/reviews', () => {
 
   })
-
-
 })

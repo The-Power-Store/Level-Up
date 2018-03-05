@@ -8,11 +8,11 @@ import { fetchGuestCart } from '../store/cart'
 class GuestCart extends Component {
 
   componentWillMount() {
-   
+
     this.props.loadGuestCart() //change this later to be the actual session ID
   }
-  render(){
-    const { guestCart } = this.props 
+  render() {
+    const { guestCart } = this.props
     const { products } = this.props
     console.log("props now equal", guestCart)
 
@@ -22,14 +22,14 @@ class GuestCart extends Component {
     console.log("the product id numbers in this cart are", productIdNums)
 
     const productsInCart = products.filter(product => {
-      
+
       if (productIdNums.indexOf(product.id) >= 0) {
 
         return product
       }
     })
 
-      console.log("The product left on the state of the cart is ", productsInCart)
+    console.log("The product left on the state of the cart is ", productsInCart)
 
     return (
       <div>
@@ -56,22 +56,22 @@ class GuestCart extends Component {
 // }
 const mapStateToProps = function (state, ownProps) {
 
-    //if logged in, get the user id from there, if not, get it from the session. 
-    console.log("jfdklsjafld",state.cart)
-    return {
-      guestCart: state.cart,
-      products: state.products,
-      isLoggedIn: state.user.id,
-    }
+  //if logged in, get the user id from there, if not, get it from the session. 
+  console.log("jfdklsjafld", state.cart)
+  return {
+    guestCart: state.cart,
+    products: state.products,
+    isLoggedIn: state.user.id,
   }
-  
-  const mapDispatchToProps = function (dispatch, ownProps) {
-    return {
-      loadGuestCart: () => {
-        dispatch(fetchGuestCart()) 
-      }
+}
+
+const mapDispatchToProps = function (dispatch, ownProps) {
+  return {
+    loadGuestCart: () => {
+      dispatch(fetchGuestCart())
     }
   }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(GuestCart)

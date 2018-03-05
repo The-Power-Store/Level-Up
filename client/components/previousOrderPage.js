@@ -41,7 +41,8 @@ class PreviousOrderPage extends Component {
                 <td>{pio.product.title}</td>
                 <td>{pio.quantity}</td>
                 <td>{pio.totalPrice}</td>
-              </tr>)}
+              </tr>
+            )}
           </tbody>
           <tfoot>
             {

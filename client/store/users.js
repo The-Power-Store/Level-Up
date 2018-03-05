@@ -3,14 +3,12 @@ import axios from 'axios'
 //action types
 const GET_ALL_USERS = 'GET_ALL_USERS'
 const ADD_USER = 'ADD_USER'
-const UPDATE_USER = 'UPDATE_USER'
 const DELETE_USER = 'DELETE_USER'
 
 
 //action creators
 const getAllUsers = users => ({type: GET_ALL_USERS, users});
 const addUser = user => ({type: ADD_USER, user});
-const updateUser = user => ({type:UPDATE_USER, user});
 const deleteUser = id => ({type:DELETE_USER, id});
 
 
@@ -58,10 +56,6 @@ export default function usersReducer(state = [], action) {
       return action.users;
     case ADD_USER:
       return [...state, action.user];
-    case UPDATE_USER:
-      return state.map(user => (
-        action.user.id === user.id ? action.user : user
-      ));
     case DELETE_USER:
       return state.filter(user => (
         action.id !== user.id

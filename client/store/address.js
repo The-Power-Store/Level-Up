@@ -57,7 +57,8 @@ export function createAddress(address) {
       .post(`/api/address`, address)
       .then(res => res.data)
       .then(address => {
-        dispatch(addNewAddress(address));
+        dispatch(addNewAddress(address))
+        history.push(`/home/${id}`);
       })
       .catch(err => console.error("error creating address", err));
   }

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addOrder } from '../store'
+import store from '../store';
+import { addOrderThunk } from '../store/order'
 
 
 const OrderForm = (props) => {
   console.log('i actually made it to this route')
-  const { handleSubmit } = props
+  const { user, handleSubmit, error } = props
   return (
     <div>
       <h1> HELLO WORLD I'M HERE AND WORKING </h1>
@@ -35,8 +36,8 @@ const OrderForm = (props) => {
           <input name="address_state" type="text" />
         </div>
         <div>
-          <label htmlFor="address_city"><small>Zip Code</small></label>
-          <input name="address_city" type="number" />
+          <label htmlFor="address_zip"><small>Zip Code</small></label>
+          <input name="address_zip" type="number" />
         </div>
         <div>
           <button type="submit">Place your Order!</button>
@@ -49,19 +50,26 @@ const OrderForm = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    name: 'signup',
-    displayName: 'Sign Up',
+    user: state.user,
+    // displayName: 'Sign Up',
     error: state.user.error
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+  console.log('dis be the own props', ownProps)
+  console.log('this is the event target', event.target)
   return {
-    handleSubmit(evt) {
-      evt.preventDefault()
-      const email = evt.target.email.value
-      const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+    handleSubmit(event) {
+      event.preventDefault()
+      const firstName = event.target.firstName.value
+      const lastName = event.target.lastName.value
+      const email = event.target.email.value
+      const address = event.target.address.value
+      const city = event.target.address_city.value
+      const state = event.target.address_state.value
+      const zip = event.target.address_zip.value
+      dispatch(addOrderThunk({ firstName, lastName, email, address, city, state, zip }))
     }
   }
 }

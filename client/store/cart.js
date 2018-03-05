@@ -4,7 +4,7 @@ const GET_CART = 'GET_CART'
 const GET_GUEST_CART ='GET_GUEST_CART'
 
 const getCart = cart => ({ type: GET_CART, cart })
-const getGuestCart = guestCart => ({ type: GET_GUEST_CART, guestCart })
+const getGuestCart = cart => ({ type: GET_GUEST_CART, cart })
 
 
 export function fetchCart(userId){
@@ -24,9 +24,9 @@ export function fetchGuestCart(){
         console.log("shouting out from the thunk fetching the GUEST cart data, user ID:")
         axios.get(`/session/cart/`)
         .then(res => res.data)
-        .then(guestCart =>{
-            console.log("the retjfdksjfldksurned item", guestCart)
-            const action = getGuestCart(guestCart)
+        .then(cart =>{
+            console.log("the retjfdksjfldksurned item", cart)
+            const action = getGuestCart(cart)
             dispatch(action)
         })
     }
@@ -38,7 +38,7 @@ export default function wholeCartReducer(state = [], action) {
         case GET_CART:
             return action.cart
         case GET_GUEST_CART:
-            return [...state,action.guestCart ]
+            return action.cart
         default:
             return state
     }

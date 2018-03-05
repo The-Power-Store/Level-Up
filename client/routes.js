@@ -20,7 +20,8 @@ import {
   guestCart,
   EditProfile,
   OrderForm,
-  PreviousOrderPage
+  PreviousOrderPage,
+  EditProducts
 } from "./components";
 import store, {
   me,
@@ -42,8 +43,7 @@ class Routes extends Component {
   render() {
     const { isLoggedIn } = this.props;
 
-    return (
-      <div>
+    return <div>
         <Navbar />
         <div className="main">
           <Switch>
@@ -53,34 +53,24 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route path="/guestCart" component={guestCart} />
             <Route path="/newOrder/:id" component={OrderForm} />
-            {
-              isLoggedIn &&
-              <Switch>
+            {isLoggedIn && <Switch>
                 {/* Routes placed here are only available after logging in */}
                 <Route path="/cart" component={Cart} />
                 <Route path="/home" component={UserHome} />
                 <Route exact path="/products" component={AllProducts} />
-                <Route
-                  path="/products/categories/:id"
-                  component={ProductCategory}
-                />
+                <Route path="/products/categories/:id" component={ProductCategory} />
                 <Route path="/products/:id" component={SingleProduct} />
                 <Route path="/user/editProfile/:id" component={EditProfile} />
                 <Route path="/orders/:id" component={PreviousOrderPage} />
-              </Switch>
-            }
-            {isAdmin && <Route path="" />}
+              </Switch>}
+            {isAdmin && <Route path="/admin/product/:id" component={EditProducts}/>}
             {/* Displays our Login component as a fallback */}
             <Route exact path="/products" component={AllProducts} />
-            <Route
-              path="/products/categories/:id"
-              component={ProductCategory}
-            />
+            <Route path="/products/categories/:id" component={ProductCategory} />
             <Route path="/products/:id" component={SingleProduct} />
           </Switch>
         </div>
-      </div>
-    );
+      </div>;
   }
 }
 

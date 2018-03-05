@@ -29,16 +29,20 @@ class AdminHome extends Component {
                   {user.firstName} {user.lastName}
                 </th>
                 <td>{user.email}</td>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={(event) => handleSubmit(event, user.id)}>
+                  <div>
                   <td>
+                    <label>Make Admin</label>
                     <input name="makeAdmin" type="checkbox" />
                   </td>
                   <td>
-                    <input name="delete" type="checkbox">Delete</input>
+                    <label>Delete User</label>
+                    <input name="delete" type="checkbox" />
                   </td>
                   <td>
                     <button type="submit">Submit!</button>
                   </td>
+                  </div>
                 </form>
               </tr>)}
           </tbody>
@@ -75,11 +79,11 @@ const mapDispatchToProps = dispatch => {
     fetchUserData: () => {
       dispatch(fetchAllUsers())
     },
-    handleSubmit: (event) => {
-
+    handleSubmit: (event, id) => {
+      console.log(event.target)
       event.preventDefault();
-      if(event.target.makeAdmin) dispatch(editUser(3, {isAdmin: true}))
-      if(event.target.delete) dispatch(deleteAccount(5))
+      if(event.target.makeAdmin) dispatch(editUser(id, {isAdmin: true}))
+      else if(event.target.delete) dispatch(deleteAccount(id))
     }
 
   }

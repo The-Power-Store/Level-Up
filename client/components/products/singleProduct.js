@@ -14,6 +14,7 @@ const SingleProduct = (props) => {
   }
 
   console.log('reviews', props.reviews)
+
   return product ? (
     <div className="single-product">
       <h2>{product.title}</h2>
@@ -27,10 +28,10 @@ const SingleProduct = (props) => {
       <h4>Reviews</h4>
       {
         props.reviews.length > 0 ?
-        props.reviews.forEach(review => (
-          <div id={review.id}>
-          <h5></h5>
-          <p>{review.content}</p>
+        props.reviews.map(review => (
+          <div key={review.id}>
+          <h5>--{review.stars} Stars</h5>
+          <p>--{review.content}</p>
           </div>
         ))
         : null

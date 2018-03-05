@@ -37,14 +37,14 @@ export function fetchUserAddress(id) {
   }
 }
 
-export function changeAddress(id, address) {
+export function changeAddress(id, address, ownProps) {
   return dispatch => {
     axios
       .put(`/api/address/user/${id}`, address)
       .then(res => res.data)
       .then(address => {
         dispatch(updateAddress(address))
-        history.push(`/home/${id}`)
+        ownProps.history.push(`/home/${id}`)
       })
       .catch(err => console.error("error updating address", err));
   }

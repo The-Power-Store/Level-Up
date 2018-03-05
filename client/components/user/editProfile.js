@@ -85,7 +85,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const zip = event.target.zip.value;
       const isShipping = event.target.isShipping.value;
 
-      dispatch(changeAddress(id, { address, city, state, zip, isShipping }))
+      dispatch(changeAddress(id, { address, city, state, zip, isShipping }, ownProps))
     },
 
     handleCreateSubmit: (event) => {

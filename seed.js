@@ -213,7 +213,7 @@ const otherData = {
     {
       quantity: 7,
       userId: 1,
-      productId: 1
+      productId: 3
     },
     {
       quantity: 3,

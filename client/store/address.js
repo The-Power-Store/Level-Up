@@ -35,26 +35,27 @@ export function fetchUserAddress(id) {
   }
 }
 
-export function changeAddress(id, address) {
+export function changeAddress(id, address, ownProps) {
   return dispatch => {
     axios
       .put(`/api/address/user/${id}`, address)
       .then(res => res.data)
       .then(address => {
         dispatch(updateAddress(address))
+        ownProps.history.push(`/home/${id}`)
       })
       .catch(err => console.error("error updating address", err))
   }
 }
 
 export function createAddress(address) {
+  console.log("address", address);
   return dispatch => {
     axios
       .post(`/api/address`, address)
       .then(res => res.data)
       .then(address => {
         dispatch(addNewAddress(address))
-        history.push(`/home/${id}`)
       })
       .catch(err => console.error("error creating address", err))
   }

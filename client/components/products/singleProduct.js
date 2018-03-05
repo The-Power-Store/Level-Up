@@ -12,6 +12,8 @@ const SingleProduct = (props) => {
     product = props.product[0]
   }
 
+  console.log('reviews', props.reviews)
+
   return product ? (
     <div className="single-product">
       <h2>{product.title}</h2>
@@ -21,6 +23,17 @@ const SingleProduct = (props) => {
       {
         !!props.isLoggedIn ? <button type="submit" value={props.isLoggedIn} onClick={props.onClick}>Add to Cart </button>
           : <button type="submit" onClick={props.unAuthOnClick}>add to unauthorized user cart</button>
+      }
+      <h4>Reviews</h4>
+      {
+        props.reviews.length > 0 ?
+          props.reviews.map(review => (
+            <div key={review.id}>
+              <h5>--{review.stars} Stars</h5>
+              <p>--{review.content}</p>
+            </div>
+          ))
+          : null
       }
 
     </div>
@@ -34,6 +47,9 @@ const mapStateToProps = function (state, ownProps) {
       product.id === +ownProps.match.params.id
     ),
     isLoggedIn: state.user.id,
+    reviews: state.reviews.filter(review =>
+      review.productId === +ownProps.match.params.id
+    )
   }
 }
 

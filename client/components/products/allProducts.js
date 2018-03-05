@@ -37,7 +37,6 @@ class AllProducts extends Component {
                     </Link>
                     <figcaption className="caption product-details">
                       <Link to={`/products/${product.id}`}>{product.title}</Link>
-                      <p>{product.description}</p>
                       <p>Price: ${product.price}</p>
                     </figcaption>
                   </figure>

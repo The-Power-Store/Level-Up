@@ -17,11 +17,11 @@ class ProductCategory extends Component {
   render() {
     let category = this.props.categories ? this.props.categories.filter(category =>
       category.id === +this.props.match.params.id
-    ) : [];
+    ) : []
 
     let products = this.props.products ? this.props.products.filter(product =>
       product.categoryId === +this.props.match.params.id && product.title.includes(this.state.input)
-    ) : [];
+    ) : []
 
     return (
       <div>
@@ -67,7 +67,7 @@ const mapStateToProps = function (state) {
   return {
     products: state.products,
     categories: state.categories
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps)(ProductCategory);
+export default connect(mapStateToProps)(ProductCategory)

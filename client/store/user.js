@@ -15,8 +15,8 @@ const defaultUser = {}
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
-const removeUser = () => ({type: REMOVE_USER})
+const getUser = user => ({ type: GET_USER, user })
+const removeUser = () => ({ type: REMOVE_USER })
 
 /**
  * THUNK CREATORS
@@ -24,8 +24,7 @@ const removeUser = () => ({type: REMOVE_USER})
 export const me = () =>
   dispatch =>
     axios.get('/auth/me')
-      .then(res =>
-        dispatch(getUser(res.data || defaultUser)))
+      .then(res => dispatch(getUser(res.data || defaultUser)))
       .catch(err => console.log(err))
 
 export const auth = (email, password, method) =>
@@ -35,7 +34,7 @@ export const auth = (email, password, method) =>
         dispatch(getUser(res.data))
         history.push(`/home/${res.data.id}`)
       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
-        dispatch(getUser({error: authError}))
+        dispatch(getUser({ error: authError }))
       })
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
@@ -56,8 +55,8 @@ export function editUser(id, user) {
         dispatch(getUser(user.data))
         history.push(`/home/${id}`)
       })
-      .catch(err => console.error("error updating user", err));
-  };
+      .catch(err => console.error("error updating user", err))
+  }
 }
 
 /**

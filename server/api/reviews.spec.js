@@ -9,8 +9,7 @@ let agent = request.agent(app)
 describe('Review routes', () => {
   beforeEach(() => {
     return db.sync({ force: true })
-  });
-
+  })
 
   describe('/api/reviews', () => {
 

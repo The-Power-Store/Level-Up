@@ -5,7 +5,7 @@ const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
 const User = db.model('User')
-let agent = request.agent(app);
+let agent = request.agent(app)
 
 describe('User routes', () => {
   beforeEach(() => {
@@ -45,16 +45,16 @@ describe('User routes', () => {
           })
         })
         .then(user => {
-          expect(user).to.exist;
-          expect(user.email).to.equal('myemail@my.mail');
+          expect(user).to.exist
+          expect(user.email).to.equal('myemail@my.mail')
         })
-    });
+    })
 
     it('does not create a new user without an email', () => {
       return request(app)
         .post('/api/users')
         .send({})
-        .expect(500);
+        .expect(500)
     })
     // it('DELETE /api/users and removes the user from the DB', () => {
     //   return request(app)

@@ -20,6 +20,6 @@ const ProductsInOrder = db.define("productsInOrder", {
       return (this.getDataValue("price") * this.getDataValue("quantity")) / 100;
     }
   }
-});
+})
 
 module.exports = ProductsInOrder

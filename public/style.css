@@ -117,3 +117,18 @@ figure.item {
   sans-serif;
 }
 
+.table {
+  border-radius: 5px;
+  width: 70%;
+  align-self: center;
+  background-color: white;
+  opacity: 0.8;
+  text-align: center;
+  margin: 0px auto;
+}
+
+#order-title {
+  text-align: center;
+}
+
+

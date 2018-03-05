@@ -39,14 +39,14 @@ passport.deserializeUser((id, done) =>
     console.log("You hit the session post item route ", req.session.cart)
     next();
   });
+  //this should also be moved to it's own /session api file 
+  router.get('/cart/',  (req, res, next)=> {
+    console.log("an unloggin user wants to see their the cart, eh?")
+    
+    next();
+  });
+  
   router.use('/',(req,res,next)=>{
     res.json(req.session.cart)
   })
-  //this should also be moved to it's own /session api file 
-  router.get('/session/cart/',  (req, res, next)=> {
-    console.log("an unloggin user wants to see their the cart, eh?")
-    return "heeey" //change this
-    next();
-  });
-
 

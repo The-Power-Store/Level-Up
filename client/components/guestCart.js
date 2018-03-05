@@ -8,8 +8,8 @@ class GuestCart extends Component {
 
   componentWillMount() {
    
-    this.props.loadGuestCart(1) //change this later to be the actual session ID
-    //console.log("Fetching the guest cart", this.state.guestCart)
+    this.props.loadGuestCart() //change this later to be the actual session ID
+    console.log("Fetching the guest cart", this.props)
   }
 render(){
   return (
@@ -36,8 +36,8 @@ const mapStateToProps = function (state, ownProps) {
   
   const mapDispatchToProps = function (dispatch, ownProps) {
     return {
-      loadGuestCart: (sid) => {
-        dispatch(fetchGuestCart(sid)) 
+      loadGuestCart: () => {
+        dispatch(fetchGuestCart()) 
       }
     }
   }

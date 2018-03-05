@@ -21,7 +21,7 @@ class PreviousOrderPage extends Component {
     const orderAddress = productsInOrder[0]
 
     return <div>
-      <h1 id="order-title">ORDER #{this.props.match.params.id}</h1>
+      <h1 id="tab-title">ORDER #{this.props.match.params.id}</h1>
       <br />
       <table className="table table-bordered">
         <thead>

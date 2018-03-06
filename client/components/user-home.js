@@ -51,9 +51,9 @@ class UserHome extends Component {
                 </Link>
               </div>
             ) : (
-              <a href={`/user/editProfile/${user.id}`} target="_parent">
-                <button>Add/Update Your Info</button>
-              </a>
+              <Link to={`/user/editProfile/${user.id}`}>
+                Add/Update Your Info
+              </Link>
             )}
           </div>
 

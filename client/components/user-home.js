@@ -61,16 +61,15 @@ class UserHome extends Component {
               )}
           </div>
 
-          {user.isAdmin ? (
-            <AdminHome />
-          ) : (
+          {user.isAdmin
+            ? <AdminHome />
+            : (
               <div>
                 <div className="col-md-4">
-                  {reviews.length > 0 ? (
-                    <h3 id="title">Your reviewed products: </h3>
-                  ) : (
-                      <h3 id="title">You have not reviewed anything yet!</h3>
-                    )}
+                  {reviews.length > 0
+                    ? <h3 id="title">Your reviewed products: </h3>
+                    : <h3 id="title">You have not reviewed anything yet!</h3>
+                  }
                   {reviews.length > 0
                     ? reviews.map(review => (
                       <div key={review.id}>
@@ -83,11 +82,10 @@ class UserHome extends Component {
                     : null}
                 </div>
                 <div className="col-md-4">
-                  {orders.length > 0 ? (
-                    <h3 id="title">Order-History:</h3>
-                  ) : (
-                      <h3 id="title">You have no previous orders.</h3>
-                    )}
+                  {orders.length > 0
+                    ? <h3 id="title">Order-History:</h3>
+                    : <h3 id="title">You have no previous orders.</h3>
+                  }
                   {orders.length > 0
                     ? orders.map(order => (
                       <div key={order.id}>
@@ -136,7 +134,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       event.preventDefault()
 
       dispatch(editUser(userId, { firstName, lastName }))
-      window.location.reload()
     }
   }
 }

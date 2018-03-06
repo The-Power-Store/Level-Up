@@ -5,9 +5,9 @@ const GET_GUEST_CART ='GET_GUEST_CART'
 
 const getCart = cart => ({ type: GET_CART, cart })
 
-export function fetchCart(userId) {
+export function fetchCart() {
   return dispatch => {
-    axios.get(`api/carts/${userId}`)
+    axios.get(`/api/carts/`)
       .then(res => res.data)
       .then(cart => {
         const action = getCart(cart)

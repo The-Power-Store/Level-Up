@@ -28,7 +28,9 @@ import store, {
   me,
   fetchAllProducts,
   fetchCategories,
-  fetchReviews
+  fetchReviews,
+  fetchGuestCart,
+  fetchCart
 } from "./store";
 import { isAdmin } from "../server/api/utils";
 // import { OrderForm } from './components/order-form'
@@ -39,6 +41,7 @@ import { isAdmin } from "../server/api/utils";
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
+    
   }
 
   render() {
@@ -97,6 +100,8 @@ const mapDispatch = dispatch => {
       dispatch(fetchAllProducts());
       dispatch(fetchCategories());
       dispatch(fetchReviews());
+      dispatch(fetchGuestCart())
+      dispatch(fetchCart())
     }
   };
 };

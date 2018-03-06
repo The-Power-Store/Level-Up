@@ -49,8 +49,7 @@ const mapStateToProps = function (state, ownProps) {
     isLoggedIn: state.user.id,
     reviews: state.reviews.filter(review =>
       review.productId === +ownProps.match.params.id
-    ),//if the user is logged in, fetch thier cart
-    cart: state.cart
+    )
   }
 }
 

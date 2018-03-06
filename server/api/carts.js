@@ -4,15 +4,15 @@ const { Cart } = require('../db/models')
 module.exports = router
 
 // find all items by specific cart
-router.get('/:userId', (req, res, next) => {
-  const userID = +req.params.userId
+router.get('/', (req, res, next) => {
+  const userID = req.user.id
 
+  console.log("shouting out from the cart api", req.user.id)
   Cart.findAll({
     where: { userId: userID }
   })
     .then(cartItems => {
       const arrOfItems = []
-
       cartItems.map((item) => { arrOfItems.push(item.dataValues) })
       return res.json(arrOfItems)
     })

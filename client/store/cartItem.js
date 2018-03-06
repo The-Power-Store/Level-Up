@@ -57,6 +57,7 @@ export function postCartItemThunk(cartItem) {
             .then(res => res.data)
             .then(cartItem => {
                 const action = postCartItem(cartItem)
+                console.log("the cart item is", cartItem)
                 dispatch(action)
             })
             .catch(err => console.error('error creating cart item', err))

@@ -13,7 +13,7 @@ describe('thunk creators', () => {
   let store
   let mockAxios
 
-  const initialState = {products: []}
+  const initialState = { products: [] }
 
   beforeEach(() => {
     mockAxios = new MockAdapter(axios)
@@ -40,7 +40,14 @@ describe('thunk creators', () => {
 
   describe('update', () => {
     it('dispatches the UPDATE_PRODUCT action', () => {
-      mockAxios.onPut('/')
+      const updatedProduct = { title: "a special wand", description: "it makes magic", price: "500" }
+      mockAxios.onPut('/api/products/1').replyOnce(200, updatedProduct)
+      return store.dispatch(update(1,{title: 'a special wand'}))
+        .then(() => {
+          const actions = store.getActions()
+          expect(actions[0].type).to.be.equal('UPDATE_PRODUCT')
+          expect(actions[0].product).to.be.deep.equal(updatedProduct)
+        })
     })
   })
 })

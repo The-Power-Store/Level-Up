@@ -53,9 +53,11 @@ class AdminHome extends Component {
       <br />
       <div className="admin-product-cont">
         <h2 className="tab-title">PRODUCTS</h2>
-        <a href="/admin/product/0" target="_parent">
-          <button>Add Product</button>
-        </a>
+        <button>
+          <Link to="/admin/product/0">
+            Add Product
+            </Link>
+        </button>
         {/* <Link className="add-product-btn" to="/admin/product/0"><h4>Add Product</h4></Link> */}
         <ul>
           {products.map(product => <div key={product.id}>

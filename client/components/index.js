@@ -16,5 +16,7 @@ export { default as OrderForm } from './order-form'
 export { default as PreviousOrderPage } from './previousOrderPage'
 export { default as guestCart } from './guestCart'
 export { default as OrderConfirm } from './orderConfirm'
+export { default as AdminHome } from '../admin/admin-home'
+export { default as EditProducts } from '../admin/editProduct'
 
 

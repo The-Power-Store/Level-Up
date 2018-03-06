@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import store from '../../store'
-import { postCartItemThunk, postCartItemToSessionThunk } from '../../store/cartItem'
+import store, { fetchCart ,fetchGuestCart} from '../../store'
+import { postCartItemThunk, postCartItemToSessionThunk} from '../../store/cartItem'
 import PropTypes from 'prop-types'
-
+ 
 
 const SingleProduct = (props) => {
   let product
@@ -21,7 +21,7 @@ const SingleProduct = (props) => {
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
       {
-        !!props.isLoggedIn ? <button className="btn btn-primary" type="submit" value={props.isLoggedIn} onClick={props.onClick}>Add to Cart </button>
+        !!props.isLoggedIn ? <button type="submit" value={props.isLoggedIn} onClick={props.onClick}>Add to Cart </button>
           : <button type="submit" onClick={props.unAuthOnClick}>add to unauthorized user cart</button>
       }
       <h4>Reviews</h4>
@@ -59,11 +59,20 @@ const mapDispatchToProps = function (dispatch, ownProps) {
     onClick: (event) => {
       const addToCart = { quantity: 1, userId: +event.target.value, productId: +ownProps.match.params.id }
       console.log("adding this item to the cart", addToCart)
-      dispatch(postCartItemThunk(addToCart)) //change to a real variable once we have the log in stuff
+      dispatch(postCartItemThunk(addToCart)).then(
+
+        dispatch(fetchCart())  
+      )
+      console.log("should be calling fetch cart!")
+      //window.location.reload() //change to a real variable once we have the log in stuff
     },
     unAuthOnClick: (event) => {
       const addToCart = { quantity: 1, productId: +ownProps.match.params.id }
-      dispatch(postCartItemToSessionThunk(addToCart))
+      dispatch(postCartItemToSessionThunk(addToCart)).then(
+
+        dispatch(fetchGuestCart())
+      )
+      //window.location.reload()
     }
   }
 }

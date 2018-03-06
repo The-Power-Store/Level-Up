@@ -11,7 +11,7 @@ import { AdminHome } from './index'
  */
 class UserHome extends Component {
   componentDidMount() {
-    this.props.getUserInfo(this.props.location.pathname.slice(6))
+    this.props.getUserInfo(this.props.match.params.id)
   }
 
   render() {
@@ -61,16 +61,15 @@ class UserHome extends Component {
               )}
           </div>
 
-          {user.isAdmin ? (
-            <AdminHome />
-          ) : (
-              <div>
-                <div className="col-md-4">
-                  {reviews.length > 0 ? (
-                    <h3 id="title">Your reviewed products: </h3>
-                  ) : (
-                      <h3 id="title">You have not reviewed anything yet!</h3>
-                    )}
+          {user.isAdmin
+            ? <AdminHome />
+            : (
+                <div className="row">
+                <div className="col-md-6">
+                  {reviews.length > 0
+                    ? <h3 id="title">Your reviewed products: </h3>
+                    : <h3 id="title">You have not reviewed anything yet!</h3>
+                  }
                   {reviews.length > 0
                     ? reviews.map(review => (
                       <div key={review.id}>
@@ -82,12 +81,11 @@ class UserHome extends Component {
                     ))
                     : null}
                 </div>
-                <div className="col-md-4">
-                  {orders.length > 0 ? (
-                    <h3 id="title">Order-History:</h3>
-                  ) : (
-                      <h3 id="title">You have no previous orders.</h3>
-                    )}
+                <div className="col-md-6">
+                  {orders.length > 0
+                    ? <h3 id="title">Order-History:</h3>
+                    : <h3 id="title">You have no previous orders.</h3>
+                  }
                   {orders.length > 0
                     ? orders.map(order => (
                       <div key={order.id}>
@@ -99,7 +97,7 @@ class UserHome extends Component {
                     ))
                     : null}
                 </div>
-              </div>
+                </div>
             )}
         </div>
       </div>
@@ -115,14 +113,14 @@ const mapStateToProps = (state, ownProps) => {
     user: state.user,
     address: state.address,
     reviews: state.reviews.filter(
-      review => review.userId === +ownProps.location.pathname.slice(6)
+      review => review.userId === +ownProps.match.params.id
     ),
     orders: state.orders
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const userId = +ownProps.location.pathname.slice(6)
+  const userId = +ownProps.match.params.id
 
   return {
     getUserInfo: userId => {
@@ -136,7 +134,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       event.preventDefault()
 
       dispatch(editUser(userId, { firstName, lastName }))
-      window.location.reload()
     }
   }
 }

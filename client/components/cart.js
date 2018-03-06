@@ -6,9 +6,9 @@ import { fetchCart } from '../store/cart'
 
 class Cart extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     console.log("fetching the cart for ", this.props.user.id)
-    this.props.loadCart(this.props.user.id)
+    this.props.loadCart()
 
   }
 
@@ -75,8 +75,8 @@ const mapStateToProps = function (state, ownProps) {
 
 const mapDispatchToProps = function (dispatch, ownProps) {
   return {
-    loadCart: (userID) => {
-      dispatch(fetchCart(userID))
+    loadCart: () => {
+      dispatch(fetchCart())
     }
   }
 }

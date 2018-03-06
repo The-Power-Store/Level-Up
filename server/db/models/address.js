@@ -36,7 +36,7 @@ const Address = db.define('address', {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      min: 10000,
+      min: 00000,
       max: 99999
     }
   }

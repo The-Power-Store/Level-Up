@@ -48,14 +48,15 @@ export function changeAddress(id, address, ownProps) {
   }
 }
 
-export function createAddress(address) {
+export function createAddress(id, address, ownProps) {
   console.log("address", address);
   return dispatch => {
     axios
-      .post(`/api/address`, address)
+      .post('/api/address', address)
       .then(res => res.data)
       .then(address => {
         dispatch(addNewAddress(address))
+        ownProps.history.push(`/home/${id}`);
       })
       .catch(err => console.error("error creating address", err))
   }

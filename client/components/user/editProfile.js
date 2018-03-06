@@ -91,7 +91,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const isShipping = event.target.isShipping.value;
       const userId = ownProps.match.params.id;
 
-      dispatch(createAddress({ address, city, state, zip, isShipping, userId }));
+      dispatch(createAddress(id, { address, city, state, zip, isShipping, userId }, ownProps));
     },
 
     handleNameSubmit: (event) => {

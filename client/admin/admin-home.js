@@ -96,6 +96,7 @@ const mapDispatchToProps = dispatch => {
       event.preventDefault();
       if (event.target.makeAdmin) dispatch(editUser(id, { isAdmin: true }))
       else if (event.target.delete) dispatch(deleteAccount(id))
+      window.location.reload()
     }
 
   }

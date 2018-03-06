@@ -64,8 +64,8 @@ class UserHome extends Component {
           {user.isAdmin
             ? <AdminHome />
             : (
-              <div>
-                <div className="col-md-4">
+                <div className="row">
+                <div className="col-md-6">
                   {reviews.length > 0
                     ? <h3 id="title">Your reviewed products: </h3>
                     : <h3 id="title">You have not reviewed anything yet!</h3>
@@ -81,7 +81,7 @@ class UserHome extends Component {
                     ))
                     : null}
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-6">
                   {orders.length > 0
                     ? <h3 id="title">Order-History:</h3>
                     : <h3 id="title">You have no previous orders.</h3>
@@ -97,7 +97,7 @@ class UserHome extends Component {
                     ))
                     : null}
                 </div>
-              </div>
+                </div>
             )}
         </div>
       </div>

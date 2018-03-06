@@ -24,7 +24,7 @@ class Cart extends Component {
     console.log("the user is ", this.props.user)
     console.log("the products on the state are ", products)
     const productsInCart = products.filter(product => {
-      
+
       if (productIdNums.indexOf(product.id) >= 0) {
 
         return product
@@ -34,7 +34,7 @@ class Cart extends Component {
     console.log("The product left on the state of the cart is ", productsInCart)
 
     return (
-      <div>
+      <div className="cart-container">
         <h1>hello from the cart </h1>
         <h2>cart items:</h2>
         {
@@ -52,7 +52,7 @@ class Cart extends Component {
               </div>)
           })
         }
-        <Link to={`/newOrder/${user.id}`}> <button>Proceed to checkout, lovely</button></Link>
+        <Link to="/newOrder"> <button className="btn btn-primary">Proceed to checkout, lovely</button></Link>
       </div>
     )
   }

@@ -25,7 +25,7 @@ class ProductCategory extends Component {
 
     return (
       <div>
-        <div className="products-header">
+        <div className="products-header allProducts">
           <input
             placeholder='Search for a product'
             onChange={this.handleChange}
@@ -36,7 +36,7 @@ class ProductCategory extends Component {
           </div>
         </div>
 
-        <div className="product-list">
+        <div className="product-list allProducts">
           {
             products.map(product => {
               return (

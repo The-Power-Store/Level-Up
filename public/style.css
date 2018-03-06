@@ -42,7 +42,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.75);
   position: fixed;
   width: 100%;
 }
@@ -63,12 +63,13 @@ nav {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  text-align: center;
 }
 
 .allProducts {
   background-color: rgba(255, 255, 255, 0.85);
   padding: 15px;
-  width:90%;
+  width: 90%;
   display: block;
   margin: auto;
 }
@@ -83,11 +84,10 @@ nav {
   margin: 5%;
   background-color: rgba(255, 255, 255, 0.85);
   padding: 15px;
-  width:90%;
+  width: 90%;
   display: block;
   margin: auto;
   font-size: 18px;
-
 }
 
 .single-product img {
@@ -118,8 +118,7 @@ figure.item {
 
 #welcome-header {
   color: #2F1665;
-  font-family: 'Raleway',
-  sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 .table {
@@ -143,6 +142,7 @@ figure.item {
   width: 80%;
   padding: 20px;
 }
+
 .order-form {
   background-color: rgba(255, 255, 255, 0.8);
   font-size: 24px;
@@ -151,6 +151,7 @@ figure.item {
   width: 80%;
   padding: 20px;
 }
+
 .admin-product-cont {
   text-align: center;
 }
@@ -162,4 +163,13 @@ figure.item {
 .cart-container {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 15px;
+}
+
+.products-form {
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 24px;
+  text-align: center;
+  margin: 10px auto;
+  width: 80%;
+  padding: 20px;
 }

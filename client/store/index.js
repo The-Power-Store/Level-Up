@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import user from './user'
+import user from './auth'
 import products from './product'
 import categories from './category'
 import reviews from './reviews'
@@ -24,7 +24,7 @@ const middleware = composeWithDevTools(applyMiddleware(
 const store = createStore(reducer, middleware)
 
 export default store
-export * from './user'
+export * from './auth'
 export * from './product'
 export * from './category'
 export * from './users'

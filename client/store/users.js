@@ -36,6 +36,7 @@ export function createUser(user) {
 }
 
 export function deleteAccount(id) {
+  console.log('hhheeerrre')
   return dispatch => {
     axios
       .delete(`/api/users/${id}`)

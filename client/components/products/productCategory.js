@@ -48,7 +48,6 @@ class ProductCategory extends Component {
                     <figcaption className="caption">
                       <div className="product-details">
                         <Link to={`/products/${product.id}`}>{product.title}</Link>
-                        <p>{product.description}</p>
                         <p>Price: ${product.price}</p>
                       </div>
                     </figcaption>

@@ -173,3 +173,7 @@ figure.item {
   width: 80%;
   padding: 20px;
 }
+
+#cart-title {
+  text-decoration-line: underline;
+}

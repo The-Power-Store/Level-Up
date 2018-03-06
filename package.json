@@ -11,7 +11,7 @@
     "build-client-watch": "webpack -w",
     "deploy": "script/deploy",
     "lint": "eslint ./ --ignore-path .gitignore",
-    "postinstall": "webpack -p && npm run seed",
+    "postinstall": "webpack -p ",
     "seed": "node seed.js",
     "start": "node server",
     "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",

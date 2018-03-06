@@ -9,11 +9,36 @@ import { fetchCart } from '../store/cart'
 import { fetchGuestCart } from '../store/sessionCart'
 class Navbar extends Component {
 
-  constructor(props) {
-    super(props)
-  }
-  componentDidMount(){
+    state = {
+      guestCart: this.props.guestCart || {},
+      userCart: this.props.userCart || []
 
+    }
+
+    //
+    componentWillReceiveProps(nextProps){
+      if(this.props.guestCart != nextProps.guestCart){
+        this.setState({
+          guestCart: nextProps.guestCart
+        })
+      }else if(this.props.userCart != nextProps.userCart){
+        console.log("I will be everywhere", nextProps)
+        this.setState({
+          userCart: nextProps.userCart
+        })
+      }
+    }
+    
+    componentDidMount(){
+      // const cartvalue=()=>{
+  
+      // const out = this.props.userCart.map(lineitem=>{
+      //   console.log("lineitem", lineitem)
+      //   return lineitem.quantity
+      // }).reduce((a, b) => {return a + b},0)
+      // return this.setState({numItemsInCart:out})
+      // }
+      // cartvalue()
     
   }
   
@@ -44,12 +69,17 @@ class Navbar extends Component {
                 {/* The navbar will show these links after you log in */}
                 <Link to={`/home/${user.id}`}>Home</Link>
                 <Link to="/cart">CART!!</Link>
-                <span className ='badge'>{
-                  this.props.userCart.map(lineitem=>{
-                    console.log("lineitem", lineitem)
+                <span className ='badge'>{this.props.userCart.map(lineitem=>{
+              
+                  if(Object.keys(this.props.cartItem).length && +this.props.cartItem.id == +this.props.userCart.id){
+                    console.log("I am inside the if statement", this.props.cartItem.quantity)
+                    return this.props.cartItem.quantity
+                  }else{
+
                     return lineitem.quantity
-                  }).reduce((a, b) => {return a + b},0)
-              }</span>
+                  }
+                }).reduce((a, b) => {return a + b},0)
+                }</span>
 
                 <a href="#" onClick={handleClick}>
                   Logout
@@ -63,8 +93,7 @@ class Navbar extends Component {
                   <Link to="/guestCart">CART!</Link>
                   <span className ='badge'>{
                     Object.keys(this.props.guestCart).map(key=>{
-                      console.log("lineitem", key)
-                      return this.props.guestCart[key]
+                      return this.state.guestCart[key]
                     }).reduce((a,b)=>{return a+b},0)
                 }</span>
                 </div>
@@ -78,14 +107,15 @@ class Navbar extends Component {
 }
 
 const mapState = state => {
-  console.log("The props stat cart is ", state.cart)
+  // console.log("The props stat cart is ", state.cart)
 
   return {
     isLoggedIn: !!state.user.id,
     categories: state.categories,
     user: state.user,
     userCart: state.cart,
-    guestCart: state.sessionCart
+    guestCart: state.sessionCart,
+    cartItem: state.cartItem
   }
 }
 
@@ -94,7 +124,10 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
+      dispatch(fetchCart()) 
+      dispatch(fetchGuestCart()) 
     }
+
   }
 }
 

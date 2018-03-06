@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import store, { fetchCart ,fetchGuestCart} from '../../store'
-import { postCartItemThunk, postCartItemToSessionThunk} from '../../store/cartItem'
+import store, { fetchCart, fetchGuestCart } from '../../store'
+import { postCartItemThunk, postCartItemToSessionThunk } from '../../store/cartItem'
 import PropTypes from 'prop-types'
- 
+import ReviewForm from '../review'
+
 
 const SingleProduct = (props) => {
   let product
@@ -24,16 +25,21 @@ const SingleProduct = (props) => {
         !!props.isLoggedIn ? <button type="submit" value={props.isLoggedIn} onClick={props.onClick}>Add to Cart </button>
           : <button type="submit" onClick={props.unAuthOnClick}>add to unauthorized user cart</button>
       }
-      <h4>Reviews</h4>
+      <h2>Reviews</h2>
       {
         props.reviews.length > 0 ?
           props.reviews.map(review => (
             <div key={review.id}>
               <h5>--{review.stars} Stars</h5>
               <p>--{review.content}</p>
+              <p>------------------------------------------------------</p>
             </div>
           ))
           : null
+      }
+      {
+        props.isLoggedIn &&
+        <ReviewForm />
       }
 
     </div>
@@ -61,7 +67,7 @@ const mapDispatchToProps = function (dispatch, ownProps) {
       console.log("adding this item to the cart", addToCart)
       dispatch(postCartItemThunk(addToCart)).then(
 
-        dispatch(fetchCart())  
+        dispatch(fetchCart())
       )
       console.log("should be calling fetch cart!")
       //window.location.reload() //change to a real variable once we have the log in stuff

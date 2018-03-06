@@ -9,7 +9,7 @@ const OrderForm = (props) => {
   const { user, handleSubmit, error } = props
 
   return (
-    <div>
+    <div className="order-form">
       <h1> Your current order: </h1>
       <form onSubmit={handleSubmit} >
         <div>
@@ -41,7 +41,7 @@ const OrderForm = (props) => {
           <input name="address_zip" type="number" />
         </div>
         <div>
-          <button type="submit">Place your Order!</button>
+          <button className="btn btn-primary" type="submit">Place your Order!</button>
         </div>
       </form>
     </div>

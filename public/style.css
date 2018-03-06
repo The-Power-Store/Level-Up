@@ -42,8 +42,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
-  opacity: 0.75;
+  background-color: rgba(255, 255, 255, 0.85);
   position: fixed;
   width: 100%;
 }
@@ -66,6 +65,14 @@ nav {
   flex-wrap: wrap;
 }
 
+.allProducts {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 15px;
+  width:90%;
+  display: block;
+  margin: auto;
+}
+
 .product img {
   float: left;
   width: 300px;
@@ -74,10 +81,19 @@ nav {
 
 .single-product {
   margin: 5%;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 15px;
+  width:90%;
+  display: block;
+  margin: auto;
+  font-size: 18px;
+
 }
 
 .single-product img {
-  max-width: 100%;
+  max-width: 60%;
+  display: block;
+  margin: auto;
 }
 
 figure.item {
@@ -91,8 +107,7 @@ figure.item {
 }
 
 .profile-page {
-  background-color: white;
-  opacity: 0.75;
+  background-color: rgba(255, 255, 255, 0.75);
   margin: 20px;
 }
 
@@ -102,7 +117,7 @@ figure.item {
 }
 
 #welcome-header {
-  color: blue;
+  color: #2F1665;
   font-family: 'Raleway',
   sans-serif;
 }
@@ -111,8 +126,7 @@ figure.item {
   border-radius: 5px;
   width: 70%;
   align-self: center;
-  background-color: white;
-  opacity: 0.8;
+  background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
   margin: 0px auto;
 }
@@ -121,10 +135,31 @@ figure.item {
   text-align: center;
 }
 
+.order_confirmation {
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 24px;
+  text-align: center;
+  margin: 0px auto;
+  width: 80%;
+  padding: 20px;
+}
+.order-form {
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 24px;
+  text-align: center;
+  margin: 10px auto;
+  width: 80%;
+  padding: 20px;
+}
 .admin-product-cont {
   text-align: center;
 }
 
 #product-list {
   list-style: none;
+}
+
+.cart-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 15px;
 }

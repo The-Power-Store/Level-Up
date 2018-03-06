@@ -19,7 +19,7 @@ class AllProducts extends Component {
     const products = this.props.products ? this.props.products.filter(product => product.title.includes(this.state.input)) : []
 
     return (
-      <div >
+      <div className="allProducts" >
         <input
           className="search"
           placeholder="Search for a product"

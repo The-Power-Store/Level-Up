@@ -44,33 +44,33 @@ class Routes extends Component {
     const { isLoggedIn } = this.props;
 
     return <div>
-        <Navbar />
-        <div className="main">
-          <Switch>
-            {/* Routes placed here are available to all visitors */}
-            <Route exact path="/" component={Homepage} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/guestCart" component={guestCart} />
-            <Route path="/newOrder/:id" component={OrderForm} />
-            {isLoggedIn && <Switch>
-                {/* Routes placed here are only available after logging in */}
-                <Route path="/cart" component={Cart} />
-                <Route path="/home" component={UserHome} />
-                <Route exact path="/products" component={AllProducts} />
-                <Route path="/products/categories/:id" component={ProductCategory} />
-                <Route path="/products/:id" component={SingleProduct} />
-                <Route path="/user/editProfile/:id" component={EditProfile} />
-                <Route path="/orders/:id" component={PreviousOrderPage} />
-              </Switch>}
-            {isAdmin && <Route path="/admin/product/:id" component={EditProducts}/>}
-            {/* Displays our Login component as a fallback */}
+      <Navbar />
+      <div className="main">
+        <Switch>
+          {/* Routes placed here are available to all visitors */}
+          <Route exact path="/" component={Homepage} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/guestCart" component={guestCart} />
+          <Route path="/newOrder/:id" component={OrderForm} />
+          {isLoggedIn && <Switch>
+            {/* Routes placed here are only available after logging in */}
+            <Route path="/cart" component={Cart} />
+            <Route path="/home" component={UserHome} />
             <Route exact path="/products" component={AllProducts} />
             <Route path="/products/categories/:id" component={ProductCategory} />
             <Route path="/products/:id" component={SingleProduct} />
-          </Switch>
-        </div>
-      </div>;
+            <Route path="/user/editProfile/:id" component={EditProfile} />
+            <Route path="/orders/:id" component={PreviousOrderPage} />
+          </Switch>}
+          <Route path="/admin/product/:id" component={EditProducts} />
+          {/* Displays our Login component as a fallback */}
+          <Route exact path="/products" component={AllProducts} />
+          <Route path="/products/categories/:id" component={ProductCategory} />
+          <Route path="/products/:id" component={SingleProduct} />
+        </Switch>
+      </div>
+    </div>;
   }
 }
 

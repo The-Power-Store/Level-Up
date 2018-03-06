@@ -1,20 +1,31 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createProduct, update } from '../store'
 
 const EditProduct = props => {
-  console.log('iinnnisssddee')
+  console.log(`props product`, props.product);
   return (
     <div>
-
+      <form>
+        <label>Title</label>
+        <input />
+        <label>Description</label>
+        <input />
+        <label>Image URL</label>
+        <input />
+        <label>Stock</label>
+        <input />
+        <label>Price</label>
+        <input />
+      </form>
     </div>
   )
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    products: state.products.find(product => (
-      product.id === ownProps.match.params.id
+    product: state.products.filter(product => (
+      product.id === +ownProps.match.params.id
     ))
   }
 }

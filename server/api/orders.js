@@ -30,8 +30,40 @@ router.post('/', (req, res, next) => {
       return currentOrder
     })
     .then(currentOrder => {
-      console.log('!!!!!!!!!!!!!!!!!!!! USER ID', req.body.userId)
+      console.log('!!!!!!!!!!!!!!!!!!!! USER ID', req.user)
       console.log('new current order is ' + currentOrder)
+
+      if(req.user == null){
+        //make the order, like normal
+        
+        //d
+          console.log("this is what the cart looks like",Object.keys(req.session.cart))
+              Promise.all(Object.keys(req.session.cart).map(key => {
+                return Product.findById(+key)
+                  .then(product => {
+                   
+                    return ProductsInOrder.create({ quantity: req.session.cart[key], price: product.price, orderId: currentOrder.id, productId: product.id })
+                  })
+              })
+              )
+                .then(data => {
+                  console.log('we did a thing! ', data)
+                  req.session.destroy(function (err) {
+                    console.log("we wrecked the session"); //Inside a callback… bulletproof!
+                  });
+    
+                })
+                // .then((data) => {
+                //   res.sendStatus(201)
+                // })
+        .catch(next)
+ 
+    // fjkdsajfldksjkfdjklajdslkafjdslkafjlkdsajfkdsajlfdjsz
+
+
+      }else{
+        
+      
       Cart.findAll({
         where: {
           userId: req.user.id
@@ -55,6 +87,7 @@ router.post('/', (req, res, next) => {
               res.sendStatus(201)
             })
         })
+      }
     }
     )
     .catch(next)

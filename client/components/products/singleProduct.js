@@ -58,12 +58,12 @@ const mapDispatchToProps = function (dispatch, ownProps) {
   return {
     onClick: (event) => {
       const addToCart = { quantity: 1, userId: +event.target.value, productId: +ownProps.match.params.id }
-      console.log("adding this item to the cart", addToCart)
+     
       dispatch(postCartItemThunk(addToCart)).then(
 
         dispatch(fetchCart())  
       )
-      console.log("should be calling fetch cart!")
+      
       //window.location.reload() //change to a real variable once we have the log in stuff
     },
     unAuthOnClick: (event) => {

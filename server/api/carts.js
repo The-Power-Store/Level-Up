@@ -5,7 +5,7 @@ module.exports = router
 
 // find all items by specific cart
 router.get('/', (req, res, next) => {
-  const userID = req.user.id
+  const userID = req.user.id 
 
   console.log("shouting out from the cart api", req.user.id)
   Cart.findAll({
@@ -20,6 +20,20 @@ router.get('/', (req, res, next) => {
 })
 
 // add new cart item, or if the item already is in the cart, update its quantity 
+router.post('/transfer', (req, res, next) => {
+  console.log("this is the cart on the session, that we are trying to transfer", req.session.cart, "for this user,", req.user)
+  //PRODUCTID, quantity, userid 
+  Object.keys(req.session.cart).map((key)=>{
+    const cartItemToAdd = {productId:+key, userId:1, quantity:req.session.cart[key]}
+    Cart.create(cartItemToAdd).
+    then(createdItem => {
+      console.log("this is the item we just added to the cart", createdItem)
+      return res.status(201).json(createdItem)})
+    .catch(next)
+  })
+   
+})
+
 router.post('/', (req, res, next) => {
   console.log("FROM THE BACKEND, the request looks like ", req.body)
   Cart.findOne({ where: { userId: req.body.userId, productId: req.body.productId } })

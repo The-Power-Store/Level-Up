@@ -22,7 +22,7 @@ class Navbar extends Component {
           guestCart: nextProps.guestCart
         })
       }else if(this.props.userCart != nextProps.userCart){
-        console.log("I will be everywhere", nextProps)
+        
         this.setState({
           userCart: nextProps.userCart
         })
@@ -43,8 +43,8 @@ class Navbar extends Component {
   }
   
   render() {
-    console.log("shouting out from the navbar component, saying these are the props", this.props)
-    console.log("this cart loaded on the navbar for this user is", this.props.guestCart)
+    // console.log("shouting out from the navbar component, saying these are the props", this.props)
+    // console.log("this cart loaded on the navbar for this user is", this.props.guestCart)
     let { handleClick, isLoggedIn, categories, user } = this.props
 
     return (
@@ -72,7 +72,7 @@ class Navbar extends Component {
                 <span className ='badge'>{this.props.userCart.map(lineitem=>{
               
                   if(Object.keys(this.props.cartItem).length && +this.props.cartItem.id == +this.props.userCart.id){
-                    console.log("I am inside the if statement", this.props.cartItem.quantity)
+                    
                     return this.props.cartItem.quantity
                   }else{
 

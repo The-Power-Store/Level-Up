@@ -41,9 +41,9 @@ import store, {
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
-    
+
   }
-  
+
 
   render() {
     const { isLoggedIn, isAdmin } = this.props;
@@ -66,7 +66,7 @@ class Routes extends Component {
               <Switch>
                 {/* Routes placed here are only available after logging in */}
                 <Route path="/cart" component={Cart} />
-                <Route path="/home" component={UserHome} />
+                <Route path="/home/:id" component={UserHome} />
                 <Route path="/user/editProfile/:id" component={EditProfile} />
                 <Route path="/orders/:id" component={PreviousOrderPage} />
                 {isAdmin && <Route path="/admin/product/:id" component={EditProduct} />}

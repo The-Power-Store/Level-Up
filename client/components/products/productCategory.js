@@ -6,13 +6,13 @@ import store from '../../store'
 class ProductCategory extends Component {
   state = {
     input: ''
-  };
+  }
 
   handleChange = event => {
     this.setState({
       input: event.target.value
-    });
-  };
+    })
+  }
 
   render() {
     let category = this.props.categories ? this.props.categories.filter(category =>
@@ -53,12 +53,12 @@ class ProductCategory extends Component {
                     </figcaption>
                   </figure>
                 </div>
-              );
+              )
             })
           }
         </div>
       </div>
-    );
+    )
   }
 }
 

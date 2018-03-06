@@ -15,10 +15,10 @@ import {
   guestCart,
   EditProfile,
   OrderForm,
-  PreviousOrderPage
+  PreviousOrderPage,
+  OrderConfirm
 } from './components'
 import store, { me, fetchAllProducts, fetchCategories, fetchReviews } from './store'
-// import { OrderForm } from './components/order-form'
 
 /**
  * COMPONENT
@@ -42,7 +42,8 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/guestCart" component={guestCart} />
-            <Route path="/newOrder/:id" component={OrderForm} />
+            <Route exact path="/newOrder" component={OrderForm} />
+            <Route path="/newOrder/confirm" component={OrderConfirm} />
             {
               isLoggedIn &&
               <Switch>

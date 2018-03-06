@@ -48,36 +48,34 @@ class Routes extends Component {
     const { isLoggedIn, isAdmin } = this.props;
 
     return <div>
-      <Navbar />
-      <div className="main">
-        <Switch>
-          {/* Routes placed here are available to all visitors */}
-          <Route exact path="/" component={Homepage} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/guestCart" component={guestCart} />
-          <Route exact path="/newOrder" component={OrderForm} />
-          <Route path="/newOrder/confirm" component={OrderConfirm} />
-          <Route exact path="/products" component={AllProducts} />
-          <Route path="/products/categories/:id" component={ProductCategory} />
-          <Route path="/products/:id" component={SingleProduct} />
-          {
-            isLoggedIn &&
-            <Switch>
-              {/* Routes placed here are only available after logging in */}
-              <Route path="/cart" component={Cart} />
-              <Route path="/home" component={UserHome} />
-              <Route path="/user/editProfile/:id" component={EditProfile} />
-              <Route path="/orders/:id" component={PreviousOrderPage} />
-              {isAdmin && <Route path="/admin/product/:id" component={EditProduct} />}}
-            </Switch>}
-          {/* Displays our Login component as a fallback */}
-        </Switch>
+        <Navbar />
+        <div className="main">
+          <Switch>
+            {/* Routes placed here are available to all visitors */}
+            <Route exact path="/" component={Homepage} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/guestCart" component={guestCart} />
+            <Route exact path="/newOrder" component={OrderForm} />
+            <Route path="/newOrder/confirm" component={OrderConfirm} />
+            <Route exact path="/products" component={AllProducts} />
+            <Route path="/products/categories/:id" component={ProductCategory} />
+            <Route path="/products/:id" component={SingleProduct} />
+            {isLoggedIn &&
+              <Switch>
+                {/* Routes placed here are only available after logging in */}
+                <Route path="/cart" component={Cart} />
+                <Route path="/home" component={UserHome} />
+                <Route path="/user/editProfile/:id" component={EditProfile} />
+                <Route path="/orders/:id" component={PreviousOrderPage} />
+                {isAdmin && <Route path="/admin/product/:id" component={EditProduct} />}
+              </Switch>
+            }
+          </Switch>
+        </div>
       </div>
-    </div>;
   }
 }
-
 /**
  * CONTAINER
  */

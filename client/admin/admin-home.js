@@ -20,6 +20,7 @@ class AdminHome extends Component {
           <tr>
             <th scope="col">USER NAME</th>
             <th scope="col">EMAIL</th>
+            <th scope="col">IS ADMIN?</th>
             <th scope="col">UPDATE</th>
           </tr>
         </thead>
@@ -30,6 +31,9 @@ class AdminHome extends Component {
                 {user.firstName} {user.lastName}
               </th>
               <td>{user.email}</td>
+              {
+                user.isAdmin ? <td>TRUE</td> : <td>FALSE</td>
+              }
               <form onSubmit={(event) => handleSubmit(event, user.id)}>
                 <div>
                   <td>
@@ -92,6 +96,7 @@ const mapDispatchToProps = dispatch => {
       event.preventDefault();
       if (event.target.makeAdmin) dispatch(editUser(id, { isAdmin: true }))
       else if (event.target.delete) dispatch(deleteAccount(id))
+      window.location.reload()
     }
 
   }

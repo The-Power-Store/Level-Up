@@ -21,7 +21,7 @@ const SingleProduct = (props) => {
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
       {
-        !!props.isLoggedIn ? <button className="btn btn-primary" type="submit" value={props.isLoggedIn} onClick={props.onClick}>Add to Cart </button>
+        !!props.isLoggedIn ? <button type="submit" value={props.isLoggedIn} onClick={props.onClick}>Add to Cart </button>
           : <button type="submit" onClick={props.unAuthOnClick}>add to unauthorized user cart</button>
       }
       <h4>Reviews</h4>
@@ -49,7 +49,8 @@ const mapStateToProps = function (state, ownProps) {
     isLoggedIn: state.user.id,
     reviews: state.reviews.filter(review =>
       review.productId === +ownProps.match.params.id
-    )
+    ),//if the user is logged in, fetch thier cart
+    cart: state.cart
   }
 }
 

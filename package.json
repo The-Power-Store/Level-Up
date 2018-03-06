@@ -16,7 +16,8 @@
     "start": "node server",
     "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
-    "test": "NODE_ENV='test' nyc mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --compilers js:babel-register"
+    "test-client": "NODE_ENV='test' nyc mocha ./client/**/*.spec.js --compilers js:babel-register",
+    "test-server": "NODE_ENV='test' nyc mocha ./server/**/*.spec.js ./server/**/**/*.spec.js"
   },
   "author": "",
   "license": "ISC",
@@ -57,7 +58,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.24.1",
     "chai": "^3.5.0",
-    "enzyme": "^3.3.0",
+    "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.0",
     "eslint": "^4.10.0",
     "eslint-config-fullstack": "^3.0.0",

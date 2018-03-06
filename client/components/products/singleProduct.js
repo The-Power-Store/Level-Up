@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import store, { fetchCart ,fetchGuestCart} from '../../store'
+import store, { fetchCart, fetchGuestCart} from '../../store'
 import { postCartItemThunk, postCartItemToSessionThunk} from '../../store/cartItem'
 import PropTypes from 'prop-types'
- 
+
 
 const SingleProduct = (props) => {
   let product
@@ -59,20 +59,18 @@ const mapDispatchToProps = function (dispatch, ownProps) {
     onClick: (event) => {
       const addToCart = { quantity: 1, userId: +event.target.value, productId: +ownProps.match.params.id }
       console.log("adding this item to the cart", addToCart)
-      dispatch(postCartItemThunk(addToCart)).then(
-
-        dispatch(fetchCart())  
-      )
+      dispatch(postCartItemThunk(addToCart))
+      // dispatch(fetchCart())
+      ownProps.history.push('/cart')
       console.log("should be calling fetch cart!")
-      //window.location.reload() //change to a real variable once we have the log in stuff
+
     },
     unAuthOnClick: (event) => {
       const addToCart = { quantity: 1, productId: +ownProps.match.params.id }
       dispatch(postCartItemToSessionThunk(addToCart)).then(
-
         dispatch(fetchGuestCart())
       )
-      //window.location.reload()
+
     }
   }
 }

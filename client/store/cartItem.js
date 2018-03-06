@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { fetchCart } from './cart'
 
 /**
  * ACTION TYPES
@@ -59,6 +60,7 @@ export function postCartItemThunk(cartItem) {
                 const action = postCartItem(cartItem)
                 console.log("the cart item is", cartItem)
                 dispatch(action)
+                dispatch(fetchCart());
             })
             .catch(err => console.error('error creating cart item', err))
     }

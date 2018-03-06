@@ -20,7 +20,7 @@ class ProductCategory extends Component {
     ) : []
 
     let products = this.props.products ? this.props.products.filter(product =>
-      product.categoryId === +this.props.match.params.id && product.title.includes(this.state.input)
+      product.categoryId === +this.props.match.params.id && product.title.toLowerCase().includes(this.state.input.toLowerCase())
     ) : []
 
     return (

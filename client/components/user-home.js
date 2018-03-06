@@ -11,7 +11,7 @@ import { AdminHome } from './index'
  */
 class UserHome extends Component {
   componentDidMount() {
-    this.props.getUserInfo(this.props.location.pathname.slice(6))
+    this.props.getUserInfo(this.props.match.params.id)
   }
 
   render() {
@@ -113,14 +113,14 @@ const mapStateToProps = (state, ownProps) => {
     user: state.user,
     address: state.address,
     reviews: state.reviews.filter(
-      review => review.userId === +ownProps.location.pathname.slice(6)
+      review => review.userId === +ownProps.match.params.id
     ),
     orders: state.orders
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const userId = +ownProps.location.pathname.slice(6)
+  const userId = +ownProps.match.params.id
 
   return {
     getUserInfo: userId => {

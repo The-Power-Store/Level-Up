@@ -21,16 +21,16 @@ import {
   EditProfile,
   OrderForm,
   PreviousOrderPage,
-  EditProducts,
+  EditProduct,
   OrderConfirm
 } from "./components";
+
 import store, {
   me,
   fetchAllProducts,
   fetchCategories,
   fetchReviews
 } from "./store";
-import { isAdmin } from "../server/api/utils";
 // import { OrderForm } from './components/order-form'
 
 /**
@@ -42,7 +42,7 @@ class Routes extends Component {
   }
 
   render() {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn, isAdmin } = this.props;
 
     return <div>
       <Navbar />
@@ -55,23 +55,20 @@ class Routes extends Component {
           <Route path="/guestCart" component={guestCart} />
           <Route exact path="/newOrder" component={OrderForm} />
           <Route path="/newOrder/confirm" component={OrderConfirm} />
+          <Route exact path="/products" component={AllProducts} />
+          <Route path="/products/categories/:id" component={ProductCategory} />
+          <Route path="/products/:id" component={SingleProduct} />
           {
             isLoggedIn &&
             <Switch>
               {/* Routes placed here are only available after logging in */}
               <Route path="/cart" component={Cart} />
               <Route path="/home" component={UserHome} />
-              <Route exact path="/products" component={AllProducts} />
-              <Route path="/products/categories/:id" component={ProductCategory} />
-              <Route path="/products/:id" component={SingleProduct} />
               <Route path="/user/editProfile/:id" component={EditProfile} />
               <Route path="/orders/:id" component={PreviousOrderPage} />
+              {isAdmin && <Route path="/admin/product/:id" component={EditProduct} />}}
             </Switch>}
-          {isAdmin && <Route path="/admin/product/:id" component={EditProducts} />}
           {/* Displays our Login component as a fallback */}
-          <Route exact path="/products" component={AllProducts} />
-          <Route path="/products/categories/:id" component={ProductCategory} />
-          <Route path="/products/:id" component={SingleProduct} />
         </Switch>
       </div>
     </div>;
@@ -86,7 +83,8 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
-    products: state.products
+    products: state.products,
+    isAdmin: !!state.user.id
   };
 };
 

@@ -17,7 +17,7 @@ const ProductsInOrder = db.define("productsInOrder", {
   totalPrice: {
     type: Sequelize.VIRTUAL,
     get() {
-      return (this.getDataValue("price") * this.getDataValue("quantity")) / 100;
+      return (this.getDataValue("price") * this.getDataValue("quantity"));
     }
   }
 })

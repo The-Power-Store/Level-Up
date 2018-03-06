@@ -40,13 +40,13 @@ describe('thunk creators', () => {
 
   describe('update', () => {
     it('dispatches the UPDATE_PRODUCT action', () => {
-      const updatedProduct = { title: "a special wand", description: "it makes magic", price: "500" }
-      mockAxios.onPut('/api/products/1').replyOnce(200, updatedProduct)
+      const product = { title: "a wand", description: "it makes magic", price: "500" }
+      mockAxios.onPut('/api/products/1').replyOnce(200, product)
       return store.dispatch(update(1,{title: 'a special wand'}))
         .then(() => {
           const actions = store.getActions()
           expect(actions[0].type).to.be.equal('UPDATE_PRODUCT')
-          expect(actions[0].product).to.be.deep.equal(updatedProduct)
+          expect(actions[0].product.title).to.be.equal('a special wand')
         })
     })
   })

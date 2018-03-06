@@ -2,7 +2,7 @@ const { expect } = require('chai')
 const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
-const Product = db.model('Product')
+const Product = db.model('product')
 let agent = request.agent(app)
 
 describe('Product routes', () => {
@@ -10,7 +10,7 @@ describe('Product routes', () => {
     return db.sync({ force: true })
   })
 
-  describe('/api/users/', () => {
+  describe('/api/products', () => {
     beforeEach(() => {
       return Product.create({
         title: 'Chocolate Frogs',
@@ -68,7 +68,7 @@ describe('Product routes', () => {
             stock: 25
           })
           .then(() => {
-            return Product.findById(article.id)
+            return Product.findById(product.id)
           })
           .then(foundProduct => {
             expect(foundProduct).to.exist

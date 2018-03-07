@@ -62,7 +62,7 @@ class Cart extends Component {
           })
         }
         </div>
-        <Link to="/newOrder"> <button className="btn btn-primary">Proceed to checkout, lovely</button></Link>
+        <Link to="/newOrder"> <button className="btn btn-success">Proceed to checkout, lovely</button></Link>
         <Link to={"/products"}>
           <button className="btn btn-primary">Continue Shopping!</button>
         </Link>

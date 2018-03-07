@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import store, { fetchCart, fetchGuestCart} from '../../store'
-import { postCartItemThunk, postCartItemToSessionThunk} from '../../store/cartItem'
+import store, { fetchCart, fetchGuestCart } from '../../store'
+import { postCartItemThunk, postCartItemToSessionThunk } from '../../store/cartItem'
 import PropTypes from 'prop-types'
 
 
@@ -21,25 +21,20 @@ const SingleProduct = (props) => {
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
       {
-<<<<<<< HEAD
-        !!props.isLoggedIn ? <button className="btn btn-primary" type="submit" value={props.isLoggedIn} onClick={props.onClick}>Add to Cart </button>
-          : <button className="btn btn-primary" type="submit" onClick={props.unAuthOnClick}>add to unauthorized user cart</button>
-=======
         !!props.isLoggedIn ? <button type="submit" value={props.isLoggedIn} onClick={props.onClick}>Add to Cart </button>
           : <button type="submit" className="btn btn-primary" onClick={props.unAuthOnClick}>Add to cart!</button>
       }
       {
         props.reviews.length ?
-        <div>
-          <br />
-          <h4>Reviews:</h4>
-        </div>
+          <div>
+            <br />
+            <h4>Reviews:</h4>
+          </div>
 
-        :<div>
-          <br />
-          <h4>This magical product is yet to be reviewed!</h4>
-        </div>
->>>>>>> master
+          : <div>
+            <br />
+            <h4>This magical product is yet to be reviewed!</h4>
+          </div>
       }
       {
         props.reviews.length > 0 ?

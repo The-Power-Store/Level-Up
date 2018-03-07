@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import store, { fetchCart, fetchGuestCart } from '../../store'
 import { postCartItemThunk, postCartItemToSessionThunk } from '../../store/cartItem'
 import PropTypes from 'prop-types'
+import ReviewForm from '../review'
 
 
 const SingleProduct = (props) => {

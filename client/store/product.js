@@ -4,7 +4,7 @@ import axios from 'axios'
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 const ADD_NEW_PRODUCT = 'ADD_NEW_PRODUCT'
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
-// const GET_CATEGORY_PRODUCTS = 'GET_CATEGORY_PRODUCTS'
+
 
 //action creators
 const getAllProducts = products => ({ type: GET_ALL_PRODUCTS, products })
@@ -26,11 +26,13 @@ export function fetchAllProducts() {
 }
 
 export function createProduct(product) {
+  console.log('PRODUCT', product)
   return function (dispatch) {
-    axios.post('/api/products', product)
+    axios
+      .post('/api/products', product)
       .then(res => res.data)
-      .then(product => {
-        const action = addNewProduct(product)
+      .then(updatedProduct => {
+        const action = addNewProduct(updatedProduct)
         dispatch(action)
       })
       .catch(err => console.error('error creating product', err))
@@ -39,7 +41,8 @@ export function createProduct(product) {
 
 export function update(id, product) {
   return function (dispatch) {
-    axios.put(`/api/products/${id}`, product)
+    axios
+      .put(`/api/products/${id}`, product)
       .then(res => res.data)
       .then(product => {
         const action = updateProduct(product)

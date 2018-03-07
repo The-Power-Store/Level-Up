@@ -7,7 +7,7 @@ const GET_GUEST_CART ='GET_GUEST_CART'
 const getGuestCart = guestCart => ({ type: GET_GUEST_CART, guestCart })
 
 
-//potentially need to pass a session id here 
+//potentially need to pass a session id here
 export function fetchGuestCart(){
     return dispatch=>{
         console.log("shouting out from the thunk fetching the GUEST cart data, user ID:")

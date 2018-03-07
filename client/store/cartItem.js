@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { fetchCart } from './cart'
+import { fetchGuestCart } from './sessionCart';
 
 /**
  * ACTION TYPES
@@ -42,6 +44,8 @@ export function postCartItemToSessionThunk(cartItem){
                 console.log("Item return is", cartItem)
                 const action = postCartItemToSession(cartItem)
                 dispatch(action)
+                dispatch(fetchGuestCart())
+
             })
             .catch(err => console.error('error creating cart item', err))
     }
@@ -59,6 +63,7 @@ export function postCartItemThunk(cartItem) {
                 const action = postCartItem(cartItem)
                 console.log("the cart item is", cartItem)
                 dispatch(action)
+                dispatch(fetchCart());
             })
             .catch(err => console.error('error creating cart item', err))
     }

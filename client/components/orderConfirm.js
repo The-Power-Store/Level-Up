@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 // add order number and order email address
 const OrderConfirm = (props) => {
-    // console.log(window.confetti)
+    console.log(window.confetti)
     // confetti.render();
     return (
         <div>

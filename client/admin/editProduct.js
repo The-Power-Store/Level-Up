@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { createProduct, update } from '../store'
 
 const EditProduct = props => {
-  console.log(`props ***************`, props.product);
   const { handleAddSubmit, handleUpdateSubmit, categories } = props
   const product = props.product[0]
 
@@ -74,8 +73,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 
   return {
-    handleAddSubmit: (event) => {
+    handleAddSubmit: event => {
       event.preventDefault()
+
       const index = event.target.category.value.indexOf(':')
       const title = event.target.title.value
       const description = event.target.description.value
@@ -87,8 +87,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(createProduct({ title, description, imageUrl, stock, price, categoryId }))
       ownProps.history.push(`/home/${id}`)
     },
-    handleUpdateSubmit: (event) => {
+    handleUpdateSubmit: event => {
       event.preventDefault()
+
       const index = event.target.category.value.indexOf(':')
       const title = event.target.title.value
       const description = event.target.description.value

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { fetchCart } from './cart'
-import { fetchGuestCart } from './sessionCart';
+import { fetchGuestCart } from './sessionCart'
 
 /**
  * ACTION TYPES
@@ -19,55 +19,32 @@ const postCartItemToSession = cartItem => ({ type: POST_SESSION_CART_ITEM, cartI
 /**
 * THUNK CREATORS
 */
-// export const getCartThunk = (cart) => {
-//     dispatch => {
-//         axios.get('/api/carts/:userId')
-//             .then(res => res.data)
-//             .
-//     }
-// }
-// export const getCartItemThunk = (cart) => {
-//     dispatch => {
-//         axios.get('/api/carts/:userId')
-//             .then(res => res.data)
-//             .
-//     }
-// }
-
-
-export function postCartItemToSessionThunk(cartItem){
-    return dispatch =>{
-        console.log("shouting out from the postsessionthunk, the cart being posted i", cartItem)
-        return axios.post(`/session/`, cartItem)
-            .then(res => res.data)
-            .then(cartItem=>{
-                console.log("Item return is", cartItem)
-                const action = postCartItemToSession(cartItem)
-                dispatch(action)
-                dispatch(fetchGuestCart())
-
-            })
-            .catch(err => console.error('error creating cart item', err))
-    }
-
+export function postCartItemToSessionThunk(cartItem) {
+  return dispatch => {
+    return axios.post(`/session/`, cartItem)
+      .then(res => res.data)
+      .then(cartItem => {
+        console.log("Item return is", cartItem)
+        const action = postCartItemToSession(cartItem)
+        dispatch(action)
+        dispatch(fetchGuestCart())
+      })
+      .catch(err => console.error('error creating cart item', err))
+  }
 }
 
 export function postCartItemThunk(cartItem) {
-
-    return dispatch => {
-        console.log("from the post thunk,", cartItem)
-        //need to add a check to see if that userIS is already associated with that product id, in which case issue a put
-        return axios.post('/api/carts/', cartItem)
-            .then(res => res.data)
-            .then(cartItem => {
-                const action = postCartItem(cartItem)
-                console.log("the cart item is", cartItem)
-                dispatch(action)
-                dispatch(fetchCart());
-            })
-            .catch(err => console.error('error creating cart item', err))
-    }
-
+  return dispatch => {
+    return axios.post('/api/carts/', cartItem)
+      .then(res => res.data)
+      .then(cartItem => {
+        const action = postCartItem(cartItem)
+        console.log("the cart item is", cartItem)
+        dispatch(action)
+        dispatch(fetchCart())
+      })
+      .catch(err => console.error('error creating cart item', err))
+  }
 }
 
 /**
@@ -78,7 +55,7 @@ export default function cartReducer(state = {}, action) {
     case GET_CART_ITEM:
       return action.cartItem
     case POST_CART_ITEM:
-      return  action.cartItem
+      return action.cartItem
     case POST_SESSION_CART_ITEM:
       return action.cartItem
     default:

@@ -1,5 +1,5 @@
-import {expect} from 'chai'
-import {fetchAllProducts, update} from './product'
+import { expect } from 'chai'
+import { fetchAllProducts, update } from './product'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
@@ -27,7 +27,7 @@ describe('thunk creators', () => {
 
   describe('fetchAllProducts', () => {
     it('dispatches the GET_ALL_PRODUCTS action', () => {
-      const fakeProducts = [{title: 'a wand', description: 'it makes magic', price: '500'}, {title: 'some potion', description: 'it changes you', price: '1000'}]
+      const fakeProducts = [{ title: 'a wand', description: 'it makes magic', price: '500' }, { title: 'some potion', description: 'it changes you', price: '1000' }]
       mockAxios.onGet('/api/products').replyOnce(200, fakeProducts)
       return store.dispatch(fetchAllProducts())
         .then(() => {
@@ -42,7 +42,7 @@ describe('thunk creators', () => {
     it('dispatches the UPDATE_PRODUCT action', () => {
       const product = { title: "a wand", description: "it makes magic", price: "500" }
       mockAxios.onPut('/api/products/1').replyOnce(200, product)
-      return store.dispatch(update(1,{title: 'a special wand'}))
+      return store.dispatch(update(1, { title: 'a special wand' }))
         .then(() => {
           const actions = store.getActions()
           expect(actions[0].type).to.be.equal('UPDATE_PRODUCT')

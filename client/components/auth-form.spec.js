@@ -1,7 +1,7 @@
-import { AuthForm, mapLogin } from "./auth-form";
-import { expect } from "chai";
-import { shallow } from "enzyme";
-import React from "react";
+import { AuthForm, mapLogin } from "./auth-form"
+import { expect } from "chai"
+import { shallow } from "enzyme"
+import React from "react"
 
 describe('AuthForm', () => {
   describe('the mapLogin function', () => {
@@ -11,4 +11,4 @@ describe('AuthForm', () => {
       expect(mapLogin(fakeState).error).to.be.equal('Error!!')
     })
   })
-});
+})

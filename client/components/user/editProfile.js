@@ -67,8 +67,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const { id } = ownProps.match.params
 
   return {
-    handleUpdateSubmit: (event) => {
-
+    handleUpdateSubmit: event => {
       event.preventDefault();
 
       const address = event.target.address.value;
@@ -80,8 +79,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(changeAddress(id, { address, city, state, zip, isShipping }, ownProps))
     },
 
-    handleCreateSubmit: (event) => {
-
+    handleCreateSubmit: event => {
       event.preventDefault();
 
       const address = event.target.address.value;

@@ -65,7 +65,6 @@ class PreviousOrderPage extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-
   return {
     productsInOrder: state.productsInOrder,
   }

@@ -9,7 +9,7 @@ const OrderForm = (props) => {
   const { user, handleSubmit, error } = props
   let userId;
   props.user.id ? userId = props.user.id : userId = null;
-  console.log('USER STUFF !!!!!!', props.user)
+  console.log('USER STUFF !!!!!!', )
   console.log('HIIIIAIIAIIAIIAIIAIIAI', Object.keys(props.user).length)
   const firstName = ""
   const lastName = ""

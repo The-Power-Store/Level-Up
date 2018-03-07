@@ -33,60 +33,60 @@ router.post('/', (req, res, next) => {
       console.log('!!!!!!!!!!!!!!!!!!!! USER ID', req.user)
       console.log('new current order is ' + currentOrder)
 
-      if(req.user == null){
+      if (req.user == null) {
         //make the order, like normal
-        
+
         //d
-          console.log("this is what the cart looks like",Object.keys(req.session.cart))
-              Promise.all(Object.keys(req.session.cart).map(key => {
-                return Product.findById(+key)
-                  .then(product => {
-                   
-                    return ProductsInOrder.create({ quantity: req.session.cart[key], price: product.price, orderId: currentOrder.id, productId: product.id })
-                  })
-              })
-              )
-                .then(data => {
-                  console.log('we did a thing! ', data)
-                  req.session.destroy(function (err) {
-                    console.log("we wrecked the session"); //Inside a callback… bulletproof!
-                  });
-    
-                })
-                // .then((data) => {
-                //   res.sendStatus(201)
-                // })
-        .catch(next)
- 
-    // fjkdsajfldksjkfdjklajdslkafjdslkafjlkdsajfkdsajlfdjsz
+        console.log("this is what the cart looks like", Object.keys(req.session.cart))
+        Promise.all(Object.keys(req.session.cart).map(key => {
+          return Product.findById(+key)
+            .then(product => {
 
-
-      }else{
-        
-      
-      Cart.findAll({
-        where: {
-          userId: req.user.id
-        }
-      })
-        .then(cartItems => {
-          console.log('dis is the cart items ' + cartItems)
-          return Promise.all(cartItems.map(item => {
-            return Product.findById(item.dataValues.productId)
-              .then(product => {
-                return ProductsInOrder.create({ quantity: item.dataValues.quantity, price: product.price, orderId: currentOrder.id, productId: product.id })
-              })
-          })
-          )
-            .then(data => {
-              console.log('we did a thing! ', data)
-              return Cart.destroyCart(req.user.id)
-
-            })
-            .then((data) => {
-              res.sendStatus(201)
+              return ProductsInOrder.create({ quantity: req.session.cart[key], price: product.price, orderId: currentOrder.id, productId: product.id })
             })
         })
+        )
+          .then(data => {
+            console.log('we did a thing! ', data)
+            req.session.destroy(function (err) {
+              console.log("we wrecked the session"); //Inside a callback… bulletproof!
+            });
+
+          })
+          // .then((data) => {
+          //   res.sendStatus(201)
+          // })
+          .catch(next)
+
+        // fjkdsajfldksjkfdjklajdslkafjdslkafjlkdsajfkdsajlfdjsz
+
+
+      } else {
+
+
+        Cart.findAll({
+          where: {
+            userId: req.user.id
+          }
+        })
+          .then(cartItems => {
+            console.log('dis is the cart items ' + cartItems)
+            return Promise.all(cartItems.map(item => {
+              return Product.findById(item.dataValues.productId)
+                .then(product => {
+                  return ProductsInOrder.create({ quantity: item.dataValues.quantity, price: product.price, orderId: currentOrder.id, productId: product.id })
+                })
+            })
+            )
+              .then(data => {
+                console.log('we did a thing! ', data)
+                return Cart.destroyCart(req.user.id)
+
+              })
+              .then((data) => {
+                res.sendStatus(201)
+              })
+          })
       }
     }
     )

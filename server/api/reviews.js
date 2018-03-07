@@ -1,6 +1,6 @@
-const router = require('express').Router();
-const { Review } = require('../db/models');
-const { makeError } = require('./utils');
+const router = require('express').Router()
+const { Review } = require('../db/models')
+const { makeError } = require('./utils')
 const { Product, User } = require('../db/models')
 
 module.exports = router

@@ -5,9 +5,8 @@ module.exports = router
 
 // find all items by specific cart
 router.get('/', (req, res, next) => {
-  const userID = req.user.id 
+  const userID = req.user.id
 
-  console.log("shouting out from the cart api", req.user.id)
   Cart.findAll({
     where: { userId: userID }
   })
@@ -21,38 +20,26 @@ router.get('/', (req, res, next) => {
 
 // add new cart item, or if the item already is in the cart, update its quantity 
 router.post('/transfer', (req, res, next) => {
-  console.log("this is the cart on the session, that we are trying to transfer", req.session.cart, "for this user,", Object.keys(req.body))
-  //PRODUCTID, quantity, userid, 
-  //how do we get the user id in here? maybe look at the users table? can we pass the email in here and search the user table?
-  Object.keys(req.session.cart).map((key)=>{
-    User.findOne({where:{email:Object.keys(req.body)[0]}}).then((user)=>{
-      const cartItemToAdd = {productId:+key, userId:user.id, quantity:req.session.cart[key]}
+  Object.keys(req.session.cart).map((key) => {
+    User.findOne({ where: { email: Object.keys(req.body)[0] } })
+      .then(user => {
+        const cartItemToAdd = { productId: +key, userId: user.id, quantity: req.session.cart[key] }
 
-      console.log("the user id is",user.id )
-      Cart.create(cartItemToAdd).
-      then(createdItem => {
-        //console.log("this is the item we just added to the cart", createdItem)
-        return res.status(201).json(createdItem)})
-    }
-    )
-    .catch(next)
+        Cart.create(cartItemToAdd)
+          .then(createdItem => res.status(201).json(createdItem))
+      })
+      .catch(next)
   })
-   
 })
 
 router.post('/', (req, res, next) => {
-  console.log("FROM THE BACKEND, the request looks like ", req.body)
   Cart.findOne({ where: { userId: req.body.userId, productId: req.body.productId } })
     .then(foundArr => {
       if (foundArr != null) {
-        console.log("The item is already in the caret, so increase it quantity")
         const newquant = +req.body.quantity + foundArr.quantity
 
-        console.log("new amount", newquant)
         return foundArr.update({ quantity: newquant })
-         
       } else {
-        console.log("The item does not exist in the cart yet")
         return Cart.create(req.body) //this should be a product and it's information
       }
     })

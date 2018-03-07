@@ -26,7 +26,6 @@ export function fetchAllProducts() {
 }
 
 export function createProduct(product) {
-  console.log('PRODUCT', product)
   return function (dispatch) {
     axios
       .post('/api/products', product)

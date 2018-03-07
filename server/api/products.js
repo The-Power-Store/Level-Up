@@ -27,10 +27,9 @@ router.get('/order/:id', (req, res, next) => {
 })
 
 router.post('/', isAdmin, (req, res, next) => {
-  console.log('heeerree')
-    Product.create(req.body)
-      .then(created => res.status(201).json(created))
-      .catch(next)
+  Product.create(req.body)
+    .then(created => res.status(201).json(created))
+    .catch(next)
 })
 
 router.put('/:id', (req, res, next) => {

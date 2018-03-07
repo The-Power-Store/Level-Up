@@ -1,5 +1,4 @@
 /* global describe beforeEach it */
-
 const { expect } = require('chai')
 const request = require('supertest')
 const db = require('../db')
@@ -56,10 +55,6 @@ describe('User routes', () => {
         .send({})
         .expect(500)
     })
-
-    // it('DELETE /api/users and removes the user from the DB', () => {
-    //   return request(app)
-    // })
 
   }) // end describe('/api/users')
 }) // end describe('User routes')

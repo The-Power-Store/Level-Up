@@ -7,7 +7,6 @@ import { fetchCart } from '../store/cart'
 class Cart extends Component {
 
   componentDidMount() {
-    console.log("fetching the cart for ", this.props.user.id)
     this.props.loadCart()
 
   }
@@ -40,7 +39,6 @@ class Cart extends Component {
                   return cartItem.quantity
                 }
               })
-              console.log("CAAAART", quantity[0].quantity) //change this one the store is fixed from having repeats
               return (
                 <div key={item.id}>
                   <h1>{item.title}</h1>

@@ -24,7 +24,6 @@ router.get('/:id', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  console.log('heeerrrr',req.body)
   Address.create(req.body)
     .then(created => {
       res.status(201).json(created)

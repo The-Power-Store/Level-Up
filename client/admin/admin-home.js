@@ -64,7 +64,7 @@ class AdminHome extends Component {
           </div>)}
         </ul>
       </div>
-    </div>;
+    </div>
   }
 }
 
@@ -83,7 +83,7 @@ const mapDispatchToProps = dispatch => {
     },
     handleAdminSubmit: (event, id) => {
       dispatch(editUserInUsers(id, { isAdmin: true }))
-      dispatch(fetchAllUsers());
+      dispatch(fetchAllUsers())
     },
     handleDeleteSubmit: (event, id) => {
       dispatch(deleteAccount(id))

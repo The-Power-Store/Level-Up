@@ -59,7 +59,6 @@ const EditProduct = props => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(`OWN PROPS`, ownProps)
   return {
     product: state.products.filter(product => (
       product.id === +ownProps.match.params.id

@@ -7,11 +7,9 @@ const getGuestCart = guestCart => ({ type: GET_GUEST_CART, guestCart })
 
 export function fetchGuestCart() {
   return dispatch => {
-    console.log("shouting out from the thunk fetching the GUEST cart data, user ID:")
     axios.get(`/session/cart/`)
       .then(res => res.data)
       .then(guestCart => {
-        console.log("the item returned from the getch guest thunk", guestCart)
         const action = getGuestCart(guestCart)
         dispatch(action)
       })

@@ -53,11 +53,11 @@ export function editUserInUsers(id, user) {
     axios
       .put(`/api/users/${id}`, user)
       .then((updatedUser) => {
-        dispatch(updateUser(updatedUser));
+        dispatch(updateUser(updatedUser))
         dispatch(fetchAllUsers())
       })
-      .catch(err => console.error("error updating user", err));
-  };
+      .catch(err => console.error("error updating user", err))
+  }
 }
 
 //reducer

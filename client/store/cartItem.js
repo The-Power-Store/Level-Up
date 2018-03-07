@@ -24,7 +24,6 @@ export function postCartItemToSessionThunk(cartItem) {
     return axios.post(`/session/`, cartItem)
       .then(res => res.data)
       .then(cartItem => {
-        console.log("Item return is", cartItem)
         const action = postCartItemToSession(cartItem)
         dispatch(action)
         dispatch(fetchGuestCart())
@@ -39,7 +38,6 @@ export function postCartItemThunk(cartItem) {
       .then(res => res.data)
       .then(cartItem => {
         const action = postCartItem(cartItem)
-        console.log("the cart item is", cartItem)
         dispatch(action)
         dispatch(fetchCart())
       })

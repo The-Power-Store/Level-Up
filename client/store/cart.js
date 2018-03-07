@@ -6,6 +6,18 @@ const GET_GUEST_CART ='GET_GUEST_CART'
 
 const getCart = cart => ({ type: GET_CART, cart })
 // const addToCart = cartitem =>({type: ADD_TO_CART, cartitem})
+export function transferItems(email){
+    return dispatch=> {
+        console.log("the transfer items thunk has been called")
+        return axios.post('/api/carts/transfer', email)
+        .then(res=> res.data)
+        .then(newCart=>{
+            console.log("we transfered all the items and deleted the session")
+            const action = getCart(newCart)
+            dispatch(action)
+        })
+    }
+}
 
 export function fetchCart() {
   return dispatch => {

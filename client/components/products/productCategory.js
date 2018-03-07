@@ -36,7 +36,7 @@ class ProductCategory extends Component {
           </div>
         </div>
 
-        <div className="product-list allProducts">
+        <div className="product-list">
           {
             products.map(product => {
               return (

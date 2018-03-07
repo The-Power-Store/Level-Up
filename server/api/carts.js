@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Cart } = require('../db/models')
+const { Cart, User } = require('../db/models')
 
 module.exports = router
 
@@ -21,14 +21,20 @@ router.get('/', (req, res, next) => {
 
 // add new cart item, or if the item already is in the cart, update its quantity 
 router.post('/transfer', (req, res, next) => {
-  console.log("this is the cart on the session, that we are trying to transfer", req.session.cart, "for this user,", req.user)
-  //PRODUCTID, quantity, userid 
+  console.log("this is the cart on the session, that we are trying to transfer", req.session.cart, "for this user,", Object.keys(req.body))
+  //PRODUCTID, quantity, userid, 
+  //how do we get the user id in here? maybe look at the users table? can we pass the email in here and search the user table?
   Object.keys(req.session.cart).map((key)=>{
-    const cartItemToAdd = {productId:+key, userId:1, quantity:req.session.cart[key]}
-    Cart.create(cartItemToAdd).
-    then(createdItem => {
-      console.log("this is the item we just added to the cart", createdItem)
-      return res.status(201).json(createdItem)})
+    User.findOne({where:{email:Object.keys(req.body)[0]}}).then((user)=>{
+      const cartItemToAdd = {productId:+key, userId:user.id, quantity:req.session.cart[key]}
+
+      console.log("the user id is",user.id )
+      Cart.create(cartItemToAdd).
+      then(createdItem => {
+        //console.log("this is the item we just added to the cart", createdItem)
+        return res.status(201).json(createdItem)})
+    }
+    )
     .catch(next)
   })
    

@@ -62,9 +62,11 @@ const mapDispatchToProps = (dispatch) => {
       const password = evt.target.password.value
       dispatch(auth(email, password, formName)).then(
         
-        dispatch(transferItems())
+        dispatch(transferItems(email)).then(
+          window.location.reload()
+
+        )
       )
-      
       
 
     }

@@ -19,7 +19,7 @@ const EditProduct = props => {
           <input type="text" name="imageUrl" defaultValue={product.imageUrl} />
           <label>Stock</label>
           <input type="text" name="stock" defaultValue={product.stock} />
-          <label>Price</label>
+          <label>Price ($)</label>
           <input type="text" name="price" defaultValue={product.price} />
           <label>Category</label>
           <select name="category">
@@ -42,7 +42,7 @@ const EditProduct = props => {
         <input type="text" name="imageUrl" />
         <label>Stock</label>
         <input type="text" name="stock" />
-        <label>Price</label>
+        <label>Price ($)</label>
         <input type="text" name="price" />
         <label>Category</label>
         <select name="category">
@@ -85,7 +85,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const categoryId = event.target.category.value.slice(0, index)
 
       dispatch(createProduct({ title, description, imageUrl, stock, price, categoryId }))
-      ownProps.history.push('/home')
+      ownProps.history.push(`/home/${id}`)
     },
     handleUpdateSubmit: (event) => {
       event.preventDefault()
@@ -98,7 +98,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const categoryId = event.target.category.value.slice(0, index)
 
       dispatch(update(id, { title, description, imageUrl, stock, price, categoryId }))
-      ownProps.history.push('/home')
+      ownProps.history.push(`/home/${id}`)
     }
   }
 }

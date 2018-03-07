@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { Link } from 'react-router-dom'
-import { fetchAllUsers, deleteAccount, editUser } from "../store"
+import { fetchAllUsers, deleteAccount, editUserInUsers } from "../store"
 
 class AdminHome extends Component {
   componentDidMount() {
@@ -25,7 +25,7 @@ class AdminHome extends Component {
             </tr>
           </thead>
           <tbody>
-            {users.map(user => <tr key={user.id}>
+            {users.length && users.map(user => <tr key={user.id}>
                 <th scope="row">
                   {user.firstName} {user.lastName}
                 </th>
@@ -83,8 +83,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(fetchAllUsers())
     },
     handleAdminSubmit: (event, id) => {
-      dispatch(editUser(id, { isAdmin: true }))
-      dispatch(fetchAllUsers())
+      dispatch(editUserInUsers(id, { isAdmin: true }))
+      dispatch(fetchAllUsers());
     },
     handleDeleteSubmit: (event, id) => {
       dispatch(deleteAccount(id))

@@ -7,23 +7,24 @@ import { addOrderThunk } from '../store/order'
 
 const OrderForm = (props) => {
   const { user, handleSubmit, error } = props
-  let userId;
-  props.user.id ? userId = props.user.id : userId = null;
-  console.log('USER STUFF !!!!!!', )
-  console.log('HIIIIAIIAIIAIIAIIAIIAI', Object.keys(props.user).length)
+  let userId
+
+  props.user.id ? userId = props.user.id : userId = null
+
   const firstName = ""
   const lastName = ""
   const email = ""
+
   if (Object.keys(props.user).length > 0) {
-    console.log('WHADDUP')
     const firstName = props.user.firstName
     const lastName = props.user.lastName
     const email = props.user.email
   }
+
   return (
     <div className="order-form">
       <h1> Your current order: </h1>
-      <form onSubmit={(event) => handleSubmit(event, userId)} >
+      <form onSubmit={event => handleSubmit(event, userId)} >
         <div>
           <label htmlFor="firstName"><small>First Name</small></label>
           <input name="firstName" type="text" />
@@ -60,10 +61,9 @@ const OrderForm = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     user: state.user,
-    // displayName: 'Sign Up',
     error: state.user.error
   }
 }
@@ -72,6 +72,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleSubmit(event, id) {
       event.preventDefault()
+
       const firstName = event.target.firstName.value
       const lastName = event.target.lastName.value
       const email = event.target.email.value
@@ -80,6 +81,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const state = event.target.address_state.value
       const zip = event.target.address_zip.value
       const userId = id
+
       dispatch(addOrderThunk({ firstName, lastName, email, address, city, state, zip, userId }))
       ownProps.history.push('/newOrder/confirm')
     }

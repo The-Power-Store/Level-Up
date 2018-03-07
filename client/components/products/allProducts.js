@@ -4,12 +4,11 @@ import { connect } from 'react-redux'
 import store from '../../store'
 
 class AllProducts extends Component {
-
   state = {
     input: '',
   }
 
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({
       input: event.target.value
     })
@@ -50,8 +49,7 @@ class AllProducts extends Component {
   }
 }
 
-const mapStateToProps = function (state) {
-
+const mapStateToProps = state => {
   return {
     products: state.products
   }

@@ -1,9 +1,9 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { connect } from "react-redux"
-import { editUser, fetchUserAddress, getOrdersThunk } from "../store"
-import { withRouter, Link } from "react-router-dom"
-import { isAdmin } from "../../server/api/utils"
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { editUser, fetchUserAddress, getOrdersThunk } from '../store'
+import { withRouter, Link } from 'react-router-dom'
+import { isAdmin } from '../../server/api/utils'
 import { AdminHome } from './index'
 
 /**
@@ -64,7 +64,7 @@ class UserHome extends Component {
           {user.isAdmin
             ? <AdminHome />
             : (
-                <div className="row">
+              <div className="row">
                 <div className="col-md-6">
                   {reviews.length > 0
                     ? <h3 id="title">Your reviewed products: </h3>
@@ -97,7 +97,7 @@ class UserHome extends Component {
                     ))
                     : null}
                 </div>
-                </div>
+              </div>
             )}
         </div>
       </div>
@@ -138,6 +138,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(UserHome)
-)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserHome))

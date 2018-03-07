@@ -52,7 +52,7 @@ const EditProfile = props => {
         </select>
         <button type="submit">Add Address</button>
       </form>}
-  </div>;
+  </div>
 
 }
 
@@ -67,31 +67,29 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const { id } = ownProps.match.params
 
   return {
-    handleUpdateSubmit: (event) => {
+    handleUpdateSubmit: event => {
+      event.preventDefault()
 
-      event.preventDefault();
-
-      const address = event.target.address.value;
-      const city = event.target.city.value;
-      const state = event.target.state.value;
-      const zip = event.target.zip.value;
-      const isShipping = event.target.isShipping.value;
+      const address = event.target.address.value
+      const city = event.target.city.value
+      const state = event.target.state.value
+      const zip = event.target.zip.value
+      const isShipping = event.target.isShipping.value
 
       dispatch(changeAddress(id, { address, city, state, zip, isShipping }, ownProps))
     },
 
-    handleCreateSubmit: (event) => {
+    handleCreateSubmit: event => {
+      event.preventDefault()
 
-      event.preventDefault();
+      const address = event.target.address.value
+      const city = event.target.city.value
+      const state = event.target.state.value
+      const zip = event.target.zip.value
+      const isShipping = event.target.isShipping.value
+      const userId = ownProps.match.params.id
 
-      const address = event.target.address.value;
-      const city = event.target.city.value;
-      const state = event.target.state.value;
-      const zip = event.target.zip.value;
-      const isShipping = event.target.isShipping.value;
-      const userId = ownProps.match.params.id;
-
-      dispatch(createAddress(id, { address, city, state, zip, isShipping, userId }, ownProps));
+      dispatch(createAddress(id, { address, city, state, zip, isShipping, userId }, ownProps))
     },
 
     handleNameSubmit: (event) => {

@@ -32,25 +32,25 @@ describe('Review routes', () => {
 
     it('POST /api/reviews and saves it to the DB!!', () => {
       return request(app)
-      .post('/api/reviews')
-      .send({
-        content: 'this dragon has the worst temperament. i want a refund',
-        stars: 1
-      })
-      .expect(201)
-      .then(() => {
-        return Review.findOne({
-          where: {
-            content:
-              "this dragon has the worst temperament. i want a refund",
-            stars: 1
-          }
+        .post('/api/reviews')
+        .send({
+          content: 'this dragon has the worst temperament. i want a refund',
+          stars: 1
         })
-      })
-      .then(review => {
-        expect(review).to.exist
-        expect(review.content).to.equal("this dragon has the worst temperament. i want a refund");
-      })
+        .expect(201)
+        .then(() => {
+          return Review.findOne({
+            where: {
+              content:
+                "this dragon has the worst temperament. i want a refund",
+              stars: 1
+            }
+          })
+        })
+        .then(review => {
+          expect(review).to.exist
+          expect(review.content).to.equal("this dragon has the worst temperament. i want a refund")
+        })
     })
 
     it('does not create a review without content', () => {

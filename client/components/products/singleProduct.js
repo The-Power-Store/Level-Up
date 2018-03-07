@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import store, { fetchCart, fetchGuestCart } from '../../store'
 import { postCartItemThunk, postCartItemToSessionThunk } from '../../store/cartItem'
-import PropTypes from 'prop-types'
 import ReviewForm from '../review'
 
 
-const SingleProduct = (props) => {
+const SingleProduct = props => {
   let product
 
   if (props.product.length) {
     product = props.product[0]
   }
-
-  console.log('reviews', props.reviews)
 
   return product ? (
     <div className="single-product">
@@ -57,8 +55,7 @@ const SingleProduct = (props) => {
   ) : null
 }
 
-const mapStateToProps = function (state, ownProps) {
-
+const mapStateToProps = (state, ownProps) => {
   return {
     product: state.products.filter(product =>
       product.id === +ownProps.match.params.id
@@ -70,8 +67,7 @@ const mapStateToProps = function (state, ownProps) {
   }
 }
 
-const mapDispatchToProps = function (dispatch, ownProps) {
-
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onClick: (event) => {
       const addToCart = { quantity: 1, userId: +event.target.value, productId: +ownProps.match.params.id }
@@ -79,8 +75,6 @@ const mapDispatchToProps = function (dispatch, ownProps) {
       dispatch(postCartItemThunk(addToCart))
       dispatch(fetchCart())
       ownProps.history.push('/cart')
-
-
     },
     unAuthOnClick: (event) => {
       const addToCart = { quantity: 1, productId: +ownProps.match.params.id }

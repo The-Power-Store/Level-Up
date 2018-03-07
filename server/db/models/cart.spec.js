@@ -4,17 +4,17 @@ const Cart = db.model('cart')
 const User = db.model('user')
 
 describe('Cart model', () => {
-    beforeEach(() => {
-        return db.sync({ force: true })
-    })
+  beforeEach(() => {
+    return db.sync({ force: true })
+  })
 
-    describe('destroy hook', () => {
-        beforeEach(() => {
-            // return Cart.create({
-            //     quantity: 5,
-            //     productId: 2,
-            //     userId: 
-            // })
-        })
+  describe('destroy hook', () => {
+    beforeEach(() => {
+      // return Cart.create({
+      //     quantity: 5,
+      //     productId: 2,
+      //     userId: 
+      // })
     })
+  })
 })

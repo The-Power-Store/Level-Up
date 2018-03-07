@@ -110,6 +110,7 @@ figure.item {
 .profile-page {
   background-color: rgba(255, 255, 255, 0.75);
   margin: 20px;
+  padding: 25px;
 }
 
 #title {

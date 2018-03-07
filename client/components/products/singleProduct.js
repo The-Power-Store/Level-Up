@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import store, { fetchCart, fetchGuestCart } from '../../store'
 import { postCartItemThunk, postCartItemToSessionThunk } from '../../store/cartItem'
 import PropTypes from 'prop-types'
+import ReviewForm from '../review'
 
 
 const SingleProduct = (props) => {
@@ -21,7 +22,7 @@ const SingleProduct = (props) => {
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
       {
-        !!props.isLoggedIn ? <button type="submit" value={props.isLoggedIn} onClick={props.onClick}>Add to Cart </button>
+        !!props.isLoggedIn ? <button className="btn btn-primary" type="submit" value={props.isLoggedIn} onClick={props.onClick}>Add to Cart </button>
           : <button type="submit" className="btn btn-primary" onClick={props.unAuthOnClick}>Add to cart!</button>
       }
       {

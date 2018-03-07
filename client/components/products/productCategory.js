@@ -24,8 +24,8 @@ class ProductCategory extends Component {
     ) : []
 
     return (
-      <div>
-        <div className="products-header allProducts">
+      <div className="allProducts">
+        <div className="products-header ">
           <input
             placeholder='Search for a product'
             onChange={this.handleChange}

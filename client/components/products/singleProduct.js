@@ -42,9 +42,14 @@ const SingleProduct = (props) => {
             <div key={review.id}>
               <h5>--{review.stars} Stars</h5>
               <p>--{review.content}</p>
+              <p>------------------------------------------------------</p>
             </div>
           ))
           : null
+      }
+      {
+        props.isLoggedIn &&
+        <ReviewForm />
       }
 
     </div>

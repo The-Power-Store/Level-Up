@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import store, { fetchCart ,fetchGuestCart} from '../../store'
-import { postCartItemThunk, postCartItemToSessionThunk} from '../../store/cartItem'
+import store, { fetchCart, fetchGuestCart } from '../../store'
+import { postCartItemThunk, postCartItemToSessionThunk } from '../../store/cartItem'
 import PropTypes from 'prop-types'
- 
+import ReviewForm from '../review'
+
 
 const SingleProduct = (props) => {
   let product
@@ -21,19 +22,35 @@ const SingleProduct = (props) => {
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
       {
-        !!props.isLoggedIn ? <button type="submit" value={props.isLoggedIn} onClick={props.onClick}>Add to Cart </button>
-          : <button type="submit" onClick={props.unAuthOnClick}>add to unauthorized user cart</button>
+        !!props.isLoggedIn ? <button className="btn btn-primary" type="submit" value={props.isLoggedIn} onClick={props.onClick}>Add to Cart </button>
+          : <button type="submit" className="btn btn-primary" onClick={props.unAuthOnClick}>Add to cart!</button>
       }
-      <h4>Reviews</h4>
+      {
+        props.reviews.length ?
+          <div>
+            <br />
+            <h4>Reviews:</h4>
+          </div>
+
+          : <div>
+            <br />
+            <h4>This magical product is yet to be reviewed!</h4>
+          </div>
+      }
       {
         props.reviews.length > 0 ?
           props.reviews.map(review => (
             <div key={review.id}>
               <h5>--{review.stars} Stars</h5>
               <p>--{review.content}</p>
+              <p>------------------------------------------------------</p>
             </div>
           ))
           : null
+      }
+      {
+        props.isLoggedIn &&
+        <ReviewForm />
       }
 
     </div>
@@ -58,6 +75,7 @@ const mapDispatchToProps = function (dispatch, ownProps) {
   return {
     onClick: (event) => {
       const addToCart = { quantity: 1, userId: +event.target.value, productId: +ownProps.match.params.id }
+<<<<<<< HEAD
      
       dispatch(postCartItemThunk(addToCart)).then(
 
@@ -65,14 +83,18 @@ const mapDispatchToProps = function (dispatch, ownProps) {
       )
       
       //window.location.reload() //change to a real variable once we have the log in stuff
+=======
+      console.log("adding this item to the cart", addToCart)
+      dispatch(postCartItemThunk(addToCart))
+      ownProps.history.push('/cart')
+      console.log("should be calling fetch cart!")
+
+>>>>>>> master
     },
     unAuthOnClick: (event) => {
       const addToCart = { quantity: 1, productId: +ownProps.match.params.id }
-      dispatch(postCartItemToSessionThunk(addToCart)).then(
-
-        dispatch(fetchGuestCart())
-      )
-      //window.location.reload()
+      dispatch(postCartItemToSessionThunk(addToCart))
+      ownProps.history.push('/guestCart')
     }
   }
 }

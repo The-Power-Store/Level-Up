@@ -4,7 +4,7 @@ const { expect } = require('chai')
 const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
-const User = db.model('User')
+const User = db.model('user')
 let agent = request.agent(app)
 
 describe('User routes', () => {
@@ -56,6 +56,7 @@ describe('User routes', () => {
         .send({})
         .expect(500)
     })
+
     // it('DELETE /api/users and removes the user from the DB', () => {
     //   return request(app)
     // })

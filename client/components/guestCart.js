@@ -33,22 +33,30 @@ class GuestCart extends Component {
 
     console.log("The product left on the state of the cart is ", productsInCart)
 
-    return (
-      <div>
-        <h1>hello from the cart </h1>
-        <h2>cart items:</h2>
-        {
-          productsInCart.map((item) => {
-            return (
-              <div key={item.id}>
+    return <div className="cart-container">
+        <h1>hello from the cart!</h1> <Link to={"/products"}>
+          <button className="btn btn-">Continue Shopping!</button>
+        </Link>
+        <br />
+        <div className="cart">
+          <h2 id="cart-title">Cart items:</h2>
+          {productsInCart.map(item => {
+            return <div key={item.id}>
                 <h1>{item.title}</h1>
-                <h1>{guestCart[item.id]}</h1>
-              </div>)
-          })
-        }
-        <Link to={'/newOrder'}> <button>Proceed to checkout, lovely</button></Link>
-      </div>
-    )
+                <h1>Quantity: {guestCart[item.id]}</h1>
+                <p>----------------------------------------------</p>
+              </div>;
+          })}
+        </div>
+        <Link to={"/newOrder"}>
+          {" "}
+          <button className="btn btn-success">
+            Proceed to checkout, lovely
+          </button>
+        </Link> <Link to={"/products"}>
+          <button className="btn btn-primary">Continue Shopping!</button>
+        </Link>
+      </div>;
   }
 }
 
@@ -60,8 +68,8 @@ const mapStateToProps = function (state, ownProps) {
 
 
 
-    //if logged in, get the user id from there, if not, get it from the session. 
-    console.log("jfdklsjafld",state)
+    //if logged in, get the user id from there, if not, get it from the session.
+
 
     return {
       guestCart: state.sessionCart,

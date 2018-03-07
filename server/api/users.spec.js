@@ -56,6 +56,7 @@ describe('User routes', () => {
         .send({})
         .expect(500)
     })
+
     // it('DELETE /api/users and removes the user from the DB', () => {
     //   return request(app)
     // })

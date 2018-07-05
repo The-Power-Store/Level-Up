@@ -1,4 +1,4 @@
-##Mystique-Boutique
+#Mystique-Boutique
 
 Mysti Bouti is an online store where you can buy all the magical items your heart desires
 

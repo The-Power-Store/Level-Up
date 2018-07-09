@@ -1,6 +1,6 @@
 #Mystique-Boutique
 
-Mysti Bouti is an online store where you can buy all the magical items your heart desires
+Mysti Bouti is an mock e-commerce store where you can buy all the magical items your heart desires
 
 Built using PostgreSQL, Sequelize, Node/Express, React, Redux and React-Redux
 
